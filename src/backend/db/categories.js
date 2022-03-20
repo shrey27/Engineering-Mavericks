@@ -1,4 +1,4 @@
-import { v4 as uuid } from "uuid";
+import { v4 as uuid } from 'uuid';
 
 /**
  * Category Database can be added here.
@@ -8,20 +8,34 @@ import { v4 as uuid } from "uuid";
 export const categories = [
   {
     _id: uuid(),
-    categoryName: "Computer Programming",
+    cid: 'C1',
+    categoryName: 'Electrical Science',
     description:
-      "Computer programming is the process of designing and building an executable computer program to accomplish a specific computing",
+      "From a battery operated mobile to power generation plant, let's dive into the world of electrical engineering",
+    source: 'electrical'
   },
   {
     _id: uuid(),
-    categoryName: "Frontend Development",
+    cid: 'C2',
+    categoryName: 'Mechanics behind Automobiles',
     description:
-      "Front-end web development, also known as client-side development is the practice of producing HTML, CSS and JavaScript for a website or Web Application",
+      "You like tesla or Ferrari, but what's working behind the hoods of these glamourous vehicles",
+    source: 'automobile'
   },
   {
     _id: uuid(),
-    categoryName: "Backend Development",
+    cid: 'C3',
+    categoryName: "What's out There ?",
     description:
-      "Backend Development is also known as server-side development. It is everything that the users don't see and contains behind-the-scenes activities that occur when performing any action on a website.",
+      "Have you seen Interstellar ?, but don't know what actually happens out there in space. Let's explore some of the unfathomable facts about our universe",
+    source: 'space'
   },
+  {
+    _id: uuid(),
+    cid: 'C4',
+    categoryName: 'How Stuff Works ?',
+    description:
+      "Ever wondered how internet works or what's the difference between an LED and LCD. Well then, let's start learning about the day-to-day stuff that surrounds us",
+    source: 'stuff'
+  }
 ];

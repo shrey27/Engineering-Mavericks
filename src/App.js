@@ -1,5 +1,6 @@
+import { availableRoutes } from './routes';
 function App() {
-  return <div className='App'></div>;
+  return <div className=''>{availableRoutes}</div>;
 }
 
 export default App;

@@ -1,0 +1,64 @@
+@import '../utility/styles.css';
+
+.category {
+  color: var(--white);
+}
+.category__title {
+  text-decoration: underline;
+  font-size: 2rem;
+  text-align: center;
+  margin: 2rem;
+  padding: 0.2rem;
+}
+.category__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.category__header__card {
+  margin: 2rem auto;
+  padding: 0.5rem;
+  max-width: 80%;
+}
+.category__header__card h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  color: var(--tag);
+}
+.category__header__card h2 {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: normal;
+  color: var(--primary--light);
+  margin: 0.5rem auto;
+  max-width: 80%;
+}
+.category__banner {
+  max-width: 30rem;
+  width: 80%;
+  object-fit: contain;
+  margin: 2rem auto;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+@media screen and (min-width: 1024px) {
+  .category__card {
+    flex-direction: row;
+  }
+  .category__card.float--right {
+    flex-direction: row-reverse;
+  }
+  .category__banner {
+    width: 30rem;
+  }
+  .category__header__card h1 {
+    font-size: 2rem;
+  }
+  .category__header__card h2 {
+    font-size: 1.45rem;
+    max-width: 45rem;
+  }
+}

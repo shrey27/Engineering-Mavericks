@@ -1,0 +1,126 @@
+@import '../utility/styles.css';
+
+.header {
+  color: var(--white);
+}
+.header__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: var(--tertiary);
+}
+.header__nav__image {
+  width: auto;
+  height: 50px;
+  object-fit: contain;
+}
+.header__nav__brand {
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: var(--primary--light);
+  margin: 0 0.5rem;
+}
+.header__nav__icon {
+  display: block;
+  font-size: 2rem;
+}
+.header__nav__auth {
+  display: none;
+}
+.header__body {
+  padding: 5% 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column-reverse;
+  gap: 1rem;
+}
+.header__banner {
+  border: 1px solid var(--tertiary);
+  border-radius: 20px;
+  width: 90%;
+  object-fit: contain;
+}
+.header__body__banner {
+  display: flex;
+  justify-content: center;
+}
+.header__body__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.header__primary {
+  font-size: 2rem;
+  margin: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+.header__secondary {
+  font-size: 1.25rem;
+  font-weight: normal;
+  text-align: center;
+  margin: 1rem;
+  color: var(--primary--light);
+}
+.header__cta {
+  margin: 1rem;
+  padding: 1rem 3rem;
+  font-size: 1rem;
+  border-radius: 10px;
+}
+.btn--auth--view {
+  display: none;
+}
+
+@media screen and (min-width: 1024px) {
+  .header{
+    width: 100vw;
+    height: 95vh;
+  }
+  .header__nav__image {
+    height: 80px;
+  }
+  .header__nav__brand {
+    font-size: 1.5rem;
+  }
+  .header__nav__icon {
+    display: none;
+  }
+  .header__nav__auth {
+    display: block;
+  }
+  .header__body {
+    flex-direction: row;
+  }
+  .header__banner {
+    height: 20rem;
+    object-fit: fill;
+    max-width: 40rem;
+  }
+  .header__body__banner {
+    flex: 1.1;
+  }
+  .header__body__info {
+    flex: 0.9;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .header__primary {
+    font-size: 2.5rem;
+  }
+  .header__primary,
+  .header__secondary {
+    text-align: left;
+  }
+  .header__cta {
+    font-size: 1.5rem;
+  }
+  .btn--auth--view {
+    display: inline-block;
+  }
+}
