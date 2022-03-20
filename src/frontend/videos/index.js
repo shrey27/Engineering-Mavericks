@@ -1,11 +1,11 @@
 import './videos.css';
-import { Footer, Navbar } from '../utility';
+import { Footer, Navbar, VideoGrid } from '../utility';
 
 export default function VideoListing() {
   return (
     <div>
       <Navbar />
-      <div className='mg-full'></div>
+      <VideoGrid />
       <Footer />
     </div>
   );

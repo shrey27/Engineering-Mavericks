@@ -1,0 +1,101 @@
+@import '../styles.css';
+
+.videogrid {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-areas:
+    'main'
+    'sidebar';
+  align-self: flex-start;
+}
+.sidebar {
+  grid-area: sidebar;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: var(--white);
+  background-color: var(--tertiary);
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+}
+.sidebar__options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: normal;
+  padding: 0.75rem;
+}
+.sidebar__options.selected {
+  background-color: var(--tertiary--light);
+}
+.sidebar__options span {
+  margin: 0.5rem 0;
+}
+.main {
+  grid-area: main;
+}
+.main__grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+  justify-content: center;
+  padding: 1rem;
+  gap: 1rem;
+  z-index: 4;
+}
+.filter {
+  overflow-x: auto;
+  padding: 1.3rem 0.5rem 1rem;
+}
+.filter__option {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--white);
+  background-color: var(--dismiss--light);
+  border: 1px solid var(--tertiary);
+  border-radius: 120px;
+  padding: 0.75rem 1.3rem;
+  margin: 0 0.5rem;
+}
+.filter__option.chosen {
+  color: var(--white);
+  background-color: var(--tag);
+  border: 1px solid var(--tag);
+}
+.thumbnail {
+  margin: 0;
+  width: 100%;
+  border-radius: 5px;
+}
+.thumbnail__banner {
+  width: 100%;
+  border-radius: 5px;
+}
+
+@media screen and (min-width: 1024px) {
+  .videogrid {
+    grid-template-columns: 20% 80%;
+    grid-template-areas: 'sidebar main';
+  }
+  .sidebar {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border-right: 3px solid var(--tertiary);
+  }
+  .sidebar__options {
+    flex-direction: row;
+    font-size: 1.35rem;
+    padding: 1.25rem;
+    width: 100%;
+  }
+  .sidebar__options span {
+    margin: 0 1rem;
+  }
+  .main__grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, auto));
+  }
+}

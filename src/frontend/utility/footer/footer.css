@@ -6,8 +6,9 @@
   height: min-content;
   color: var(--primary--light);
   background-color: var(--tertiary);
+  border-top: 2px solid var(--dismiss);
 }
-.box__image__sm{
+.box__image__sm {
   border-radius: 50%;
   padding: 0.2rem;
   width: 2rem;

@@ -5,10 +5,11 @@
 
 :root {
   --tertiary: #0e1217;
-  --tertiary--light: #151c24;
+  --tertiary--light: #182029;
   --cta: #e36b5c;
   --white: rgb(250, 246, 246);
   --dismiss: #27262b;
+  --dismiss--light: #3e3d41;
   --footer--one: #e2e1e1;
   --price: green;
   --tag: rgb(177, 3, 32);
@@ -29,6 +30,7 @@ body {
   height: 100vh;
   overflow-x: hidden;
   background-color: var(--tertiary--light);
+  font-family: 'BebasNeue';
 }
 .dark {
   background-color: var(--primary);

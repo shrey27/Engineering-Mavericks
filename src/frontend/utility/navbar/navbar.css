@@ -2,6 +2,7 @@
 
 .navbar {
   background-color: var(--tertiary);
+  border-bottom: 2px solid var(--dismiss);
 }
 .header__nav__image {
   width: auto;
@@ -53,7 +54,7 @@
 
 @media screen and (min-width: 1024px) {
   .header__nav__image {
-    height: 80px;
+    height: 75px;
   }
   .header__nav__brand {
     font-size: 1.5rem;
