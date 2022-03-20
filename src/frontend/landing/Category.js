@@ -9,7 +9,7 @@ export default function Category() {
 
   return (
     <div className='category'>
-      <h1 className='category__title'>MOST EXPLORED CATEGORIES</h1>
+      <h1 className='category__title'>Most Viewed Categories</h1>
       {categoryList?.map((elem, index) => {
         return (
           <div
