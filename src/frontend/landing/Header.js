@@ -1,5 +1,8 @@
 import './Header.css';
 import { Navbar } from '../utility';
+import { Link } from 'react-router-dom';
+import { VIDEOS } from '../../routes';
+
 export default function Header() {
   return (
     <div className='header'>
@@ -13,9 +16,9 @@ export default function Header() {
             Explore the world of engineering, in an interactive and creative
             manner
           </h1>
-          <button className='header__cta btn--auth--solid sb'>
+          <Link to={VIDEOS} className='header__cta btn--auth--solid sb'>
             Start Learning
-          </button>
+          </Link>
         </div>
         <div className='header__body__banner'>
           <img src='banner.png' alt='banner' className='header__banner' />
