@@ -1,6 +1,6 @@
 import './footer.css';
 
-export default function Footer({ fixed }) {
+export function Footer({ fixed }) {
   return (
     <footer
       className={`footer--ctr flex-ct-ct flex-vertical sm-s ${

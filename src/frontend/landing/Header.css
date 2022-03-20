@@ -2,7 +2,6 @@
 
 .header {
   color: var(--white);
-  border-bottom: 2px solid white;
 }
 .header__nav {
   display: flex;
@@ -40,7 +39,6 @@
 .header__banner {
   border: 1px solid var(--tertiary);
   border-radius: 20px;
-  height: auto;
   width: 90%;
   object-fit: contain;
 }
@@ -78,9 +76,9 @@
 }
 
 @media screen and (min-width: 1024px) {
-  .header {
-    height: 100vh;
+  .header{
     width: 100vw;
+    height: 95vh;
   }
   .header__nav__image {
     height: 80px;
@@ -98,13 +96,15 @@
     flex-direction: row;
   }
   .header__banner {
-    width: 35rem;
+    height: 20rem;
+    object-fit: fill;
+    max-width: 40rem;
   }
   .header__body__banner {
-    flex: 1;
+    flex: 1.1;
   }
   .header__body__info {
-    flex: 1;
+    flex: 0.9;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
