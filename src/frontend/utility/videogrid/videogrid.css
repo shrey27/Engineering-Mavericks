@@ -57,6 +57,11 @@
   left: 0;
   z-index: 5;
 }
+.sidebar.sidefixed {
+  position: absolute;
+  bottom: 122px;
+  width: 100%;
+}
 .sidebar__options {
   display: flex;
   flex-direction: column;
@@ -179,6 +184,10 @@
     align-items: flex-start;
     justify-content: flex-start;
     border-right: 3px solid var(--tertiary);
+  }
+  .sidebar.sidefixed {
+    position: static;
+    height: 100%;
   }
   .sidebar__options {
     flex-direction: row;

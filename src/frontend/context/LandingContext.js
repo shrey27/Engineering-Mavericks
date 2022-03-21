@@ -1,12 +1,13 @@
 import { createContext, useContext, useReducer, useEffect } from 'react';
 import axios from 'axios';
-import { GETCATEGORIES } from '../../routes';
+import { GETCATEGORIES, GETVIDEOS } from '../../routes';
 
 const LandingContext = createContext();
 
 const defaultState = {
   loading: false,
-  categoryList: []
+  categoryList: [],
+  videoList: []
 };
 
 const landingReducer = (state, action) => {
@@ -15,6 +16,11 @@ const landingReducer = (state, action) => {
       return {
         ...state,
         categoryList: [...action.payload]
+      };
+    case 'GET_VIDEOS':
+      return {
+        ...state,
+        videoList: [...action.payload]
       };
     default:
       return {
@@ -37,8 +43,20 @@ function LandingProvider({ children }) {
     }
   };
 
+  const getVideos = async () => {
+    try {
+      const {
+        data: { videos }
+      } = await axios.get(GETVIDEOS);
+      dispatch({ type: 'GET_VIDEOS', payload: videos });
+    } catch (err) {
+      console.log('Videos Error', err);
+    }
+  };
+
   useEffect(() => {
     getCategories();
+    getVideos();
   }, []);
 
   return (

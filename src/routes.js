@@ -5,6 +5,7 @@ import VideoListing from './frontend/videos';
 
 // API Endpoints
 export const GETCATEGORIES = '/api/categories';
+export const GETVIDEOS = '/api/videos';
 
 // Routes
 export const TWITTEREXT = 'https://twitter.com/home';

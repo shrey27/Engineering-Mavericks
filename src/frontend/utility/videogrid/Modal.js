@@ -37,8 +37,8 @@ export default function Modal({ modalOpen, setModalOpen }) {
         <hr />
         {!editor ? (
           <h1 className='md sb mg-half' onClick={() => openEditor(true)}>
-            <i class='fa-solid fa-arrow-down-short-wide'></i>&nbsp;&nbsp;Create
-            Playlist
+            <i className='fa-solid fa-arrow-down-short-wide'></i>
+            &nbsp;&nbsp;Create Playlist
           </h1>
         ) : (
           <div>

@@ -5,17 +5,219 @@
 
 export const videos = [
   {
-    _id: "Wo5dMEP_BbI",
-    title: "Awesome Video about Coding",
+    _id: 'Wo5dMEP_BbI',
+    source: 'back.jpg',
+    title: 'Neural Networks from Scratch - P.1 Intro and Neuron Code',
+    creator: 'The IT Guy',
     description:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
-    creator: "Soham Shah",
+      'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
+    category: 'Electrical'
   },
   {
-    _id: "F_Riqjdh2oM",
-    title: "Neural Networks from Scratch - P.1 Intro and Neuron Code",
-    creator: "Sentdex",
+    _id: 'Wo5dMEP_BbI',
+    source: 'back.jpg',
+    title: 'Neural Networks from Scratch - P.1 Intro and Neuron Code',
+    creator: 'The IT Guy',
     description:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
+      'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
+    category: 'Electrical'
   },
+  {
+    _id: 'Wo5dMEP_BbI',
+    source: 'back.jpg',
+    title: 'Neural Networks from Scratch - P.1 Intro and Neuron Code',
+    creator: 'The IT Guy',
+    description:
+      'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
+    category: 'Electrical'
+  },
+  {
+    _id: 'Wo5dMEP_BbI',
+    source: 'back.jpg',
+    title: 'Neural Networks from Scratch - P.1 Intro and Neuron Code',
+    creator: 'The IT Guy',
+    description:
+      'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
+    category: 'Automobile'
+  },
+  {
+    _id: 'Wo5dMEP_BbI',
+    source: 'back.jpg',
+    title: 'Neural Networks from Scratch - P.1 Intro and Neuron Code',
+    creator: 'The IT Guy',
+    description:
+      'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
+    category: 'Automobile'
+  },
+  {
+    _id: 'Wo5dMEP_BbI',
+    source: 'back.jpg',
+    title: 'Neural Networks from Scratch - P.1 Intro and Neuron Code',
+    creator: 'The IT Guy',
+    description:
+      'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
+    category: 'Automobile'
+  },
+  {
+    _id: 'Wo5dMEP_BbI',
+    source: 'back.jpg',
+    title: 'Neural Networks from Scratch - P.1 Intro and Neuron Code',
+    creator: 'The IT Guy',
+    description:
+      'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
+    category: 'Space'
+  },
+  {
+    _id: 'Wo5dMEP_BbI',
+    source: 'back.jpg',
+    title: 'Neural Networks from Scratch - P.1 Intro and Neuron Code',
+    creator: 'The IT Guy',
+    description:
+      'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
+    category: 'Space'
+  },
+  {
+    _id: 'Wo5dMEP_BbI',
+    source: 'back.jpg',
+    title: 'Neural Networks from Scratch - P.1 Intro and Neuron Code',
+    creator: 'The IT Guy',
+    description:
+      'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
+    category: 'Space'
+  },
+  {
+    _id: 'Wo5dMEP_BbI',
+    source: 'back.jpg',
+    title: 'Neural Networks from Scratch - P.1 Intro and Neuron Code',
+    creator: 'The IT Guy',
+    description:
+      'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
+    category: 'Stuff'
+  },
+  {
+    _id: 'Wo5dMEP_BbI',
+    source: 'back.jpg',
+    title: 'Neural Networks from Scratch - P.1 Intro and Neuron Code',
+    creator: 'The IT Guy',
+    description:
+      'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
+    category: 'Stuff'
+  },
+  {
+    _id: 'Wo5dMEP_BbI',
+    source: 'back.jpg',
+    title: 'Neural Networks from Scratch - P.1 Intro and Neuron Code',
+    creator: 'The IT Guy',
+    description:
+      'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
+    category: 'Stuff'
+  },
+  {
+    _id: 'Wo5dMEP_BbI',
+    source: 'back.jpg',
+    title: 'Neural Networks from Scratch - P.1 Intro and Neuron Code',
+    creator: 'The IT Guy',
+    description:
+      'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
+    category: 'Science'
+  },
+  {
+    _id: 'Wo5dMEP_BbI',
+    source: 'back.jpg',
+    title: 'Neural Networks from Scratch - P.1 Intro and Neuron Code',
+    creator: 'The IT Guy',
+    description:
+      'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
+    category: 'Science'
+  },
+  {
+    _id: 'Wo5dMEP_BbI',
+    source: 'back.jpg',
+    title: 'Neural Networks from Scratch - P.1 Intro and Neuron Code',
+    creator: 'The IT Guy',
+    description:
+      'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
+    category: 'Science'
+  },
+  {
+    _id: 'Wo5dMEP_BbI',
+    source: 'back.jpg',
+    title: 'Neural Networks from Scratch - P.1 Intro and Neuron Code',
+    creator: 'The IT Guy',
+    description:
+      'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
+    category: 'Physics'
+  },
+  {
+    _id: 'Wo5dMEP_BbI',
+    source: 'back.jpg',
+    title: 'Neural Networks from Scratch - P.1 Intro and Neuron Code',
+    creator: 'The IT Guy',
+    description:
+      'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
+    category: 'Physics'
+  },
+  {
+    _id: 'Wo5dMEP_BbI',
+    source: 'back.jpg',
+    title: 'Neural Networks from Scratch - P.1 Intro and Neuron Code',
+    creator: 'The IT Guy',
+    description:
+      'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
+    category: 'Physics'
+  },
+  {
+    _id: 'Wo5dMEP_BbI',
+    source: 'back.jpg',
+    title: 'Neural Networks from Scratch - P.1 Intro and Neuron Code',
+    creator: 'The IT Guy',
+    description:
+      'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
+    category: 'Communication'
+  },
+  {
+    _id: 'Wo5dMEP_BbI',
+    source: 'back.jpg',
+    title: 'Neural Networks from Scratch - P.1 Intro and Neuron Code',
+    creator: 'The IT Guy',
+    description:
+      'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
+    category: 'Communication'
+  },
+  {
+    _id: 'Wo5dMEP_BbI',
+    source: 'back.jpg',
+    title: 'Neural Networks from Scratch - P.1 Intro and Neuron Code',
+    creator: 'The IT Guy',
+    description:
+      'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
+    category: 'Communication'
+  },
+  {
+    _id: 'Wo5dMEP_BbI',
+    source: 'back.jpg',
+    title: 'Neural Networks from Scratch - P.1 Intro and Neuron Code',
+    creator: 'The IT Guy',
+    description:
+      'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
+    category: 'Scientists'
+  },
+  {
+    _id: 'Wo5dMEP_BbI',
+    source: 'back.jpg',
+    title: 'Neural Networks from Scratch - P.1 Intro and Neuron Code',
+    creator: 'The IT Guy',
+    description:
+      'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
+    category: 'Scientists'
+  },
+  {
+    _id: 'Wo5dMEP_BbI',
+    source: 'back.jpg',
+    title: 'Neural Networks from Scratch - P.1 Intro and Neuron Code',
+    creator: 'The IT Guy',
+    description:
+      'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
+    category: 'Scientists'
+  }
 ];
