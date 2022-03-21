@@ -10,13 +10,13 @@ export function Footer({ fixed }) {
       <span className='tag md bl mg--half'>Connect With Me</span>
       <div>
         <a href='https://twitter.com/home'>
-          <i class='fa-brands fa-twitter'></i>
+          <i className='fa-brands fa-twitter'></i>
         </a>
         <a href='https://github.com/shrey27'>
-          <i class='fa-brands fa-github'></i>
+          <i className='fa-brands fa-github'></i>
         </a>
         <a href='https://www.linkedin.com/in/shrey27/'>
-          <i class='fa-brands fa-linkedin'></i>
+          <i className='fa-brands fa-linkedin'></i>
         </a>
       </div>
       <span className='tag sm reg cen mg--half'>

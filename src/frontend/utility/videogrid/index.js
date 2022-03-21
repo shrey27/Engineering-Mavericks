@@ -39,7 +39,7 @@ export function VideoGrid({ videos, showFilters }) {
     <Fragment>
       <Modal modalOpen={modalOpen} setModalOpen={setModalOpen} />
       <div className='videogrid'>
-        <div className={`sidebar ${!videos.length && 'sidefixed'}`}>
+        <div className={`sidebar ${!videos?.length && 'sidefixed'}`}>
           <div className='sidebar__options selected'>
             <i className='fa-solid fa-video'></i>
             <span className='sidebar__options__span'>Videos</span>
@@ -64,10 +64,10 @@ export function VideoGrid({ videos, showFilters }) {
         <div className='main'>
           {showFilters && (
             <div className='filter'>
-              {categoryList.map((elem, idx) => {
+              {categoryList.map((elem,idx) => {
                 return (
                   <label
-                    key={elem + idx}
+                    key={idx}
                     className={`filter__option ${elem === filter && 'chosen'}`}
                     htmlFor={elem}
                   >
@@ -93,7 +93,7 @@ export function VideoGrid({ videos, showFilters }) {
                 return (
                   <div className='thumbnail'>
                     <img
-                      key={elem + index}
+                      key={elem._id}
                       src={elem.source}
                       alt={`thumbnail_${index + 1}`}
                       className='thumbnail__banner'

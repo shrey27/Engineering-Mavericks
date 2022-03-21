@@ -1,25 +1,26 @@
 /* eslint-disable react/prop-types */
 import './navbar.css';
-// import { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useLandingCtx } from '../../context';
 import { SIGNIN, LANDING } from '../../../routes';
 
 export function Navbar() {
-  //   const [search, setSearch] = useState('');
-  //   const handleSearch = (e) => {
-  //     e.preventDefault();
-  //     const { value } = e.target;
-  //     setSearch(value);
-  //     dispatch({
-  //       type: 'NAVBAR_ITEM_SEARCH',
-  //       payload: value.toLowerCase()
-  //     });
-  //   };
+  const { dispatch } = useLandingCtx();
+  const [search, setSearch] = useState('');
 
-  //   const handleSearchClear = () => {
-  //     dispatch({ type: 'NAVBAR_SEARCH_CLEAR' });
-  //     setSearch('');
-  //   };
+  const handleSearch = (e) => {
+    e.preventDefault();
+    dispatch({
+      type: 'SET_SEARCH',
+      payload: search
+    });
+  };
+
+  const handleSearchClear = () => {
+    dispatch({ type: 'SEARCH_CLEAR' });
+    setSearch('');
+  };
 
   return (
     <div>
@@ -35,25 +36,25 @@ export function Navbar() {
         </section>
         <section className='middle'>
           <div className='search__ctr'>
-            {/* {!search && <i className='fas fa-search search--btn'></i>} */}
-            <i className='fas fa-search search__btn'></i>
-            {/* <i className='fa-solid fa-xmark search__btn'></i> */}
-            <input
-              type='text'
-              placeholder='Search'
-              className='input search__input no--bdr'
-              id='user-name'
-              name='user-name'
-              autoComplete='off'
-              // value={search}
-              // onChange={handleSearch}
-            />
-            {/* {search && (
-                <i
-                  className='fa-solid fa-xmark search--btn'
-                  onClick={handleSearchClear}
-                ></i>
-              )} */}
+            {!search && <i className='fas fa-search search__btn'></i>}
+            {search && (
+              <i
+                className='fa-solid fa-xmark search__btn'
+                onClick={handleSearchClear}
+              ></i>
+            )}
+            <form onSubmit={handleSearch}>
+              <input
+                type='text'
+                placeholder='Search'
+                className='input search__input no--bdr'
+                id='user-name'
+                name='user-name'
+                autoComplete='off'
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </form>
           </div>
         </section>
         <section className='end'>

@@ -6,6 +6,7 @@ const LandingContext = createContext();
 
 const defaultState = {
   loading: false,
+  search: '',
   categoryList: [],
   videoList: []
 };
@@ -22,6 +23,16 @@ const landingReducer = (state, action) => {
         ...state,
         videoList: [...action.payload]
       };
+    case 'SET_SEARCH':
+      return {
+        ...state,
+        search: action.payload
+      };
+    case 'SEARCH_CLEAR':
+      return {
+        ...state,
+        search: ''
+      };
     default:
       return {
         ...state
@@ -29,8 +40,17 @@ const landingReducer = (state, action) => {
   }
 };
 
+const filterVideosbySearch = (search, videoList) => {
+  if (search) {
+    return videoList.filter((e) => e.category === search);
+  }
+  return videoList;
+};
 function LandingProvider({ children }) {
   const [state, dispatch] = useReducer(landingReducer, defaultState);
+  const { search, videoList } = state;
+
+  const filteredList = filterVideosbySearch(search, videoList);
 
   const getCategories = async () => {
     try {
@@ -60,7 +80,7 @@ function LandingProvider({ children }) {
   }, []);
 
   return (
-    <LandingContext.Provider value={{ state, dispatch }}>
+    <LandingContext.Provider value={{ state, dispatch, filteredList }}>
       {children}
     </LandingContext.Provider>
   );

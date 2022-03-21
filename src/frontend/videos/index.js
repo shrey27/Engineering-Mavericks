@@ -3,15 +3,13 @@ import { useLandingCtx } from '../context';
 import { Footer, Navbar, VideoGrid } from '../utility';
 
 export default function VideoListing() {
-  const {
-    state: { videoList }
-  } = useLandingCtx();
+  const { filteredList } = useLandingCtx();
 
   return (
     <div>
       <Navbar />
-      <VideoGrid videos={videoList} showFilters={true} />
-      <Footer fixed={!videoList.length} />
+      <VideoGrid videos={filteredList} showFilters={true} />
+      <Footer fixed={!filteredList?.length} />
     </div>
   );
 }
