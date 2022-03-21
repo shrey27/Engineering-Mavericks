@@ -1,5 +1,5 @@
 import './videogrid.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { categoryList } from '../constants';
 import Modal from './Modal';
 import { Fragment } from 'react/cjs/react.production.min';
