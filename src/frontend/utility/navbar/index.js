@@ -27,7 +27,7 @@ export function Navbar() {
       <nav className='navbar xs-s border--btm'>
         <section className='start'>
           <Link to={LANDING} className='start link__style'>
-            <img src='logo.png' className='header__nav__image' alt='logo' />
+            <img src='logo.webp' className='header__nav__image' alt='logo' />
             <div className=''>
               <h1 className='header__nav__brand'>Engineering</h1>
               <h1 className='header__nav__brand'>Mavericks</h1>

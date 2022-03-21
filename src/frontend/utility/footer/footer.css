@@ -21,6 +21,9 @@
   left: 0;
   right: 0;
 }
+.footer__text {
+  padding: 0.5rem;
+}
 .fa-brands {
   font-size: 1.55rem;
   /* padding: 0.45rem 0.4rem 0.2rem;

@@ -21,7 +21,7 @@ export default function Header() {
           </Link>
         </div>
         <div className='header__body__banner'>
-          <img src='banner.png' alt='banner' className='header__banner' />
+          <img src='banner.webp' alt='banner' className='header__banner' />
         </div>
       </div>
     </div>

@@ -7,7 +7,7 @@ export function Footer({ fixed }) {
         fixed && 'fixed'
       }`}
     >
-      <span className='tag md bl mg--half'>Connect With Me</span>
+      <span className='footer__text tag md bl mg--half'>Connect With Me</span>
       <div>
         <a href='https://twitter.com/home'>
           <i className='fa-brands fa-twitter'></i>
@@ -19,7 +19,7 @@ export function Footer({ fixed }) {
           <i className='fa-brands fa-linkedin'></i>
         </a>
       </div>
-      <span className='tag sm reg cen mg--half'>
+      <span className='footer__text tag sm reg cen mg--half'>
         © 2022 Engineering Mavericks Pvt Ltd. All rights reserved.
       </span>
     </footer>
