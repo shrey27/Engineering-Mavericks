@@ -10,7 +10,7 @@ export default function VideoListing() {
   return (
     <div>
       <Navbar />
-      <VideoGrid videos={videoList} />
+      <VideoGrid videos={videoList} showFilters={true} />
       <Footer fixed={!videoList.length} />
     </div>
   );

@@ -1,13 +1,22 @@
 import './videogrid.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { categoryList } from '../constants';
 import Modal from './Modal';
 import { Fragment } from 'react/cjs/react.production.min';
 import { Loader } from '../Loader';
 
-export function VideoGrid({ videos }) {
+export function VideoGrid({ videos, showFilters }) {
   const [submenuIndex, setSubmenuIndex] = useState(-1);
   const [modalOpen, setModalOpen] = useState(false);
+  const [videoList, setVideoList] = useState([]);
+  const [filter, setFilter] = useState('All');
+
+  useEffect(() => {
+    const tempList = [...videos];
+    setVideoList(
+      tempList.filter((e) => (filter === 'All' ? true : e.category === filter))
+    );
+  }, [filter, videos]);
 
   const handleSubmenu = (idx) => {
     if (idx === submenuIndex) {
@@ -20,6 +29,10 @@ export function VideoGrid({ videos }) {
   const handleModal = () => {
     setSubmenuIndex(-1);
     setModalOpen(true);
+  };
+
+  const handleFilterChange = (e) => {
+    setFilter(e.target.value);
   };
 
   return (
@@ -49,23 +62,34 @@ export function VideoGrid({ videos }) {
           </div>
         </div>
         <div className='main'>
-          <div className='filter'>
-            {categoryList.map((elem, idx) => {
-              return (
-                <span
-                  key={elem + idx}
-                  className={`filter__option ${idx === 0 && 'chosen'}`}
-                >
-                  {elem}
-                </span>
-              );
-            })}
-          </div>
-          {!videos.length ? (
+          {showFilters && (
+            <div className='filter'>
+              {categoryList.map((elem, idx) => {
+                return (
+                  <label
+                    key={elem + idx}
+                    className={`filter__option ${elem === filter && 'chosen'}`}
+                    htmlFor={elem}
+                  >
+                    <input
+                      type='radio'
+                      className='filter__option__input'
+                      id={elem}
+                      name='filter'
+                      value={elem}
+                      onChange={handleFilterChange}
+                    />
+                    {elem}
+                  </label>
+                );
+              })}
+            </div>
+          )}
+          {!videoList.length ? (
             <Loader />
           ) : (
             <div className='main__grid'>
-              {videos.map((elem, index) => {
+              {videoList.map((elem, index) => {
                 return (
                   <div className='thumbnail'>
                     <img
