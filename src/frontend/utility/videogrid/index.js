@@ -4,19 +4,16 @@ import { categoryList } from '../constants';
 import Modal from './Modal';
 import { Fragment } from 'react/cjs/react.production.min';
 import { Loader } from '../Loader';
+import { useLandingCtx } from '../../context';
 
 export function VideoGrid({ videos, showFilters }) {
+  const {
+    state: { filter },
+    dispatch
+  } = useLandingCtx();
+
   const [submenuIndex, setSubmenuIndex] = useState(-1);
   const [modalOpen, setModalOpen] = useState(false);
-  const [videoList, setVideoList] = useState([]);
-  const [filter, setFilter] = useState('All');
-
-  useEffect(() => {
-    const tempList = [...videos];
-    setVideoList(
-      tempList.filter((e) => (filter === 'All' ? true : e.category === filter))
-    );
-  }, [filter, videos]);
 
   const handleSubmenu = (idx) => {
     if (idx === submenuIndex) {
@@ -32,7 +29,7 @@ export function VideoGrid({ videos, showFilters }) {
   };
 
   const handleFilterChange = (e) => {
-    setFilter(e.target.value);
+    dispatch({ type: 'SET_FILTER', payload: e.target.value });
   };
 
   return (
@@ -64,7 +61,7 @@ export function VideoGrid({ videos, showFilters }) {
         <div className='main'>
           {showFilters && (
             <div className='filter'>
-              {categoryList.map((elem,idx) => {
+              {categoryList.map((elem, idx) => {
                 return (
                   <label
                     key={idx}
@@ -85,15 +82,14 @@ export function VideoGrid({ videos, showFilters }) {
               })}
             </div>
           )}
-          {!videoList.length ? (
+          {!videos.length ? (
             <Loader />
           ) : (
             <div className='main__grid'>
-              {videoList.map((elem, index) => {
+              {videos.map((elem, index) => {
                 return (
-                  <div className='thumbnail'>
+                  <div className='thumbnail' key={elem._id}>
                     <img
-                      key={elem._id}
                       src={elem.source}
                       alt={`thumbnail_${index + 1}`}
                       className='thumbnail__banner'

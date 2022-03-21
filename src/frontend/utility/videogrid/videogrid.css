@@ -78,12 +78,13 @@
 }
 .main {
   grid-area: main;
+  min-height: 67vh;
 }
 .main__grid {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, auto));
-  justify-content: center;
+  justify-content: start;
   padding: 1rem;
   gap: 1rem;
   z-index: 4;
@@ -190,7 +191,6 @@
   }
   .sidebar.sidefixed {
     position: static;
-    height: 63vh;
   }
   .sidebar__options {
     flex-direction: row;
@@ -201,7 +201,10 @@
   .sidebar__options span {
     margin: 0 1rem;
   }
+  .main {
+    min-height: 66vh;
+  }
   .main__grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, auto));
+    grid-template-columns: repeat(auto-fill, minmax(250px, auto));
   }
 }

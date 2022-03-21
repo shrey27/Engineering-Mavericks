@@ -79,7 +79,7 @@ export const videos = [
   {
     _id: uuid(),
     source: 'back.jpg',
-    title: 'Space Engineering',
+    title: 'Space Exploration',
     creator: 'The tech Guy',
     description:
       'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
