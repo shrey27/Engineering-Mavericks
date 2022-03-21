@@ -16,6 +16,10 @@ const landingReducer = (state, action) => {
         ...state,
         categoryList: [...action.payload]
       };
+    default:
+      return {
+        ...state
+      };
   }
 };
 
