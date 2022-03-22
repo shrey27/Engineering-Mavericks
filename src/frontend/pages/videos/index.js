@@ -1,7 +1,15 @@
 import './videos.css';
 import { useState } from 'react';
 import { useLandingCtx } from '../../context';
-import { Footer, Navbar, Modal, Sidebar, VideoGrid } from '../../components';
+import {
+  Footer,
+  Navbar,
+  Modal,
+  Sidebar,
+  VideoGrid,
+  Loader,
+  Filters
+} from '../../components';
 
 export default function VideoListing() {
   const {
@@ -33,10 +41,8 @@ export default function VideoListing() {
   const videoGridProps = {
     videos: filteredList,
     showFilters: true,
-    handleFilterChange,
     handleSubmenu,
     handleModal,
-    filter,
     submenuIndex
   };
 
@@ -44,9 +50,16 @@ export default function VideoListing() {
     <div>
       <Navbar />
       <Modal modalOpen={modalOpen} setModalOpen={setModalOpen} />
-      <div className='videogrid'>
+      <div className='main__grid'>
         <Sidebar />
-        <VideoGrid {...videoGridProps} />
+        <div className='main'>
+          <Filters handleFilterChange={handleFilterChange} filter={filter} />
+          {!filteredList.length ? (
+            <Loader />
+          ) : (
+            <VideoGrid {...videoGridProps} />
+          )}
+        </div>
       </div>
       <Footer />
     </div>

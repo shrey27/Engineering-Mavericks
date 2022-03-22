@@ -1,11 +1,7 @@
 @import '../../utility/styles.css';
 
 /* Video Grid Page */
-.main {
-  grid-area: main;
-  min-height: 75vh;
-}
-.main__grid {
+.thumbnail__grid {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, auto));
@@ -13,33 +9,6 @@
   padding: 1rem;
   gap: 1rem;
   z-index: 4;
-}
-.filter {
-  margin: 0 0.95rem;
-  width: 94%;
-  overflow-x: auto;
-  padding: 1.5rem 0.5rem 0.75rem 0;
-}
-.filter::-webkit-scrollbar {
-  height: 0px;
-}
-.filter__option {
-  font-size: 1rem;
-  font-weight: bold;
-  color: var(--white);
-  background-color: var(--dismiss--light);
-  border: 1px solid var(--tertiary);
-  border-radius: 120px;
-  padding: 0.75rem 1.3rem;
-  margin: 0 0.5rem;
-}
-.filter__option.chosen {
-  color: var(--white);
-  background-color: var(--tag);
-  border: 1px solid var(--tag);
-}
-.filter__option__input {
-  display: none;
 }
 .thumbnail {
   width: 100%;
@@ -98,16 +67,8 @@
   padding: 0.35rem 0.85rem;
 }
 
-
 @media screen and (min-width: 1024px) {
-  .videogrid {
-    grid-template-columns: 20% 80%;
-    grid-template-areas: 'sidebar main';
-  }
-  .main {
-    min-height: 80vh;
-  }
-  .main__grid {
+  .thumbnail__grid {
     grid-template-columns: repeat(auto-fill, minmax(250px, auto));
   }
 }

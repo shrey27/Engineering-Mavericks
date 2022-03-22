@@ -51,8 +51,10 @@ export const videos = [
   },
   {
     _id: uuid(),
-    source: 'back.jpg',
-    title: 'Automobile Engineering',
+    source:
+      'https://i.ytimg.com/vi/devo3kdSPQY/hqdefault.jpg?s…AFwAcABBg==&rs=AOn4CLCDTc-vIY_fAwkmCfEnu5gClZAGMA',
+    title: 'How Clutch works ?',
+    video: 'https://www.youtube.com/watch?v=devo3kdSPQY',
     creator: 'The tech Guy',
     description:
       'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
