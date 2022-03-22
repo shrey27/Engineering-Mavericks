@@ -1,9 +1,10 @@
 import './singlevideo.css';
+import { useState } from 'react';
 import { useSingleVideo } from '../../context';
-import { Footer, Navbar, Sidebar, Loader } from '../../components';
+import { Footer, Navbar, Sidebar, Loader, Modal } from '../../components';
 import { useParams } from 'react-router-dom';
 
-function VideoPlayer({ source }) {
+function VideoPlayer({ source, setModalOpen }) {
   return (
     <div className='video__container'>
       <iframe
@@ -22,7 +23,7 @@ function VideoPlayer({ source }) {
         <button className='video__button'>
           <i class='fa-solid fa-clock'></i>Watch Later
         </button>
-        <button className='video__button'>
+        <button className='video__button' onClick={() => setModalOpen(true)}>
           <i class='fa-solid fa-list'></i>Save to Playlist
         </button>
       </div>
@@ -31,6 +32,7 @@ function VideoPlayer({ source }) {
 }
 
 export default function SingleVideo() {
+  const [modalOpen, setModalOpen] = useState(false);
   const { videoId } = useParams();
   const singleVideo = useSingleVideo(videoId);
   console.log('singleVideo', singleVideo);
@@ -38,13 +40,17 @@ export default function SingleVideo() {
   return (
     <div>
       <Navbar />
+      <Modal modalOpen={modalOpen} setModalOpen={setModalOpen} />
       <div className='main__grid'>
         <Sidebar videos={true} />
         <div className='main'>
           {!singleVideo ? (
             <Loader />
           ) : (
-            <VideoPlayer source={singleVideo?.video} />
+            <VideoPlayer
+              source={singleVideo?.video}
+              setModalOpen={setModalOpen}
+            />
           )}
         </div>
       </div>

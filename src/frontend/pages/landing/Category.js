@@ -1,6 +1,6 @@
 import './Category.css';
 import { useLandingCtx } from '../../context';
-import { Loader } from '../../utility/Loader';
+import { Loader } from '../../components/Loader';
 
 export default function Category() {
   const {

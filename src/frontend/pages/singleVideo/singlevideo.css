@@ -24,6 +24,8 @@ iframe {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
   margin: 1rem 2rem;
 }
 .video__button {
