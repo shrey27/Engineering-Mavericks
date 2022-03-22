@@ -5,11 +5,12 @@
 
 :root {
   --tertiary: #0e1217;
-  --tertiary--light: #151c24;
+  --tertiary--light: #182029;
   --cta: #e36b5c;
   --white: rgb(250, 246, 246);
-  --dismiss: #4d4b4b;
-  --footer--one: #e2e1e1;
+  --dismiss: #27262b;
+  --dismiss--light: #3e3d41;
+  --footer--one: #757575;
   --price: green;
   --tag: rgb(177, 3, 32);
   --rating: goldenrod;
@@ -29,16 +30,26 @@ body {
   height: 100vh;
   overflow-x: hidden;
   background-color: var(--tertiary--light);
+  font-family: 'BebasNeue';
 }
 .dark {
   background-color: var(--primary);
   color: var(--white);
+}
+.tag {
+  color: var(--tag);
 }
 .md {
   font-size: 1.15rem;
 }
 .lg {
   font-size: 1.5rem;
+}
+.mg--full {
+  margin: 1rem 0;
+}
+.mg--half {
+  margin: 0.5rem 0;
 }
 .shadow {
   box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),

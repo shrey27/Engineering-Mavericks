@@ -1,0 +1,210 @@
+@import '../styles.css';
+
+/* Modal */
+.modal__background {
+  opacity: 0.9;
+}
+.modal__content {
+  width: 100%;
+  max-width: 25rem;
+  border: none;
+  background-color: var(--dismiss);
+  color: var(--white);
+  padding: 1.25rem 1.5rem;
+  font-size: 1.25rem;
+}
+.playlist__option {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+}
+.playlist__input {
+  width: 100%;
+  margin: 1rem 0 0 0;
+  display: block;
+  padding: 0.5rem;
+  font-size: 1rem;
+  background-color: var(--dismiss);
+  color: var(--white);
+  border-radius: 5px;
+  border: 1px solid var(--white);
+  outline: none;
+}
+.playlist__error {
+  font-size: 1rem;
+  color: var(--tag);
+  margin: 0.5rem 0.5rem 1.25rem;
+}
+
+/* Video Grid Page */
+.videogrid {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-areas:
+    'main'
+    'sidebar';
+}
+.sidebar {
+  grid-area: sidebar;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: var(--white);
+  background-color: var(--tertiary);
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+}
+.sidebar.sidefixed {
+  position: absolute;
+  bottom: 122px;
+  width: 100%;
+}
+.sidebar__options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: normal;
+  padding: 0.75rem;
+}
+.sidebar__options.selected {
+  background-color: var(--tertiary--light);
+}
+.sidebar__options__span {
+  display: none;
+  margin: 0.5rem 0;
+}
+.main {
+  grid-area: main;
+  min-height: 75vh;
+}
+.main__grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+  justify-content: start;
+  padding: 1rem;
+  gap: 1rem;
+  z-index: 4;
+}
+.filter {
+  margin: 0 0.95rem;
+  width: 94%;
+  overflow-x: auto;
+  padding: 1.5rem 0.5rem 0.75rem 0;
+}
+.filter::-webkit-scrollbar {
+  height: 0px;
+}
+.filter__option {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--white);
+  background-color: var(--dismiss--light);
+  border: 1px solid var(--tertiary);
+  border-radius: 120px;
+  padding: 0.75rem 1.3rem;
+  margin: 0 0.5rem;
+}
+.filter__option.chosen {
+  color: var(--white);
+  background-color: var(--tag);
+  border: 1px solid var(--tag);
+}
+.filter__option__input {
+  display: none;
+}
+.thumbnail {
+  width: 100%;
+  border-radius: 5px;
+}
+.thumbnail__info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 3;
+  position: relative;
+}
+.thumbnail__banner {
+  margin: 0;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.thumbnail__title {
+  color: var(--white);
+  font-size: 1.05rem;
+  margin: 0.5rem;
+}
+.thumbnail__description {
+  color: var(--footer--one);
+  font-size: 1rem;
+  font-weight: normal;
+  margin: 0.5rem 0;
+}
+.thumbnail__info__icon {
+  align-self: start;
+  margin: 0.75rem 0;
+  color: var(--white);
+  font-size: 1.25rem;
+}
+.thumbnail__submenu {
+  position: absolute;
+  right: 0.75rem;
+  top: 40%;
+  width: max-content;
+  color: var(--white);
+  font-size: 1rem;
+  background-color: var(--dismiss--light);
+  z-index: 4;
+}
+.thumbnail__submenu h1 {
+  padding: 0.5rem 1.25rem 0.5rem 0;
+  cursor: pointer;
+}
+.thumbnail__submenu h1:hover {
+  background-color: var(--dismiss);
+}
+.fa-ellipsis-vertical {
+  border: 1px solid var(--white);
+  border-radius: 50%;
+  padding: 0.35rem 0.85rem;
+}
+
+@media screen and (min-width: 325px) {
+  .sidebar__options__span {
+    display: inline;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .videogrid {
+    grid-template-columns: 20% 80%;
+    grid-template-areas: 'sidebar main';
+  }
+  .sidebar {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border-right: 3px solid var(--tertiary);
+  }
+  .sidebar.sidefixed {
+    position: static;
+  }
+  .sidebar__options {
+    flex-direction: row;
+    font-size: 1.35rem;
+    padding: 1.25rem;
+    width: 100%;
+  }
+  .sidebar__options span {
+    margin: 0 1rem;
+  }
+  .main {
+    min-height: 80vh;
+  }
+  .main__grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, auto));
+  }
+}
