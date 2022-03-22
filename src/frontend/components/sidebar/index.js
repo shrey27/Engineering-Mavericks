@@ -1,8 +1,8 @@
 import './sidebar.css';
 
-export function Sidebar({ videos }) {
+export function Sidebar({ noVideos }) {
   return (
-    <div className={`sidebar ${!videos?.length && 'sidefixed'}`}>
+    <div className={`sidebar ${noVideos && 'sidefixed'}`}>
       <div className='sidebar__options selected'>
         <i className='fa-solid fa-video'></i>
         <span className='sidebar__options__span'>Videos</span>

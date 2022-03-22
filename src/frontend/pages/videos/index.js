@@ -51,14 +51,10 @@ export default function VideoListing() {
       <Navbar />
       <Modal modalOpen={modalOpen} setModalOpen={setModalOpen} />
       <div className='main__grid'>
-        <Sidebar />
+        <Sidebar noVideos={filteredList ? false : true} />
         <div className='main'>
           <Filters handleFilterChange={handleFilterChange} filter={filter} />
-          {!filteredList.length ? (
-            <Loader />
-          ) : (
-            <VideoGrid {...videoGridProps} />
-          )}
+          {!filteredList ? <Loader /> : <VideoGrid {...videoGridProps} />}
         </div>
       </div>
       <Footer />

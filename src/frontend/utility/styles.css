@@ -7,12 +7,13 @@
   --tertiary: #0e1217;
   --tertiary--light: #182029;
   --cta: #e36b5c;
-  --white: rgb(250, 246, 246);
+  --white: rgb(231, 231, 231);
   --dismiss: #27262b;
   --dismiss--light: #3e3d41;
   --footer--one: #757575;
   --price: green;
   --tag: rgb(177, 3, 32);
+  --tag--light: rgb(211, 44, 72);
   --rating: goldenrod;
 }
 @font-face {

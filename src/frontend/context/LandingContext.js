@@ -94,4 +94,9 @@ function LandingProvider({ children }) {
 
 const useLandingCtx = () => useContext(LandingContext);
 
-export { useLandingCtx, LandingProvider };
+const useSingleVideo = (id) => {
+  const { filteredList } = useLandingCtx();
+  return filteredList.find((elem) => elem.vid === id);
+};
+
+export { useLandingCtx, useSingleVideo, LandingProvider };

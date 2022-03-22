@@ -3,5 +3,5 @@ export { Footer } from './footer';
 export { VideoGrid } from './videogrid';
 export { Modal } from './modal';
 export { Sidebar } from './sidebar';
-export { Loader } from './Loader';
+export { Loader } from '../utility/Loader';
 export { Filters } from './filters';

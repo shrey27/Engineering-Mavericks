@@ -1,4 +1,6 @@
 import './videogrid.css';
+import { Link } from 'react-router-dom';
+import { VIDEOS } from '../../routes/routes';
 
 export function VideoGrid(props) {
   const { videos, handleSubmenu, handleModal, submenuIndex } = props;
@@ -8,11 +10,14 @@ export function VideoGrid(props) {
       {videos.map((elem, index) => {
         return (
           <div className='thumbnail' key={elem._id}>
-            <img
-              src={elem.source}
-              alt={`thumbnail_${index + 1}`}
-              className='thumbnail__banner'
-            />
+            <Link to={`${VIDEOS}/${elem.vid}`}>
+              <img
+                src={elem.source}
+                alt={`thumbnail_${index + 1}`}
+                className='thumbnail__banner'
+              />
+            </Link>
+
             <div className='thumbnail__info'>
               <div className='thumbnail__title'>
                 <h1>{elem.title}</h1>
