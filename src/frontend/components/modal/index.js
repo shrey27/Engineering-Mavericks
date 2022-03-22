@@ -1,7 +1,7 @@
-import './videogrid.css';
+import './modal.css';
 import { useState } from 'react';
 
-export default function Modal({ modalOpen, setModalOpen }) {
+export function Modal({ modalOpen, setModalOpen }) {
   const [editor, openEditor] = useState(false);
   const [playlistName, setPlaylistName] = useState('');
   const [error, setError] = useState(false);

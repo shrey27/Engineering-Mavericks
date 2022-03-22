@@ -1,4 +1,5 @@
 export { Navbar } from './navbar';
 export { Footer } from './footer';
-export { Loader } from '../utility/Loader';
 export { VideoGrid } from './videogrid';
+export { Modal } from './modal';
+export { Sidebar } from './sidebar';
