@@ -1,6 +1,6 @@
 import './videos.css';
-import { useLandingCtx } from '../context';
-import { Footer, Navbar, VideoGrid } from '../utility';
+import { useLandingCtx } from '../../context';
+import { Footer, Navbar, VideoGrid } from '../../components';
 
 export default function VideoListing() {
   const { filteredList } = useLandingCtx();

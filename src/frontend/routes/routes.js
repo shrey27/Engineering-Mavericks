@@ -1,7 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
-import Landing from './frontend/landing';
-import MockAPI from './MockMan';
-import VideoListing from './frontend/videos';
+import MockAPI from '../../MockMan';
+import Landing from '../pages/landing';
+import VideoListing from '../pages/videos';
+import SingleVideo from '../pages/singleVideo';
 
 // API Endpoints
 export const GETCATEGORIES = '/api/categories';
@@ -29,5 +30,6 @@ export const availableRoutes = (
     <Route path={LANDING} element={<Landing />} />
     <Route path={MOCKMAN} element={<MockAPI />} />
     <Route path={VIDEOS} element={<VideoListing />} />
+    <Route path={`${VIDEOS}/:videoId`} element={<SingleVideo />} />
   </Routes>
 );

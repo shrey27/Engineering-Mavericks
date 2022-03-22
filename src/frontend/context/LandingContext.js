@@ -1,7 +1,5 @@
 import { createContext, useContext, useReducer, useEffect } from 'react';
-import axios from 'axios';
-import { GETCATEGORIES, GETVIDEOS } from '../../routes';
-
+import { getCategories, getVideos } from '../service';
 const LandingContext = createContext();
 
 const defaultState = {
@@ -72,31 +70,19 @@ function LandingProvider({ children }) {
 
   const filteredList = filterVideos(filter, search, videoList);
 
-  const getCategories = async () => {
-    try {
-      const {
-        data: { categories }
-      } = await axios.get(GETCATEGORIES);
-      dispatch({ type: 'GET_CATEGORY', payload: categories });
-    } catch (err) {
-      console.log('Landing Error', err);
-    }
+  const getCategoriesList = async () => {
+    const categories = await getCategories();
+    dispatch({ type: 'GET_CATEGORY', payload: categories });
   };
 
-  const getVideos = async () => {
-    try {
-      const {
-        data: { videos }
-      } = await axios.get(GETVIDEOS);
-      dispatch({ type: 'GET_VIDEOS', payload: videos });
-    } catch (err) {
-      console.log('Videos Error', err);
-    }
+  const getVideosList = async () => {
+    const videos = await getVideos();
+    dispatch({ type: 'GET_VIDEOS', payload: videos });
   };
 
   useEffect(() => {
-    getCategories();
-    getVideos();
+    getCategoriesList();
+    getVideosList();
   }, []);
 
   return (

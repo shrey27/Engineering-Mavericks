@@ -1,12 +1,12 @@
 import './Header.css';
-import { Navbar } from '../utility';
+import { Navbar } from '../../components';
 import { Link } from 'react-router-dom';
-import { VIDEOS } from '../../routes';
+import { VIDEOS } from '../../routes/routes';
 
 export default function Header() {
   return (
     <div className='header'>
-      <Navbar />
+      <Navbar hideSearchBar={true} />
       <div className='header__body'>
         <div className='header__body__info'>
           <h1 className='header__primary'>

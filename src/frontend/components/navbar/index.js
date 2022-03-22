@@ -3,9 +3,9 @@ import './navbar.css';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLandingCtx } from '../../context';
-import { SIGNIN, LANDING } from '../../../routes';
+import { SIGNIN, LANDING } from '../../routes/routes';
 
-export function Navbar() {
+export function Navbar({ hideSearchBar }) {
   const { dispatch } = useLandingCtx();
   const [search, setSearch] = useState('');
 
@@ -35,27 +35,29 @@ export function Navbar() {
           </Link>
         </section>
         <section className='middle'>
-          <div className='search__ctr'>
-            {!search && <i className='fas fa-search search__btn'></i>}
-            {search && (
-              <i
-                className='fa-solid fa-xmark search__btn'
-                onClick={handleSearchClear}
-              ></i>
-            )}
-            <form onSubmit={handleSearch}>
-              <input
-                type='text'
-                placeholder='Search'
-                className='input search__input no--bdr'
-                id='user-name'
-                name='user-name'
-                autoComplete='off'
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-            </form>
-          </div>
+          {!hideSearchBar && (
+            <div className='search__ctr'>
+              {!search && <i className='fas fa-search search__btn'></i>}
+              {search && (
+                <i
+                  className='fa-solid fa-xmark search__btn'
+                  onClick={handleSearchClear}
+                ></i>
+              )}
+              <form onSubmit={handleSearch}>
+                <input
+                  type='text'
+                  placeholder='Search'
+                  className='input search__input no--bdr'
+                  id='user-name'
+                  name='user-name'
+                  autoComplete='off'
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+              </form>
+            </div>
+          )}
         </section>
         <section className='end'>
           <Link className='btn btn--auth--solid sb' to={SIGNIN}>

@@ -1,9 +1,9 @@
 import './videogrid.css';
 import { useState } from 'react';
-import { categoryList } from '../constants';
+import { categoryList } from '../../utility/constants';
 import Modal from './Modal';
 import { Fragment } from 'react/cjs/react.production.min';
-import { Loader } from '../Loader';
+import { Loader } from '../../utility/Loader';
 import { useLandingCtx } from '../../context';
 
 export function VideoGrid({ videos, showFilters }) {

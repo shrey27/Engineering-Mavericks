@@ -1,4 +1,4 @@
-@import '../styles.css';
+@import '../../utility/styles.css';
 
 .navbar {
   background-color: var(--tertiary);
