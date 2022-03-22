@@ -17,7 +17,7 @@ export function Navbar({ hideSearchBar }) {
   };
 
   const handleSearchClear = () => {
-    dispatch({ type: 'SEARCH_CLEAR', payload: '' });
+    dispatch({ type: 'SEARCH_CLEAR' });
   };
 
   return (

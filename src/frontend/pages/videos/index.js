@@ -6,8 +6,8 @@ import {
   Navbar,
   Modal,
   Sidebar,
-  VideoGrid,
   Loader,
+  VideoGrid,
   Filters
 } from '../../components';
 
@@ -23,7 +23,8 @@ export default function VideoListing() {
 
   const [submenuIndex, setSubmenuIndex] = useState(-1);
   const [modalOpen, setModalOpen] = useState(false);
-  const [alteredList, setAlteredList] = useState(null);
+  const [alteredList, setAlteredList] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (search) {
@@ -34,6 +35,7 @@ export default function VideoListing() {
     } else {
       setAlteredList([...filteredList]);
     }
+    setLoading(false);
   }, [search, filteredList]);
 
   const handleModal = () => {
@@ -69,13 +71,7 @@ export default function VideoListing() {
         <Sidebar noVideos={filteredList ? false : true} />
         <div className='main'>
           <Filters handleFilterChange={handleFilterChange} filter={filter} />
-          {!alteredList ? (
-            <Loader />
-          ) : alteredList.length === 0 ? (
-            <h1 className='tag md sb mg--full'>No video found</h1>
-          ) : (
-            <VideoGrid {...videoGridProps} />
-          )}
+          {loading ? <Loader /> : <VideoGrid {...videoGridProps} />}
         </div>
       </div>
       <Footer />

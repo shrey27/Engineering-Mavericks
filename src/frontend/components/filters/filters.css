@@ -7,8 +7,10 @@
   padding: 1.5rem 0.5rem 0.75rem 0;
 }
 .filter::-webkit-scrollbar {
-  height: 0px;
+  height: 3px;
+  display: none;
 }
+
 .filter__option {
   font-size: 1rem;
   font-weight: bold;

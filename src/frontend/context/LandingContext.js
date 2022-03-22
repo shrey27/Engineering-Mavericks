@@ -67,9 +67,9 @@ function LandingProvider({ children }) {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
+    console.log('search', search);
     if (search.trim().length > 0) {
       dispatch({ type: 'SET_FILTER', payload: 'All' });
-      
       navigate({
         pathname: VIDEOS,
         search: `query=${search.trim()}`
