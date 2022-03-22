@@ -1,4 +1,6 @@
 import { createContext, useContext, useReducer, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { VIDEOS } from '../routes/routes';
 import { getCategories, getVideos } from '../service';
 const LandingContext = createContext();
 
@@ -44,16 +46,8 @@ const landingReducer = (state, action) => {
   }
 };
 
-const filterVideos = (filter, search, videoList) => {
+const filterVideos = (filter, videoList) => {
   let tempList = [...videoList];
-
-  if (search) {
-    tempList = [
-      ...tempList.filter((e) =>
-        e.title.toLowerCase().includes(search.toLowerCase())
-      )
-    ];
-  }
   if (filter) {
     tempList = [
       ...tempList.filter((e) =>
@@ -65,10 +59,23 @@ const filterVideos = (filter, search, videoList) => {
 };
 
 function LandingProvider({ children }) {
+  const navigate = useNavigate();
   const [state, dispatch] = useReducer(landingReducer, defaultState);
   const { filter, search, videoList } = state;
 
-  const filteredList = filterVideos(filter, search, videoList);
+  const filteredList = filterVideos(filter, videoList);
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (search.trim().length > 0) {
+      dispatch({ type: 'SET_FILTER', payload: 'All' });
+      
+      navigate({
+        pathname: VIDEOS,
+        search: `query=${search.trim()}`
+      });
+    }
+  };
 
   const getCategoriesList = async () => {
     const categories = await getCategories();
@@ -86,7 +93,9 @@ function LandingProvider({ children }) {
   }, []);
 
   return (
-    <LandingContext.Provider value={{ state, dispatch, filteredList }}>
+    <LandingContext.Provider
+      value={{ state, dispatch, handleSearchSubmit, filteredList }}
+    >
       {children}
     </LandingContext.Provider>
   );

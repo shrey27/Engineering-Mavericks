@@ -10,11 +10,11 @@ makeServer();
 
 ReactDOM.render(
   <React.StrictMode>
-    <LandingProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <LandingProvider>
         <App />
-      </BrowserRouter>
-    </LandingProvider>
+      </LandingProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

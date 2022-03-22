@@ -12,19 +12,19 @@ function VideoPlayer({ source, setModalOpen }) {
         title='YouTube video player'
         frameBorder='0'
         allowFullScreen
-        autoplay='1'
+        autoPlay='1'
       ></iframe>
       <h1 className='video__title'>Clutch! How Does it Work?</h1>
       <h1 className='video__creator'>The Tech Guy</h1>
       <div className='video__buttons'>
         <button className='video__button'>
-          <i class='fa-solid fa-thumbs-up'></i>Like
+          <i className='fa-solid fa-thumbs-up'></i>Like
         </button>
         <button className='video__button'>
-          <i class='fa-solid fa-clock'></i>Watch Later
+          <i className='fa-solid fa-clock'></i>Watch Later
         </button>
         <button className='video__button' onClick={() => setModalOpen(true)}>
-          <i class='fa-solid fa-list'></i>Save to Playlist
+          <i className='fa-solid fa-list'></i>Save to Playlist
         </button>
       </div>
     </div>
@@ -35,8 +35,7 @@ export default function SingleVideo() {
   const [modalOpen, setModalOpen] = useState(false);
   const { videoId } = useParams();
   const singleVideo = useSingleVideo(videoId);
-  console.log('singleVideo', singleVideo);
-
+  
   return (
     <div>
       <Navbar />

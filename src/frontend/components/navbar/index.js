@@ -1,26 +1,23 @@
 /* eslint-disable react/prop-types */
 import './navbar.css';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLandingCtx } from '../../context';
 import { SIGNIN, LANDING } from '../../routes/routes';
 import pic from '../../assets/logo.webp';
 
 export function Navbar({ hideSearchBar }) {
-  const { dispatch } = useLandingCtx();
-  const [search, setSearch] = useState('');
+  const { state, dispatch, handleSearchSubmit } = useLandingCtx();
+  const { search } = state;
 
   const handleSearch = (e) => {
-    e.preventDefault();
     dispatch({
       type: 'SET_SEARCH',
-      payload: search
+      payload: e.target.value
     });
   };
 
   const handleSearchClear = () => {
-    dispatch({ type: 'SEARCH_CLEAR' });
-    setSearch('');
+    dispatch({ type: 'SEARCH_CLEAR', payload: '' });
   };
 
   return (
@@ -45,7 +42,7 @@ export function Navbar({ hideSearchBar }) {
                   onClick={handleSearchClear}
                 ></i>
               )}
-              <form onSubmit={handleSearch}>
+              <form onSubmit={handleSearchSubmit}>
                 <input
                   type='text'
                   placeholder='Search'
@@ -54,7 +51,7 @@ export function Navbar({ hideSearchBar }) {
                   name='user-name'
                   autoComplete='off'
                   value={search}
-                  onChange={(e) => setSearch(e.target.value)}
+                  onChange={handleSearch}
                 />
               </form>
             </div>
