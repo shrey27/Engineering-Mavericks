@@ -3,7 +3,7 @@ import './footer.css';
 export function Footer({ fixed }) {
   return (
     <footer
-      className={`footer--ctr flex-ct-ct flex-vertical sm-s ${
+      className={`footer__ctr flex-ct-ct flex-vertical sm-s ${
         fixed && 'fixed'
       }`}
     >

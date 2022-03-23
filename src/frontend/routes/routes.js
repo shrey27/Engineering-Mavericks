@@ -3,6 +3,8 @@ import MockAPI from '../../MockMan';
 import Landing from '../pages/landing';
 import VideoListing from '../pages/videos';
 import SingleVideo from '../pages/singleVideo';
+import Signin from '../pages/authentication/Signin';
+import Signup from '../pages/authentication/Signup';
 
 // API Endpoints
 export const GETCATEGORIES = '/api/categories';
@@ -31,5 +33,9 @@ export const availableRoutes = (
     <Route path={MOCKMAN} element={<MockAPI />} />
     <Route path={VIDEOS} element={<VideoListing />} />
     <Route path={`${VIDEOS}/:videoId`} element={<SingleVideo />} />
+    <Route path={SIGNIN} element={<Signin />} />
+    <Route path={SIGNUP} element={<Signup />} />
+
+    <Route path='*' element={<Landing />} />
   </Routes>
 );
