@@ -1,4 +1,4 @@
-@import '../styles.css';
+@import '../../utility/styles.css';
 
 .navbar {
   background-color: var(--tertiary);
@@ -58,7 +58,7 @@
 
 @media screen and (min-width: 1024px) {
   .header__nav__image {
-    height: 75px;
+    height: 60px;
   }
   .header__nav__brand {
     font-size: 1.5rem;

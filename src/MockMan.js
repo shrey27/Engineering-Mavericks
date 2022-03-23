@@ -1,5 +1,6 @@
 /*
-we encourage to have a dedicated route called `/mock-api` on your frontend app where you can import Mockman and test them 
+we encourage to have a dedicated route called `/mock-api` 
+on your frontend app where you can import Mockman and test them 
 */
 
 import React from 'react';

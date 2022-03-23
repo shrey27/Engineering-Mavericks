@@ -1,7 +1,7 @@
 import { createContext, useContext, useReducer, useEffect } from 'react';
-import axios from 'axios';
-import { GETCATEGORIES, GETVIDEOS } from '../../routes';
-
+import { useNavigate } from 'react-router-dom';
+import { VIDEOS } from '../routes/routes';
+import { getCategories, getVideos } from '../service';
 const LandingContext = createContext();
 
 const defaultState = {
@@ -46,16 +46,8 @@ const landingReducer = (state, action) => {
   }
 };
 
-const filterVideos = (filter, search, videoList) => {
+const filterVideos = (filter, videoList) => {
   let tempList = [...videoList];
-
-  if (search) {
-    tempList = [
-      ...tempList.filter((e) =>
-        e.title.toLowerCase().includes(search.toLowerCase())
-      )
-    ];
-  }
   if (filter) {
     tempList = [
       ...tempList.filter((e) =>
@@ -67,40 +59,43 @@ const filterVideos = (filter, search, videoList) => {
 };
 
 function LandingProvider({ children }) {
+  const navigate = useNavigate();
   const [state, dispatch] = useReducer(landingReducer, defaultState);
   const { filter, search, videoList } = state;
 
-  const filteredList = filterVideos(filter, search, videoList);
+  const filteredList = filterVideos(filter, videoList);
 
-  const getCategories = async () => {
-    try {
-      const {
-        data: { categories }
-      } = await axios.get(GETCATEGORIES);
-      dispatch({ type: 'GET_CATEGORY', payload: categories });
-    } catch (err) {
-      console.log('Landing Error', err);
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    console.log('search', search);
+    if (search.trim().length > 0) {
+      dispatch({ type: 'SET_FILTER', payload: 'All' });
+      navigate({
+        pathname: VIDEOS,
+        search: `query=${search.trim()}`
+      });
     }
   };
 
-  const getVideos = async () => {
-    try {
-      const {
-        data: { videos }
-      } = await axios.get(GETVIDEOS);
-      dispatch({ type: 'GET_VIDEOS', payload: videos });
-    } catch (err) {
-      console.log('Videos Error', err);
-    }
+  const getCategoriesList = async () => {
+    const categories = await getCategories();
+    dispatch({ type: 'GET_CATEGORY', payload: categories });
+  };
+
+  const getVideosList = async () => {
+    const videos = await getVideos();
+    dispatch({ type: 'GET_VIDEOS', payload: videos });
   };
 
   useEffect(() => {
-    getCategories();
-    getVideos();
+    getCategoriesList();
+    getVideosList();
   }, []);
 
   return (
-    <LandingContext.Provider value={{ state, dispatch, filteredList }}>
+    <LandingContext.Provider
+      value={{ state, dispatch, handleSearchSubmit, filteredList }}
+    >
       {children}
     </LandingContext.Provider>
   );
@@ -108,4 +103,9 @@ function LandingProvider({ children }) {
 
 const useLandingCtx = () => useContext(LandingContext);
 
-export { useLandingCtx, LandingProvider };
+const useSingleVideo = (id) => {
+  const { filteredList } = useLandingCtx();
+  return filteredList.find((elem) => elem.vid === id);
+};
+
+export { useLandingCtx, useSingleVideo, LandingProvider };

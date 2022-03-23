@@ -7,12 +7,13 @@
   --tertiary: #0e1217;
   --tertiary--light: #182029;
   --cta: #e36b5c;
-  --white: rgb(250, 246, 246);
+  --white: rgb(231, 231, 231);
   --dismiss: #27262b;
   --dismiss--light: #3e3d41;
   --footer--one: #757575;
   --price: green;
   --tag: rgb(177, 3, 32);
+  --tag--light: rgb(211, 44, 72);
   --rating: goldenrod;
 }
 @font-face {
@@ -100,6 +101,30 @@ body {
   border: 2px solid rgb(138, 29, 48);
   background-color: rgb(138, 29, 48);
 }
+
+/* Main Screen Styling */
+.main {
+  grid-area: main;
+  min-height: 75vh;
+}
+.main__grid {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-areas:
+    'main'
+    'sidebar';
+}
+
+@media screen and (min-width: 1024px) {
+  .main {
+    min-height: 80vh;
+  }
+  .main__grid {
+    grid-template-columns: 20% 80%;
+    grid-template-areas: 'sidebar main';
+  }
+}
+
 @media screen and (min-width: 1650px) {
   body {
     width: 1650px;

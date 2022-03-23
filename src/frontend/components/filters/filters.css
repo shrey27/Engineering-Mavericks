@@ -1,0 +1,31 @@
+@import '../../utility/styles.css';
+
+.filter {
+  margin: 0 0.95rem;
+  width: 96%;
+  overflow-x: auto;
+  padding: 1.5rem 0.5rem 0.75rem 0;
+}
+.filter::-webkit-scrollbar {
+  height: 3px;
+  display: none;
+}
+
+.filter__option {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--white);
+  background-color: var(--dismiss--light);
+  border: 1px solid var(--tertiary);
+  border-radius: 120px;
+  padding: 0.75rem 1.3rem;
+  margin: 0 0.5rem;
+}
+.filter__option.chosen {
+  color: var(--white);
+  background-color: var(--tag);
+  border: 1px solid var(--tag);
+}
+.filter__option__input {
+  display: none;
+}

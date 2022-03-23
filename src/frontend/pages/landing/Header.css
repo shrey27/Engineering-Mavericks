@@ -1,4 +1,4 @@
-@import '../utility/styles.css';
+@import '../../utility/styles.css';
 
 .header {
   color: var(--white);

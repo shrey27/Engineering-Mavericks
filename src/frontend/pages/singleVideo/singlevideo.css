@@ -1,0 +1,61 @@
+@import '../../utility/styles.css';
+
+.video__container {
+  width: 99vw;
+  height: auto;
+}
+iframe {
+  height: 100%;
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+.video__title {
+  font-size: 1.5rem;
+  color: var(--white);
+  margin: 1rem 2rem 0.5rem;
+}
+.video__creator {
+  font-size: 1.25rem;
+  color: var(--footer--one);
+  margin: 0.5rem 2rem;
+  font-weight: normal;
+}
+.video__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1rem 2rem;
+}
+.video__button {
+  border: none;
+  margin: 0 1rem 0 0;
+  padding: 0.75rem 1rem;
+  font-size: 1.15rem;
+  border-radius: 20px;
+  font-weight: 500;
+  color: var(--white);
+  background-color: var(--tertiary);
+  cursor: pointer;
+}
+.video__button i {
+  padding: 0;
+  margin: 0 0.5rem 0 0;
+}
+.video__button:hover {
+  background-color: var(--tag);
+  color: var(--white);
+}
+
+@media screen and (min-width: 1024px) {
+  .video__container {
+    width: 100%;
+    height: 100%;
+  }
+  iframe {
+    height: auto;
+    width: 100%;
+    aspect-ratio: 26/9;
+  }
+}

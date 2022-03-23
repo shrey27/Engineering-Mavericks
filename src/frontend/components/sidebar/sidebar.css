@@ -1,0 +1,61 @@
+@import '../../utility/styles.css';
+
+.sidebar {
+  grid-area: sidebar;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: var(--white);
+  background-color: var(--tertiary);
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+}
+.sidebar.sidefixed {
+  position: absolute;
+  bottom: 122px;
+  width: 100%;
+}
+.sidebar__options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: normal;
+  padding: 0.75rem;
+}
+.sidebar__options.selected {
+  background-color: var(--tertiary--light);
+}
+.sidebar__options__span {
+  display: none;
+  margin: 0.5rem 0;
+}
+
+@media screen and (min-width: 325px) {
+  .sidebar__options__span {
+    display: inline;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .sidebar {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border-right: 3px solid var(--tertiary);
+  }
+  .sidebar.sidefixed {
+    position: static;
+  }
+  .sidebar__options {
+    flex-direction: row;
+    font-size: 1.35rem;
+    padding: 1.25rem;
+    width: 100%;
+  }
+  .sidebar__options span {
+    margin: 0 1rem;
+  }
+}

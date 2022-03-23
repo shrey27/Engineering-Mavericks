@@ -1,0 +1,74 @@
+@import '../../utility/styles.css';
+
+/* Video Grid Page */
+.thumbnail__grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+  justify-content: start;
+  padding: 1rem;
+  gap: 1rem;
+  z-index: 4;
+}
+.thumbnail {
+  width: 100%;
+  border-radius: 5px;
+}
+.thumbnail__info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 3;
+  position: relative;
+}
+.thumbnail__banner {
+  margin: 0;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.thumbnail__title {
+  color: var(--white);
+  font-size: 1.05rem;
+  margin: 0.5rem;
+}
+.thumbnail__description {
+  color: var(--footer--one);
+  font-size: 1rem;
+  font-weight: normal;
+  margin: 0.5rem 0;
+}
+.thumbnail__info__icon {
+  align-self: start;
+  margin: 0.75rem 0;
+  color: var(--white);
+  font-size: 1.25rem;
+}
+.thumbnail__submenu {
+  position: absolute;
+  right: 0.75rem;
+  top: 40%;
+  width: max-content;
+  color: var(--white);
+  font-size: 1rem;
+  background-color: var(--dismiss--light);
+  z-index: 4;
+}
+.thumbnail__submenu h1 {
+  padding: 0.5rem 1.25rem 0.5rem 0;
+  cursor: pointer;
+}
+.thumbnail__submenu h1:hover {
+  background-color: var(--dismiss);
+}
+.fa-ellipsis-vertical {
+  border: 1px solid var(--white);
+  border-radius: 50%;
+  padding: 0.35rem 0.85rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .thumbnail__grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, auto));
+  }
+}
