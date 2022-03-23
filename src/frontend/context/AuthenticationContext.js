@@ -5,7 +5,7 @@ import {
   useEffect
 } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LANDING, SIGNUP, SIGNIN } from '../routes/routes';
+import { LANDING, SIGN_UP, SIGN_IN } from '../routes/routes';
 import axios from 'axios';
 
 const AuthenticationContext = createContext();
@@ -163,7 +163,7 @@ const AuthenticationProvider = ({ children }) => {
   } = state;
   const navigate = useNavigate();
 
-  function validationFun(forSignIn) {
+  function validationFunction(forSignIn) {
     if ((!forSignIn && !username) || !username.match(/^[a-zA-Z ]+/)) {
       dispatch({ type: 'SIGNUP-USERNAME-ERROR' });
       return false;
@@ -198,12 +198,12 @@ const AuthenticationProvider = ({ children }) => {
   }
 
   const handleSignIn = async () => {
-    if (validationFun(true)) {
+    if (validationFunction(true)) {
       if (!rememberMe) {
         try {
           const {
             data: { foundUser, encodedToken }
-          } = await axios.post(SIGNIN, {
+          } = await axios.post(SIGN_IN, {
             email,
             password
           });
@@ -240,9 +240,9 @@ const AuthenticationProvider = ({ children }) => {
   };
 
   const handleSignUp = async () => {
-    if (validationFun(false)) {
+    if (validationFunction(false)) {
       try {
-        const response = await axios.post(SIGNUP, {
+        const response = await axios.post(SIGN_UP, {
           name: username.split(' ')[0],
           surname: username.split(' ')[1],
           email,

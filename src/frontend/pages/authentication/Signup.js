@@ -1,50 +1,50 @@
 import './authentication.css';
 import { useState } from 'react';
 import { Navbar, Footer } from '../../components';
-// import { useAuthCtx } from '../context/authenticationContext';
+import { useAuthCtx } from '../../context';
 import { Link } from 'react-router-dom';
 import { SIGNIN } from '../../routes/routes';
-// import { testCredentials } from '../../utility/constants';
+import { testCredentials } from '../../utility/constants';
 
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [showCnfPassword, setShowCnfPassword] = useState(false);
 
-  // const {
-  //   email,
-  //   password,
-  //   username,
-  //   cnfPassword,
-  //   rememberMe,
-  //   dispatch,
-  //   signupError,
-  //   handleSignUp,
-  //   emailError,
-  //   passwordError,
-  //   cnfpasswordError,
-  //   userNameError
-  // } = useAuthCtx();
+  const {
+    email,
+    password,
+    username,
+    cnfPassword,
+    rememberMe,
+    dispatch,
+    signupError,
+    handleSignUp,
+    emailError,
+    passwordError,
+    cnfpasswordError,
+    userNameError
+  } = useAuthCtx();
 
   const onSignUpHandler = (e) => {
     e.preventDefault();
-    // handleSignUp();
+    handleSignUp();
   };
 
   const onUsingTestCredentials = (e) => {
     e.preventDefault();
-    // dispatch({ type: 'SIGNUP-USERNAME', payload: testCredentials.username });
-    // dispatch({ type: 'SIGNIN-EMAIL', payload: testCredentials.email });
-    // dispatch({ type: 'SIGNIN-PASSWORD', payload: testCredentials.password });
-    // dispatch({
-    //   type: 'CONFIRM-PASSWORD',
-    //   payload: testCredentials.confirmpassword
-    // });
+    dispatch({ type: 'SIGNUP-USERNAME', payload: testCredentials.username });
+    dispatch({ type: 'SIGNIN-EMAIL', payload: testCredentials.email });
+    dispatch({ type: 'SIGNIN-PASSWORD', payload: testCredentials.password });
+    dispatch({
+      type: 'CONFIRM-PASSWORD',
+      payload: testCredentials.confirmpassword
+    });
   };
 
   return (
     <>
       <Navbar noDrawer={true} />
-      {/* {<h1 className='tag cen md sb mg-full'>{signupError}</h1>} */}
+      {<h1 className='tag cen md sb mg-full'>{signupError}</h1>}
       <div className='card authentication shdw'>
         <h1 className='lg sb cen xs-s mg-full'>SIGN UP</h1>
         <hr />
@@ -61,14 +61,14 @@ export default function Signup() {
               placeholder='Enter your Name'
               autoComplete='off'
               aria-autocomplete='none'
-              // value={username}
-              // onChange={(e) =>
-              //   dispatch({ type: 'SIGNUP-USERNAME', payload: e.target.value })
-              // }
-              // onFocus={() => dispatch({ type: 'CLEAR-ALL-ERRORS' })}
+              value={username}
+              onChange={(e) =>
+                dispatch({ type: 'SIGNUP-USERNAME', payload: e.target.value })
+              }
+              onFocus={() => dispatch({ type: 'CLEAR-ALL-ERRORS' })}
               required
             />
-            {/* <h1 className='input__error'>{userNameError}</h1> */}
+            <h1 className='input__error'>{userNameError}</h1>
           </div>
           <div className='authentication__input'>
             <label htmlFor='email__signup' className='label'>
@@ -82,14 +82,14 @@ export default function Signup() {
               placeholder='Enter Email'
               autoComplete='off'
               aria-autocomplete='none'
-              // value={email}
-              // onChange={(e) =>
-              //   dispatch({ type: 'SIGNIN-EMAIL', payload: e.target.value })
-              // }
-              // onFocus={() => dispatch({ type: 'CLEAR-ALL-ERRORS' })}
+              value={email}
+              onChange={(e) =>
+                dispatch({ type: 'SIGNIN-EMAIL', payload: e.target.value })
+              }
+              onFocus={() => dispatch({ type: 'CLEAR-ALL-ERRORS' })}
               required
             />
-            {/* <h1 className='input__error'>{emailError}</h1> */}
+            <h1 className='input__error'>{emailError}</h1>
           </div>
           <div className='authentication__input'>
             <label htmlFor='password__signup' className='label'>
@@ -103,11 +103,11 @@ export default function Signup() {
                 id='password__signup'
                 autoComplete='off'
                 placeholder='Enter Password'
-                // value={password}
-                // onChange={(e) =>
-                //   dispatch({ type: 'SIGNIN-PASSWORD', payload: e.target.value })
-                // }
-                // onBlur={() => dispatch({ type: 'CLEAR-ALL-ERRORS' })}
+                value={password}
+                onChange={(e) =>
+                  dispatch({ type: 'SIGNIN-PASSWORD', payload: e.target.value })
+                }
+                onBlur={() => dispatch({ type: 'CLEAR-ALL-ERRORS' })}
                 required
               />
               <i
@@ -115,7 +115,7 @@ export default function Signup() {
                 onClick={() => setShowPassword((e) => !e)}
               ></i>
             </div>
-            {/* <h1 className='input__error'>{passwordError}</h1> */}
+            <h1 className='input__error'>{passwordError}</h1>
           </div>
 
           <div className='authentication__input'>
@@ -130,14 +130,14 @@ export default function Signup() {
                 id='cnf__password__signup'
                 autoComplete='off'
                 placeholder='Re-enter Password'
-                // value={cnfPassword}
-                // onChange={(e) =>
-                //   dispatch({
-                //     type: 'CONFIRM-PASSWORD',
-                //     payload: e.target.value
-                //   })
-                // }
-                // onBlur={() => dispatch({ type: 'CLEAR-ALL-ERRORS' })}
+                value={cnfPassword}
+                onChange={(e) =>
+                  dispatch({
+                    type: 'CONFIRM-PASSWORD',
+                    payload: e.target.value
+                  })
+                }
+                onBlur={() => dispatch({ type: 'CLEAR-ALL-ERRORS' })}
                 required
               />
               <i
@@ -145,7 +145,7 @@ export default function Signup() {
                 onClick={() => setShowCnfPassword((e) => !e)}
               ></i>
             </div>
-            {/* <h1 className='input__error'>{cnfpasswordError}</h1> */}
+            <h1 className='input__error'>{cnfpasswordError}</h1>
           </div>
           <div className='flex-ct-st signin__remember'>
             <input
@@ -153,8 +153,8 @@ export default function Signup() {
               type='checkbox'
               name='remember__signup'
               id='remember__signup'
-              // checked={rememberMe}
-              // onChange={(e) => dispatch({ type: 'REMEMBER-ME' })}
+              checked={rememberMe}
+              onChange={(e) => dispatch({ type: 'REMEMBER-ME' })}
             />
             <label htmlFor='remember__signup' className='label'>
               Remember me

@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
 import './navbar.css';
 import { Link } from 'react-router-dom';
-import { useLandingCtx } from '../../context';
-import { SIGNIN, LANDING } from '../../routes/routes';
+import { useLandingCtx, useAuthCtx } from '../../context';
+import { SIGNIN, SIGNOUT, LANDING } from '../../routes/routes';
 import pic from '../../assets/logo.webp';
 
 export function Navbar({ hideSearchBar }) {
   const { state, dispatch, handleSearchSubmit } = useLandingCtx();
+  const { token, handleSignOut } = useAuthCtx();
   const { search } = state;
 
   const handleSearch = (e) => {
@@ -23,7 +24,7 @@ export function Navbar({ hideSearchBar }) {
   return (
     <div>
       <nav className='navbar xs-s border--btm'>
-        <section className='start'>
+        <section className='begin'>
           <Link to={LANDING} className='start link__style'>
             <img src={pic} className='header__nav__image' alt='logo' />
             <div className=''>
@@ -58,8 +59,11 @@ export function Navbar({ hideSearchBar }) {
           )}
         </section>
         <section className='end'>
-          <Link className='btn btn--auth--solid sb' to={SIGNIN}>
-            <span className='btn--auth--view'>Sign In</span>
+          <Link
+            className='end__btn btn btn--auth--solid sb'
+            to={token ? SIGNOUT : SIGNIN}
+          >
+            <span className='end__span'>{token ? 'SIGN IN' : 'SIGN OUT'}</span>
             <i className='fa-solid fa-right-to-bracket'></i>
           </Link>
         </section>

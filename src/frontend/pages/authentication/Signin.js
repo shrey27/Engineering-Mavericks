@@ -4,29 +4,36 @@ import { Navbar, Footer } from '../../components';
 import { useAuthCtx } from '../../context';
 import { Link } from 'react-router-dom';
 import { SIGNUP } from '../../routes/routes';
+import { loginCredentials } from '../../utility/constants';
 
 export default function Signin() {
   const [showPassword, setShowPassword] = useState(false);
-  // const {
-  //   email,
-  //   password,
-  //   emailError,
-  //   passwordError,
-  //   signinError,
-  //   signinRememberMe,
-  //   dispatch,
-  //   handleSignIn
-  // } = useAuthCtx();
+  const {
+    email,
+    password,
+    emailError,
+    passwordError,
+    signinError,
+    signinRememberMe,
+    dispatch,
+    handleSignIn
+  } = useAuthCtx();
+
+  const onSignInTestCredentials = (e) => {
+    e.preventDefault();
+    dispatch({ type: 'SIGNIN-EMAIL', payload: loginCredentials.email });
+    dispatch({ type: 'SIGNIN-PASSWORD', payload: loginCredentials.password });
+  };
 
   const onSignInHandler = (e) => {
     e.preventDefault();
-    // handleSignIn();
+    handleSignIn();
   };
 
   return (
     <>
       <Navbar noDrawer={true} />
-      {/* {<h1 className='tag cen md sb mg-full'>{signinError}</h1>} */}
+      {<h1 className='tag cen md sb mg-full'>{signinError}</h1>}
       <div className='card authentication shdw'>
         <h1 className='lg sb cen xs-s mg-full'>SIGNIN</h1>
         <hr />
@@ -42,14 +49,14 @@ export default function Signin() {
               id='email__signin'
               placeholder='Enter Email'
               autoComplete='off'
-              // value={email}
-              // onChange={(e) =>
-              //   dispatch({ type: 'SIGNIN-EMAIL', payload: e.target.value })
-              // }
-              // onFocus={() => dispatch({ type: 'CLEAR-ALL-ERRORS' })}
+              value={email}
+              onChange={(e) =>
+                dispatch({ type: 'SIGNIN-EMAIL', payload: e.target.value })
+              }
+              onFocus={() => dispatch({ type: 'CLEAR-ALL-ERRORS' })}
               required
             />
-            {/* <h1 className='input__error'>{emailError}</h1> */}
+            <h1 className='input__error'>{emailError}</h1>
           </div>
           <div className='authentication__input'>
             <label htmlFor='password__signin' className='label'>
@@ -63,11 +70,11 @@ export default function Signin() {
                 id='password__signin'
                 autoComplete='off'
                 placeholder='Password'
-                // value={password}
-                // onChange={(e) =>
-                //   dispatch({ type: 'SIGNIN-PASSWORD', payload: e.target.value })
-                // }
-                // onBlur={() => dispatch({ type: 'CLEAR-ALL-ERRORS' })}
+                value={password}
+                onChange={(e) =>
+                  dispatch({ type: 'SIGNIN-PASSWORD', payload: e.target.value })
+                }
+                onBlur={() => dispatch({ type: 'CLEAR-ALL-ERRORS' })}
                 required
               />
               <i
@@ -76,7 +83,7 @@ export default function Signin() {
               ></i>
             </div>
 
-            {/* <h1 className='input__error'>{passwordError}</h1> */}
+            <h1 className='input__error'>{passwordError}</h1>
           </div>
           <div className='flex-ct-st signin__remember'>
             <input
@@ -84,8 +91,8 @@ export default function Signin() {
               type='checkbox'
               name='remember__signin'
               id='remember__signin'
-              // checked={signinRememberMe}
-              // onChange={(e) => dispatch({ type: 'SIGNIN-REMEMBER-ME' })}
+              checked={signinRememberMe}
+              onChange={(e) => dispatch({ type: 'SIGNIN-REMEMBER-ME' })}
             />
             <label htmlFor='remember__signin' className='label'>
               Remember me
@@ -98,6 +105,12 @@ export default function Signin() {
           >
             SIGNIN
           </button>
+          <button
+            className='btn btn--wide btn--auth sb'
+            onClick={onSignInTestCredentials}
+          >
+            GUEST-USER
+          </button>
         </form>
         <div className='signin__links'>
           <Link to={SIGNUP} className='forgot sm'>
@@ -108,7 +121,7 @@ export default function Signin() {
           </Link>
         </div>
       </div>
-      <Footer fixed={true} />
+      <Footer />
     </>
   );
 }

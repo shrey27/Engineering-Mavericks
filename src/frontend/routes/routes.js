@@ -5,10 +5,13 @@ import VideoListing from '../pages/videos';
 import SingleVideo from '../pages/singleVideo';
 import Signin from '../pages/authentication/Signin';
 import Signup from '../pages/authentication/Signup';
+import Signout from '../pages/authentication/Signout';
 
 // API Endpoints
 export const GETCATEGORIES = '/api/categories';
 export const GETVIDEOS = '/api/videos';
+export const SIGN_UP = '/api/auth/signup';
+export const SIGN_IN = '/api/auth/login';
 
 // Routes
 export const TWITTEREXT = 'https://twitter.com/home';
@@ -22,6 +25,7 @@ export const LANDING = '/';
 export const MOCKMAN = '/mockman';
 export const SIGNIN = '/signin';
 export const SIGNUP = '/signup';
+export const SIGNOUT = '/signout';
 export const VIDEOS = '/videolisting';
 
 export const availableRoutes = (
@@ -35,7 +39,7 @@ export const availableRoutes = (
     <Route path={`${VIDEOS}/:videoId`} element={<SingleVideo />} />
     <Route path={SIGNIN} element={<Signin />} />
     <Route path={SIGNUP} element={<Signup />} />
-
+    <Route path={SIGNOUT} element={<Signout />} />
     <Route path='*' element={<Landing />} />
   </Routes>
 );

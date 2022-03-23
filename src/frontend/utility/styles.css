@@ -101,7 +101,10 @@ body {
   border: 2px solid rgb(138, 29, 48);
   background-color: rgb(138, 29, 48);
 }
-
+.btn--round {
+  padding: 0.75rem 0.45rem;
+  border-radius: 50%;
+}
 /* Main Screen Styling */
 .main {
   grid-area: main;
