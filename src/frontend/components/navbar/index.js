@@ -1,11 +1,14 @@
 /* eslint-disable react/prop-types */
 import './navbar.css';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLandingCtx, useAuthCtx } from '../../context';
-import { SIGNIN, SIGNOUT, LANDING } from '../../routes/routes';
+import { SIGNIN, LANDING } from '../../routes/routes';
 import pic from '../../assets/logo.webp';
+import { SignoutModal } from '../modal/SignoutModal';
 
 export function Navbar({ hideSearchBar }) {
+  const [signoutModal, setSignoutModal] = useState(false);
   const { state, dispatch, handleSearchSubmit } = useLandingCtx();
   const { token, handleSignOut } = useAuthCtx();
   const { search } = state;
@@ -23,6 +26,11 @@ export function Navbar({ hideSearchBar }) {
 
   return (
     <div>
+      <SignoutModal
+        signoutModal={signoutModal}
+        setSignoutModal={setSignoutModal}
+        handleSignOut={handleSignOut}
+      />
       <nav className='navbar xs-s border--btm'>
         <section className='begin'>
           <Link to={LANDING} className='start link__style'>
@@ -59,13 +67,20 @@ export function Navbar({ hideSearchBar }) {
           )}
         </section>
         <section className='end'>
-          <Link
-            className='end__btn btn btn--auth--solid sb'
-            to={token ? SIGNOUT : SIGNIN}
-          >
-            <span className='end__span'>{token ? 'SIGN IN' : 'SIGN OUT'}</span>
-            <i className='fa-solid fa-right-to-bracket'></i>
-          </Link>
+          {token ? (
+            <button
+              className='end__btn btn btn--auth--solid sb'
+              onClick={() => setSignoutModal(true)}
+            >
+              <i className='fa-solid fa-right-to-bracket'></i>
+              <span className='end__span'>SIGN OUT</span>
+            </button>
+          ) : (
+            <Link className='end__btn btn btn--auth--solid sb' to={SIGNIN}>
+              <span className='end__span'>SIGN IN</span>
+              <i className='fa-solid fa-right-to-bracket'></i>
+            </Link>
+          )}
         </section>
       </nav>
     </div>

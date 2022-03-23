@@ -121,7 +121,7 @@ export default function Signin() {
           </Link>
         </div>
       </div>
-      <Footer />
+      <Footer fixed={true}/>
     </>
   );
 }

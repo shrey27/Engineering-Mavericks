@@ -24,6 +24,7 @@
 
 html {
   font-size: 85%;
+  scroll-behavior: smooth;
 }
 body {
   margin: 0 auto;
@@ -95,7 +96,7 @@ body {
 }
 .btn--auth:hover {
   border: 2px solid var(--tertiary);
-  background-color: rgb(211, 205, 205);
+  background-color: rgb(235, 222, 222);
 }
 .btn--auth--solid:hover {
   border: 2px solid rgb(138, 29, 48);

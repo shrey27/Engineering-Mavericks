@@ -1,11 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
+import PrivateRoute from './PrivateRoute';
 import MockAPI from '../../MockMan';
 import Landing from '../pages/landing';
 import VideoListing from '../pages/videos';
 import SingleVideo from '../pages/singleVideo';
 import Signin from '../pages/authentication/Signin';
 import Signup from '../pages/authentication/Signup';
-import Signout from '../pages/authentication/Signout';
 
 // API Endpoints
 export const GETCATEGORIES = '/api/categories';
@@ -25,7 +25,6 @@ export const LANDING = '/';
 export const MOCKMAN = '/mockman';
 export const SIGNIN = '/signin';
 export const SIGNUP = '/signup';
-export const SIGNOUT = '/signout';
 export const VIDEOS = '/videolisting';
 
 export const availableRoutes = (
@@ -33,13 +32,17 @@ export const availableRoutes = (
     {/* <Route path={TWITTER}>{window.location.replace(TWITTEREXT)}</Route>
     <Route path={GITHUB}>{window.location.replace(GITHUBEXT)}</Route>
     <Route path={LINKEDIN}>{window.location.replace(LINKEDINEXT)}</Route> */}
+
     <Route path={LANDING} element={<Landing />} />
     <Route path={MOCKMAN} element={<MockAPI />} />
     <Route path={VIDEOS} element={<VideoListing />} />
-    <Route path={`${VIDEOS}/:videoId`} element={<SingleVideo />} />
+
+    <Route path={`${VIDEOS}/:videoId`} element={<PrivateRoute />}>
+      <Route path='' element={<SingleVideo />} />
+    </Route>
+
     <Route path={SIGNIN} element={<Signin />} />
     <Route path={SIGNUP} element={<Signup />} />
-    <Route path={SIGNOUT} element={<Signout />} />
     <Route path='*' element={<Landing />} />
   </Routes>
 );

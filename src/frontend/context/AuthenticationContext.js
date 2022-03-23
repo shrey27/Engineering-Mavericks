@@ -1,9 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useReducer,
-  useEffect
-} from 'react';
+import { createContext, useContext, useReducer, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LANDING, SIGN_UP, SIGN_IN } from '../routes/routes';
 import axios from 'axios';
@@ -117,6 +112,10 @@ const authReducerFunc = (state, action) => {
         ...state,
         signinRememberMe: !state.signinRememberMe
       };
+    case 'CLEAR-FIELDS':
+      return {
+        ...defaultState
+      };
     default:
       return {
         ...state
@@ -163,8 +162,25 @@ const AuthenticationProvider = ({ children }) => {
   } = state;
   const navigate = useNavigate();
 
-  function validationFunction(forSignIn) {
-    if ((!forSignIn && !username) || !username.match(/^[a-zA-Z ]+/)) {
+  function validationForSignIn() {
+    if (
+      !email ||
+      !email.match(
+        /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
+      )
+    ) {
+      dispatch({ type: 'EMAIL-INCORRECT' });
+      return false;
+    }
+    if (!password || password.length < 8) {
+      dispatch({ type: 'PASSWORD-INCORRECT' });
+      return false;
+    }
+    return true;
+  }
+
+  function validationForSignUp() {
+    if (!username || !username.match(/^[a-zA-Z ]+/)) {
       dispatch({ type: 'SIGNUP-USERNAME-ERROR' });
       return false;
     }
@@ -184,12 +200,12 @@ const AuthenticationProvider = ({ children }) => {
       return false;
     }
 
-    if (!forSignIn && (!cnfPassword || cnfPassword.length < 8)) {
+    if (!cnfPassword || cnfPassword.length < 8) {
       dispatch({ type: 'CONFIRM-PASSWORD-INCORRECT' });
       return false;
     }
 
-    if (!forSignIn && cnfPassword !== password) {
+    if (cnfPassword !== password) {
       dispatch({ type: 'PASSWORDS-MISMATCH' });
       return false;
     }
@@ -198,7 +214,7 @@ const AuthenticationProvider = ({ children }) => {
   }
 
   const handleSignIn = async () => {
-    if (validationFunction(true)) {
+    if (validationForSignIn()) {
       if (!rememberMe) {
         try {
           const {
@@ -240,7 +256,7 @@ const AuthenticationProvider = ({ children }) => {
   };
 
   const handleSignUp = async () => {
-    if (validationFunction(false)) {
+    if (validationForSignUp()) {
       try {
         const response = await axios.post(SIGN_UP, {
           name: username.split(' ')[0],
@@ -264,6 +280,7 @@ const AuthenticationProvider = ({ children }) => {
 
   const handleSignOut = () => {
     dispatch({ type: 'TOKEN-REMOVED' });
+    dispatch({ type: 'CLEAR-FIELDS' });
     if (!rememberMe && !signinRememberMe) localStorage.clear();
     navigate(LANDING);
   };
@@ -274,7 +291,7 @@ const AuthenticationProvider = ({ children }) => {
       dispatch({ type: 'TOKEN-SAVED', payload: localStorage.getItem('token') });
     }
   }, []);
-  
+
   return (
     <AuthenticationContext.Provider
       value={{

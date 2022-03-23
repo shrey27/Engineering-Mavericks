@@ -4,6 +4,10 @@
   background-color: var(--tertiary);
   border-bottom: 2px solid var(--dismiss);
 }
+.begin {
+  display: flex;
+  justify-content: flex-start;
+}
 .header__nav__image {
   width: auto;
   height: 50px;
