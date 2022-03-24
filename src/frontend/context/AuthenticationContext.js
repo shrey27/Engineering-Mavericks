@@ -1,7 +1,9 @@
 import { createContext, useContext, useReducer, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LANDING, SIGN_UP, SIGN_IN } from '../routes/routes';
-import axios from 'axios';
+import { LANDING } from '../routes/routes';
+import { signUpApi, signInApi } from '../service';
+import { validationForSignIn, validationForSignUp } from '../helpers';
+import { useLocalStorage } from '../helpers/localStorage';
 
 const AuthenticationContext = createContext();
 
@@ -123,25 +125,6 @@ const authReducerFunc = (state, action) => {
   }
 };
 
-// function LocalStore() {
-//   const [local, setLocal] = useState(false);
-//   return { local };
-// }
-
-export function callLocalStorage() {
-  const { email, password, cart, wishlist } = JSON.parse(
-    localStorage.getItem('userData')
-  );
-  const storedToken = localStorage.getItem('token');
-  return {
-    storedEmail: email,
-    storedPassword: password,
-    storedCart: cart,
-    storedWishlist: wishlist,
-    storedToken
-  };
-}
-
 const AuthenticationProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducerFunc, defaultState);
   const {
@@ -161,69 +144,15 @@ const AuthenticationProvider = ({ children }) => {
     userNameError
   } = state;
   const navigate = useNavigate();
-
-  function validationForSignIn() {
-    if (
-      !email ||
-      !email.match(
-        /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
-      )
-    ) {
-      dispatch({ type: 'EMAIL-INCORRECT' });
-      return false;
-    }
-    if (!password || password.length < 8) {
-      dispatch({ type: 'PASSWORD-INCORRECT' });
-      return false;
-    }
-    return true;
-  }
-
-  function validationForSignUp() {
-    if (!username || !username.match(/^[a-zA-Z ]+/)) {
-      dispatch({ type: 'SIGNUP-USERNAME-ERROR' });
-      return false;
-    }
-
-    if (
-      !email ||
-      !email.match(
-        /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
-      )
-    ) {
-      dispatch({ type: 'EMAIL-INCORRECT' });
-      return false;
-    }
-
-    if (!password || password.length < 8) {
-      dispatch({ type: 'PASSWORD-INCORRECT' });
-      return false;
-    }
-
-    if (!cnfPassword || cnfPassword.length < 8) {
-      dispatch({ type: 'CONFIRM-PASSWORD-INCORRECT' });
-      return false;
-    }
-
-    if (cnfPassword !== password) {
-      dispatch({ type: 'PASSWORDS-MISMATCH' });
-      return false;
-    }
-
-    return true;
-  }
+  const storedData = useLocalStorage();
 
   const handleSignIn = async () => {
-    if (validationForSignIn()) {
+    if (validationForSignIn(state, dispatch)) {
       if (!rememberMe) {
         try {
-          const {
-            data: { foundUser, encodedToken }
-          } = await axios.post(SIGN_IN, {
-            email,
-            password
-          });
-          if (foundUser) {
+          const response = await signInApi(email, password);
+          if (response.data) {
+            const { foundUser, encodedToken } = response.data;
             localStorage.setItem('token', encodedToken);
             localStorage.setItem('userData', JSON.stringify(foundUser));
             dispatch({ type: 'TOKEN-SAVED', payload: encodedToken });
@@ -232,15 +161,17 @@ const AuthenticationProvider = ({ children }) => {
             throw new Error('User not Found');
           }
         } catch (err) {
-          console.log('SIGNIN-ERROR', err);
           dispatch({
             type: 'SIGNIN-ERROR',
             payload: 'User Not Found. Either Sign-up or try again later'
           });
         }
       } else {
-        const { storedEmail, storedPassword, storedToken } = callLocalStorage();
-        if (storedEmail === email && storedPassword === password) {
+        const { storedEmail, storedPassword, storedToken } = storedData;
+        if (
+          !storedData ||
+          (storedEmail === email && storedPassword === password)
+        ) {
           dispatch({ type: 'TOKEN-SAVED', payload: storedToken });
           dispatch({ type: 'SET-DEFAULT' });
           navigate(LANDING);
@@ -256,32 +187,27 @@ const AuthenticationProvider = ({ children }) => {
   };
 
   const handleSignUp = async () => {
-    if (validationForSignUp()) {
-      try {
-        const response = await axios.post(SIGN_UP, {
-          name: username.split(' ')[0],
-          surname: username.split(' ')[1],
-          email,
-          password
-        });
+    if (validationForSignUp(state, dispatch)) {
+      const response = await signUpApi(username, email, password);
+      if (response.data) {
         const { createdUser, encodedToken } = response.data;
         localStorage.setItem('token', encodedToken);
         localStorage.setItem('userData', JSON.stringify(createdUser));
         dispatch({ type: 'TOKEN-SAVED', payload: encodedToken });
-      } catch (err) {
+      } else {
         dispatch({ type: 'SIGNUP-ERROR' });
-        console.log(err);
-      } finally {
-        dispatch({ type: 'SET-DEFAULT' });
-        navigate(LANDING);
       }
+      dispatch({ type: 'SET-DEFAULT' });
+      navigate(LANDING);
     }
   };
 
   const handleSignOut = () => {
     dispatch({ type: 'TOKEN-REMOVED' });
-    dispatch({ type: 'CLEAR-FIELDS' });
-    if (!rememberMe && !signinRememberMe) localStorage.clear();
+    if (!rememberMe && !signinRememberMe) {
+      dispatch({ type: 'CLEAR-FIELDS' });
+      localStorage.clear();
+    }
     navigate(LANDING);
   };
 

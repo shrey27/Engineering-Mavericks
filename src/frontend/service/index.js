@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GETCATEGORIES, GETVIDEOS } from '../routes/routes';
+import { GETCATEGORIES, GETVIDEOS, SIGN_IN, SIGN_UP } from '../routes/routes';
 
 export const getCategories = async () => {
   try {
@@ -19,5 +19,31 @@ export const getVideos = async () => {
     return videos;
   } catch (err) {
     console.log('Videos Error', err);
+  }
+};
+
+export const signUpApi = async (username, email, password) => {
+  try {
+    const response = await axios.post(SIGN_UP, {
+      name: username.split(' ')[0],
+      surname: username.split(' ')[1],
+      email,
+      password
+    });
+    return response;
+  } catch (err) {
+    console.log('SIGNUP-ERROR', err);
+  }
+};
+
+export const signInApi = async (email, password) => {
+  try {
+    const response = await axios.post(SIGN_IN, {
+      email,
+      password
+    });
+    return response;
+  } catch (err) {
+    console.log('SIGNIN-ERROR', err);
   }
 };
