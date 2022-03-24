@@ -6,6 +6,9 @@ import VideoListing from '../pages/videos';
 import SingleVideo from '../pages/singleVideo';
 import Signin from '../pages/authentication/Signin';
 import Signup from '../pages/authentication/Signup';
+import Liked from '../pages/liked';
+import History from '../pages/history';
+import Playlist from '../pages/playlist';
 
 // API Endpoints
 export const GETCATEGORIES = '/api/categories';
@@ -26,6 +29,9 @@ export const MOCKMAN = '/mockman';
 export const SIGNIN = '/signin';
 export const SIGNUP = '/signup';
 export const VIDEOS = '/videolisting';
+export const LIKED = '/liked';
+export const PLAYLIST = '/playlist';
+export const HISTORY = '/history';
 
 export const availableRoutes = (
   <Routes>
@@ -36,9 +42,12 @@ export const availableRoutes = (
     <Route path={LANDING} element={<Landing />} />
     <Route path={MOCKMAN} element={<MockAPI />} />
     <Route path={VIDEOS} element={<VideoListing />} />
+    <Route path={LIKED} element={<Liked />} />
 
-    <Route path={`${VIDEOS}/:videoId`} element={<PrivateRoute />}>
-      <Route path='' element={<SingleVideo />} />
+    <Route path={LANDING} element={<PrivateRoute />}>
+      <Route path={PLAYLIST} element={<Playlist />} />
+      <Route path={HISTORY} element={<History />} />
+      <Route path={`${VIDEOS}/:videoId`} element={<SingleVideo />} />
     </Route>
 
     <Route path={SIGNIN} element={<Signin />} />

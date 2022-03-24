@@ -11,6 +11,21 @@ export const categoryList = [
   'Scientists'
 ];
 
+export const navlinks = [
+  {
+    id: 'N1',
+    name: 'Videos',
+    path: '/videoListing',
+    class: 'fa-solid fa-video'
+  },
+  {
+    id: 'N2',
+    name: 'Liked Videos',
+    path: '/liked',
+    class: 'fa-regular fa-thumbs-up'
+  }
+];
+
 export const testCredentials = {
   username: 'Shrey Pandey',
   email: 'shreyp@gmail.com',
