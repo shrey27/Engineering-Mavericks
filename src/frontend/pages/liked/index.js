@@ -40,7 +40,8 @@ export default function Liked() {
     showFilters: false,
     handleSubmenu,
     handleModal,
-    submenuIndex
+    submenuIndex,
+    isWishlist: true
   };
 
   return (
