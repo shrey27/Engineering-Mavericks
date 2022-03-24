@@ -33,7 +33,11 @@ export default function Signin() {
   return (
     <>
       <Navbar noDrawer={true} />
-      {<h1 className='tag cen md sb mg-full'>{signinError}</h1>}
+      {signinError && (
+        <div className='card authentication'>
+          <h1 className='alert tag cen md sb'>{signinError}</h1>
+        </div>
+      )}
       <div className='card authentication shdw'>
         <h1 className='lg sb cen xs-s mg-full'>SIGNIN</h1>
         <hr />
@@ -121,7 +125,7 @@ export default function Signin() {
           </Link>
         </div>
       </div>
-      <Footer fixed={true}/>
+      <Footer fixed={true} />
     </>
   );
 }

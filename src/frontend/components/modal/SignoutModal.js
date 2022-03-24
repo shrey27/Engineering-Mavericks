@@ -19,7 +19,7 @@ export function SignoutModal({ signoutModal, setSignoutModal }) {
         onClick={() => setSignoutModal(false)}
       ></div>
       <div className='modal__content modal__content__signout'>
-        <h1 className='md sb mg--full'>Are you sure you want to signout ?</h1>
+        <h1 className='md sb cen mg--full'>Are you sure you want to signout ?</h1>
         <div className='flex-ct-ct mg--full'>
           <button
             className='btn btn--auth--solid'

@@ -21,21 +21,17 @@ const AuthenticationProvider = ({ children }) => {
   const handleSignIn = async () => {
     if (validationForSignIn(state, dispatch)) {
       if (!rememberMe) {
-        try {
-          const response = await signInApi(email, password);
-          if (response.data) {
-            const { foundUser, encodedToken } = response.data;
-            localStorage.setItem('token', encodedToken);
-            localStorage.setItem('userData', JSON.stringify(foundUser));
-            dispatch({ type: 'TOKEN-SAVED', payload: encodedToken });
-            navigate(LANDING);
-          } else {
-            throw new Error('User not Found');
-          }
-        } catch (err) {
+        const response = await signInApi(email, password);
+        if (response.data) {
+          const { foundUser, encodedToken } = response.data;
+          localStorage.setItem('token', encodedToken);
+          localStorage.setItem('userData', JSON.stringify(foundUser));
+          dispatch({ type: 'TOKEN-SAVED', payload: encodedToken });
+          navigate(LANDING);
+        } else {
           dispatch({
             type: 'SIGNIN-ERROR',
-            payload: 'User Not Found. Either Sign-up or try again later'
+            payload: response.error
           });
         }
       } else {
@@ -66,11 +62,12 @@ const AuthenticationProvider = ({ children }) => {
         localStorage.setItem('token', encodedToken);
         localStorage.setItem('userData', JSON.stringify(createdUser));
         dispatch({ type: 'TOKEN-SAVED', payload: encodedToken });
+        navigate(LANDING);
       } else {
-        dispatch({ type: 'SIGNUP-ERROR' });
+        // dispatch({ type: 'SET-DEFAULT' });
+        dispatch({ type: 'CLEAR-FIELDS' });
+        dispatch({ type: 'SIGNUP-ERROR', payload: response.error });
       }
-      dispatch({ type: 'SET-DEFAULT' });
-      navigate(LANDING);
     }
   };
 

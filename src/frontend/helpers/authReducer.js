@@ -1,3 +1,12 @@
+/*
+ rememberMe : to ensure that user details are picked automatically in sign in , in same browser
+
+ signinRememberMe: to ensure that if user sign in's in new broweser/pc since his details won;t be found
+ in local storage, he has to sign in by typing email and password anf then choose remeber me option on 
+ sign in page, so that his details are saved in that browser, for next time sign in.
+ 
+ CLEAR-FIELDS: will set all the input fields back to default state
+ */
 export const defaultState = {
   email: '',
   emailError: '',
@@ -53,7 +62,7 @@ export const authReducerFunc = (state, action) => {
     case 'SIGNUP-ERROR':
       return {
         ...state,
-        signupError: 'SIGN UP FAILED! TRY AFTER SOME TIME'
+        signupError: action.payload
       };
     case 'PASSWORDS-MISMATCH':
       return {

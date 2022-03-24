@@ -44,7 +44,11 @@ export default function Signup() {
   return (
     <>
       <Navbar noDrawer={true} />
-      {<h1 className='tag cen md sb mg-full'>{signupError}</h1>}
+      {signupError && (
+        <div className='card authentication'>
+          <h1 className='alert tag cen md sb'>{signupError}</h1>
+        </div>
+      )}
       <div className='card authentication shdw'>
         <h1 className='lg sb cen xs-s mg-full'>SIGN UP</h1>
         <hr />

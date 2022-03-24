@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { GETCATEGORIES, GETVIDEOS, SIGN_IN, SIGN_UP } from '../routes/routes';
-
+const errorStatements = {
+  signin: 'User Not Found. Either Sign-up or try again later',
+  signup: 'Sign Up Failed! Use different credentials or Try again later!'
+};
 export const getCategories = async () => {
   try {
     const resp = await axios.get(GETCATEGORIES);
@@ -33,6 +36,9 @@ export const signUpApi = async (username, email, password) => {
     return response;
   } catch (err) {
     console.log('SIGNUP-ERROR', err);
+    return {
+      error: errorStatements.signup
+    };
   }
 };
 
@@ -45,5 +51,8 @@ export const signInApi = async (email, password) => {
     return response;
   } catch (err) {
     console.log('SIGNIN-ERROR', err);
+    return {
+      error: errorStatements.signin
+    };
   }
 };
