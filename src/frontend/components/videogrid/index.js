@@ -11,6 +11,7 @@ export function VideoGrid(props) {
 
   const handleDeleteLikedvideo = (video) => {
     deleteLikedVideo(video._id, video);
+    handleSubmenu(-1);
   };
 
   return (

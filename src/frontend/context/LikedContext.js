@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { createContext, useContext, useReducer } from 'react';
+import { createContext, useContext, useReducer, useEffect } from 'react';
 import { GETLIKED } from '../routes/routes';
 import { useAuthCtx } from './AuthenticationContext';
 
@@ -35,24 +35,24 @@ const LikedProvider = ({ children }) => {
   const [state, dispatch] = useReducer(likedReducerFunc, defaultLikedState);
   const { token } = useAuthCtx();
 
-  // const getLikedList = async () => {
-  //   dispatch({ type: 'LIKE_API_REQUEST' });
-  //   try {
-  //     const {
-  //       data: { likes }
-  //     } = await axios.get(GETLIKED);
+  const getLikedList = async () => {
+    dispatch({ type: 'LIKE_API_REQUEST' });
+    try {
+      const {
+        data: { likes }
+      } = await axios.get(GETLIKED);
 
-  //     const datatoUpdate = JSON.parse(localStorage.getItem('userData'));
-  //     datatoUpdate.likes = [...likes];
-  //     localStorage.setItem('userData', JSON.stringify(datatoUpdate));
+      const datatoUpdate = JSON.parse(localStorage.getItem('userData'));
+      datatoUpdate.likes = [...likes];
+      localStorage.setItem('userData', JSON.stringify(datatoUpdate));
 
-  //     dispatch({ type: 'LIKE_API_RESPONSE', payload: [...likes] });
+      dispatch({ type: 'LIKE_API_RESPONSE', payload: [...likes] });
 
-  //     console.log('get liked array', likes);
-  //   } catch (err) {
-  //     console.log('LIKED_GET_REQUEST_ERROR', err);
-  //   }
-  // };
+      console.log('get liked array', likes);
+    } catch (err) {
+      console.log('LIKED_GET_REQUEST_ERROR', err);
+    }
+  };
 
   const deleteLikedVideo = async (id, video) => {
     dispatch({ type: 'LIKE_API_REQUEST' });
@@ -102,6 +102,10 @@ const LikedProvider = ({ children }) => {
       console.log('LIKED_POST_REQUEST_ERROR', err);
     }
   };
+
+  useEffect(() => {
+    getLikedList();
+  }, []);
 
   return (
     <LikedContext.Provider
