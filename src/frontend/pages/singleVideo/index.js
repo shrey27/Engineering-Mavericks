@@ -1,10 +1,16 @@
 import './singlevideo.css';
 import { useState } from 'react';
-import { useSingleVideo } from '../../context';
-import { Footer, Navbar, Sidebar, Loader, PlaylistModal } from '../../components';
+import { useSingleVideo } from '../../helpers';
+import {
+  Footer,
+  Navbar,
+  Sidebar,
+  Loader,
+  PlaylistModal
+} from '../../components';
 import { useParams } from 'react-router-dom';
 
-function VideoPlayer({ source, setModalOpen }) {
+function VideoPlayer({ source, title, creator, setModalOpen }) {
   return (
     <div className='video__container'>
       <iframe
@@ -14,8 +20,8 @@ function VideoPlayer({ source, setModalOpen }) {
         allowFullScreen
         autoPlay='1'
       ></iframe>
-      <h1 className='video__title'>Clutch! How Does it Work?</h1>
-      <h1 className='video__creator'>The Tech Guy</h1>
+      <h1 className='video__title'>{title}</h1>
+      <h1 className='video__creator'>{creator}</h1>
       <div className='video__buttons'>
         <button className='video__button'>
           <i className='fa-solid fa-thumbs-up'></i>Like
@@ -35,7 +41,7 @@ export default function SingleVideo() {
   const [modalOpen, setModalOpen] = useState(false);
   const { videoId } = useParams();
   const singleVideo = useSingleVideo(videoId);
-  
+
   return (
     <div>
       <Navbar />
@@ -48,6 +54,8 @@ export default function SingleVideo() {
           ) : (
             <VideoPlayer
               source={singleVideo?.video}
+              title={singleVideo?.title}
+              creator={singleVideo?.creator}
               setModalOpen={setModalOpen}
             />
           )}

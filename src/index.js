@@ -3,7 +3,11 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { makeServer } from './server';
 import { BrowserRouter } from 'react-router-dom';
-import { LandingProvider, AuthenticationProvider } from './frontend/context';
+import {
+  LandingProvider,
+  AuthenticationProvider,
+  LikedProvider
+} from './frontend/context';
 
 // Call make Server
 makeServer();
@@ -13,7 +17,9 @@ ReactDOM.render(
     <BrowserRouter>
       <AuthenticationProvider>
         <LandingProvider>
-          <App />
+          <LikedProvider>
+            <App />
+          </LikedProvider>
         </LandingProvider>
       </AuthenticationProvider>
     </BrowserRouter>

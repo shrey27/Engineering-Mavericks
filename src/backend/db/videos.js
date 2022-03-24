@@ -7,9 +7,11 @@ export const videos = [
   {
     _id: uuid(),
     vid: 'v1',
-    source: 'back.jpg',
-    title: 'Electrical Engineering',
+    source:
+      '	https://i.ytimg.com/vi/0AgPUikpvpM/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLC8PfQD4IS9mWUJdId1_ammy_fU7A',
+    title: 'How does Thyristors work? ',
     creator: 'The tech Guy',
+    video: 'https://www.youtube.com/embed/0AgPUikpvpM',
     description:
       'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
     category: 'Electrical'
@@ -17,9 +19,11 @@ export const videos = [
   {
     _id: uuid(),
     vid: 'v2',
-    source: 'back.jpg',
-    title: 'Electrical Engineering',
+    source:
+      '	https://i.ytimg.com/vi/qVeERT4nyz8/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLBY9TY7nHNY66wqkB_hPXO49PGsxg',
+    title: 'How does Inverters work? ',
     creator: 'The tech Guy',
+    video: 'https://www.youtube.com/embed/qVeERT4nyz8',
     description:
       'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
     category: 'Electrical'
@@ -27,9 +31,11 @@ export const videos = [
   {
     _id: uuid(),
     vid: 'v3',
-    source: 'back.jpg',
-    title: 'Electrical Engineering',
+    source:
+      'https://i.ytimg.com/vi/Unh99Qn7CmI/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLBH2QU6tmtFKPwDHSfj3SF9w1b8Kg',
+    title: "MCB's, how do they work?",
     creator: 'The tech Guy',
+    video: 'https://www.youtube.com/embed/Unh99Qn7CmI',
     description:
       'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
     category: 'Electrical'
@@ -37,8 +43,10 @@ export const videos = [
   {
     _id: uuid(),
     vid: 'v4',
-    source: 'back.jpg',
-    title: 'Automobile Engineering',
+    source:
+      'https://i.ytimg.com/vi/devo3kdSPQY/hqdefault.jpg?s…AFwAcABBg==&rs=AOn4CLCDTc-vIY_fAwkmCfEnu5gClZAGMA',
+    title: 'How Clutch works ?',
+    video: 'https://www.youtube.com/embed/devo3kdSPQY',
     creator: 'The tech Guy',
     description:
       'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
@@ -57,10 +65,8 @@ export const videos = [
   {
     _id: uuid(),
     vid: 'v6',
-    source:
-      'https://i.ytimg.com/vi/devo3kdSPQY/hqdefault.jpg?s…AFwAcABBg==&rs=AOn4CLCDTc-vIY_fAwkmCfEnu5gClZAGMA',
-    title: 'How Clutch works ?',
-    video: 'https://www.youtube.com/embed/devo3kdSPQY',
+    source: 'back.jpg',
+    title: 'Automobile Engineering',
     creator: 'The tech Guy',
     description:
       'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis ',
