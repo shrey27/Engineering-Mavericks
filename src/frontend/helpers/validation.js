@@ -18,12 +18,10 @@ export function validationForSignIn(state, dispatch) {
 
 export function validationForSignUp(state, dispatch) {
   const { username, email, password, cnfPassword } = state;
-
   if (!username || !username.match(/^[a-zA-Z ]+/)) {
     dispatch({ type: 'SIGNUP-USERNAME-ERROR' });
     return false;
   }
-
   if (
     !email ||
     !email.match(
@@ -33,21 +31,17 @@ export function validationForSignUp(state, dispatch) {
     dispatch({ type: 'EMAIL-INCORRECT' });
     return false;
   }
-
   if (!password || password.length < 8) {
     dispatch({ type: 'PASSWORD-INCORRECT' });
     return false;
   }
-
   if (!cnfPassword || cnfPassword.length < 8) {
     dispatch({ type: 'CONFIRM-PASSWORD-INCORRECT' });
     return false;
   }
-
   if (cnfPassword !== password) {
     dispatch({ type: 'PASSWORDS-MISMATCH' });
     return false;
   }
-
   return true;
 }

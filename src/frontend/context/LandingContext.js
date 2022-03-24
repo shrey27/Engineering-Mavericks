@@ -2,49 +2,9 @@ import { createContext, useContext, useReducer, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { VIDEOS } from '../routes/routes';
 import { getCategories, getVideos } from '../service';
+import { defaultLandingState, landingReducer } from '../helpers';
+
 const LandingContext = createContext();
-
-const defaultState = {
-  loading: false,
-  search: '',
-  filter: 'All',
-  categoryList: [],
-  videoList: []
-};
-
-const landingReducer = (state, action) => {
-  switch (action.type) {
-    case 'GET_CATEGORY':
-      return {
-        ...state,
-        categoryList: [...action.payload]
-      };
-    case 'GET_VIDEOS':
-      return {
-        ...state,
-        videoList: [...action.payload]
-      };
-    case 'SET_SEARCH':
-      return {
-        ...state,
-        search: action.payload
-      };
-    case 'SEARCH_CLEAR':
-      return {
-        ...state,
-        search: ''
-      };
-    case 'SET_FILTER':
-      return {
-        ...state,
-        filter: action.payload
-      };
-    default:
-      return {
-        ...state
-      };
-  }
-};
 
 const filterVideos = (filter, videoList) => {
   let tempList = [...videoList];
@@ -60,7 +20,7 @@ const filterVideos = (filter, videoList) => {
 
 function LandingProvider({ children }) {
   const navigate = useNavigate();
-  const [state, dispatch] = useReducer(landingReducer, defaultState);
+  const [state, dispatch] = useReducer(landingReducer, defaultLandingState);
   const { filter, search, videoList } = state;
 
   const filteredList = filterVideos(filter, videoList);
