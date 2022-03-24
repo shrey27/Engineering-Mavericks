@@ -1,12 +1,16 @@
 /* eslint-disable react/prop-types */
 import './navbar.css';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useLandingCtx } from '../../context';
+import { useLandingCtx, useAuthCtx } from '../../context';
 import { SIGNIN, LANDING } from '../../routes/routes';
 import pic from '../../assets/logo.webp';
+import { SignoutModal } from '../modal/SignoutModal';
 
 export function Navbar({ hideSearchBar }) {
+  const [signoutModal, setSignoutModal] = useState(false);
   const { state, dispatch, handleSearchSubmit } = useLandingCtx();
+  const { token, handleSignOut } = useAuthCtx();
   const { search } = state;
 
   const handleSearch = (e) => {
@@ -22,8 +26,13 @@ export function Navbar({ hideSearchBar }) {
 
   return (
     <div>
+      <SignoutModal
+        signoutModal={signoutModal}
+        setSignoutModal={setSignoutModal}
+        handleSignOut={handleSignOut}
+      />
       <nav className='navbar xs-s border--btm'>
-        <section className='start'>
+        <section className='begin'>
           <Link to={LANDING} className='start link__style'>
             <img src={pic} className='header__nav__image' alt='logo' />
             <div className=''>
@@ -58,10 +67,20 @@ export function Navbar({ hideSearchBar }) {
           )}
         </section>
         <section className='end'>
-          <Link className='btn btn--auth--solid sb' to={SIGNIN}>
-            <span className='btn--auth--view'>Sign In</span>
-            <i className='fa-solid fa-right-to-bracket'></i>
-          </Link>
+          {token ? (
+            <button
+              className='end__btn btn btn--auth--solid sb'
+              onClick={() => setSignoutModal(true)}
+            >
+              <i className='fa-solid fa-right-to-bracket'></i>
+              <span className='end__span'>SIGN OUT</span>
+            </button>
+          ) : (
+            <Link className='end__btn btn btn--auth--solid sb' to={SIGNIN}>
+              <span className='end__span'>SIGN IN</span>
+              <i className='fa-solid fa-right-to-bracket'></i>
+            </Link>
+          )}
         </section>
       </nav>
     </div>

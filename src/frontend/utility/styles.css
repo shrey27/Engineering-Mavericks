@@ -7,7 +7,7 @@
   --tertiary: #0e1217;
   --tertiary--light: #182029;
   --cta: #e36b5c;
-  --white: rgb(231, 231, 231);
+  --white: rgb(255, 255, 255);
   --dismiss: #27262b;
   --dismiss--light: #3e3d41;
   --footer--one: #757575;
@@ -24,6 +24,7 @@
 
 html {
   font-size: 85%;
+  scroll-behavior: smooth;
 }
 body {
   margin: 0 auto;
@@ -95,13 +96,16 @@ body {
 }
 .btn--auth:hover {
   border: 2px solid var(--tertiary);
-  background-color: rgb(211, 205, 205);
+  background-color: rgb(235, 222, 222);
 }
 .btn--auth--solid:hover {
   border: 2px solid rgb(138, 29, 48);
   background-color: rgb(138, 29, 48);
 }
-
+.btn--round {
+  padding: 0.75rem 0.45rem;
+  border-radius: 50%;
+}
 /* Main Screen Styling */
 .main {
   grid-area: main;

@@ -1,7 +1,7 @@
 import './modal.css';
 import { useState } from 'react';
 
-export function Modal({ modalOpen, setModalOpen }) {
+export function PlaylistModal({ modalOpen, setModalOpen }) {
   const [editor, openEditor] = useState(false);
   const [playlistName, setPlaylistName] = useState('');
   const [error, setError] = useState(false);

@@ -1,7 +1,7 @@
 import './singlevideo.css';
 import { useState } from 'react';
 import { useSingleVideo } from '../../context';
-import { Footer, Navbar, Sidebar, Loader, Modal } from '../../components';
+import { Footer, Navbar, Sidebar, Loader, PlaylistModal } from '../../components';
 import { useParams } from 'react-router-dom';
 
 function VideoPlayer({ source, setModalOpen }) {
@@ -39,7 +39,7 @@ export default function SingleVideo() {
   return (
     <div>
       <Navbar />
-      <Modal modalOpen={modalOpen} setModalOpen={setModalOpen} />
+      <PlaylistModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
       <div className='main__grid'>
         <Sidebar videos={true} />
         <div className='main'>

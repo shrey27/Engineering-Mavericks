@@ -1,12 +1,17 @@
 import { Routes, Route } from 'react-router-dom';
+import PrivateRoute from './PrivateRoute';
 import MockAPI from '../../MockMan';
 import Landing from '../pages/landing';
 import VideoListing from '../pages/videos';
 import SingleVideo from '../pages/singleVideo';
+import Signin from '../pages/authentication/Signin';
+import Signup from '../pages/authentication/Signup';
 
 // API Endpoints
 export const GETCATEGORIES = '/api/categories';
 export const GETVIDEOS = '/api/videos';
+export const SIGN_UP = '/api/auth/signup';
+export const SIGN_IN = '/api/auth/login';
 
 // Routes
 export const TWITTEREXT = 'https://twitter.com/home';
@@ -27,9 +32,17 @@ export const availableRoutes = (
     {/* <Route path={TWITTER}>{window.location.replace(TWITTEREXT)}</Route>
     <Route path={GITHUB}>{window.location.replace(GITHUBEXT)}</Route>
     <Route path={LINKEDIN}>{window.location.replace(LINKEDINEXT)}</Route> */}
+
     <Route path={LANDING} element={<Landing />} />
     <Route path={MOCKMAN} element={<MockAPI />} />
     <Route path={VIDEOS} element={<VideoListing />} />
-    <Route path={`${VIDEOS}/:videoId`} element={<SingleVideo />} />
+
+    <Route path={`${VIDEOS}/:videoId`} element={<PrivateRoute />}>
+      <Route path='' element={<SingleVideo />} />
+    </Route>
+
+    <Route path={SIGNIN} element={<Signin />} />
+    <Route path={SIGNUP} element={<Signup />} />
+    <Route path='*' element={<Landing />} />
   </Routes>
 );

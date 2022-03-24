@@ -4,7 +4,8 @@
 .modal__background {
   opacity: 0.9;
 }
-.modal__content {
+.modal__content,
+.modal__content__signout {
   width: 100%;
   max-width: 25rem;
   border: none;
@@ -12,6 +13,10 @@
   color: var(--white);
   padding: 1.25rem 1.5rem;
   font-size: 1.25rem;
+}
+.modal__content__signout {
+  background-color: var(--white);
+  color: var(--tertiary);
 }
 .playlist__option {
   display: flex;

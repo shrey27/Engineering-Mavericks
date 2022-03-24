@@ -1,0 +1,73 @@
+@import '../../utility/styles.css';
+
+/* Authentication Pages */
+.authentication {
+  width: 90%;
+  margin: 1rem auto;
+  background-color: var(--white);
+  color: var(--tertiary);
+  border: 2px solid var(--dismiss);
+}
+.authentication__input {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin: 0.5rem 0;
+}
+.label {
+  color: var(--tertiary);
+}
+.forgot {
+  color: var(--tertiary);
+  text-decoration: underline;
+  font-weight: 500;
+}
+.already {
+  color: var(--tertiary);
+  text-decoration: underline;
+}
+.input__error {
+  display: inline-block;
+  color: var(--tag);
+  margin: 0.5rem 0.25rem;
+  font-weight: normal;
+  font-size: 1rem;
+}
+.signin__remember {
+  padding: 0 0.5rem;
+}
+.signin__links {
+  padding: 0 1rem 1rem 1rem;
+}
+.input__container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--primary--light);
+  background-color: var(--white);
+}
+.input__password {
+  width: 95%;
+  border: none;
+}
+.input__eye {
+  color: var(--black);
+}
+.signout__card {
+  margin: 15% auto;
+  padding: 1rem;
+}
+.signout__card__title {
+  font-size: 1.25rem;
+}
+.alert {
+  padding: 0.5rem;
+  margin: 0;
+  border-radius: 5px;
+}
+@media screen and (min-width: 768px) {
+  .authentication {
+    width: 30rem;
+  }
+}

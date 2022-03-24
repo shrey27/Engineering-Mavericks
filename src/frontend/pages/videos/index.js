@@ -4,7 +4,7 @@ import { useLandingCtx } from '../../context';
 import {
   Footer,
   Navbar,
-  Modal,
+  PlaylistModal,
   Sidebar,
   Loader,
   VideoGrid,
@@ -66,7 +66,7 @@ export default function VideoListing() {
   return (
     <div>
       <Navbar />
-      <Modal modalOpen={modalOpen} setModalOpen={setModalOpen} />
+      <PlaylistModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
       <div className='main__grid'>
         <Sidebar noVideos={filteredList ? false : true} />
         <div className='main'>
