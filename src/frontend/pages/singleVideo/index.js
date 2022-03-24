@@ -9,8 +9,15 @@ import {
   PlaylistModal
 } from '../../components';
 import { useParams } from 'react-router-dom';
+import { useLikedCtx } from '../../context';
 
-function VideoPlayer({ source, title, creator, setModalOpen }) {
+function VideoPlayer({ source, title, creator, singleVideo, setModalOpen }) {
+  const { addToLikedlist } = useLikedCtx();
+
+  const handleAddToLike = () => {
+    addToLikedlist({ ...singleVideo });
+  };
+
   return (
     <div className='video__container'>
       <iframe
@@ -23,7 +30,7 @@ function VideoPlayer({ source, title, creator, setModalOpen }) {
       <h1 className='video__title'>{title}</h1>
       <h1 className='video__creator'>{creator}</h1>
       <div className='video__buttons'>
-        <button className='video__button'>
+        <button className='video__button' onClick={handleAddToLike}>
           <i className='fa-solid fa-thumbs-up'></i>Like
         </button>
         <button className='video__button'>
@@ -56,6 +63,7 @@ export default function SingleVideo() {
               source={singleVideo?.video}
               title={singleVideo?.title}
               creator={singleVideo?.creator}
+              singleVideo={singleVideo}
               setModalOpen={setModalOpen}
             />
           )}

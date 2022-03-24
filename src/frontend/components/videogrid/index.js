@@ -1,16 +1,22 @@
 import './videogrid.css';
 import { Link } from 'react-router-dom';
 import { VIDEOS } from '../../routes/routes';
+import { useLikedCtx } from '../../context';
 
 export function VideoGrid(props) {
   const { videos, handleSubmenu, handleModal, submenuIndex } = props;
+  const { deleteLikedVideo } = useLikedCtx();
+
+  const handleDeleteLikedvideo = (video) => {
+    deleteLikedVideo(video._id, video);
+  };
 
   return (
     <div className='thumbnail__grid'>
       {videos.map((elem, index) => {
         return (
           <div className='thumbnail' key={elem._id}>
-            <Link to={`${VIDEOS}/${elem.vid}`}>
+            <Link to={`${VIDEOS}/${elem._id}`}>
               <img
                 src={elem.source}
                 alt={`thumbnail_${index + 1}`}
@@ -37,6 +43,10 @@ export function VideoGrid(props) {
                   <h1 onClick={handleModal}>
                     <i className='fa-regular fa-circle-play'></i>
                     Add to Playlist
+                  </h1>
+                  <h1 onClick={handleDeleteLikedvideo.bind(this, elem)}>
+                    <i className='fa-solid fa-trash'></i>
+                    Remove the video
                   </h1>
                 </div>
               )}

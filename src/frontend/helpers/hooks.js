@@ -19,5 +19,5 @@ export function useLocalStorage() {
 
 export const useSingleVideo = (id) => {
   const { filteredList } = useLandingCtx();
-  return filteredList.find((elem) => elem.vid === id);
+  return filteredList.find((elem) => elem._id === id);
 };

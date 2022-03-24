@@ -2,11 +2,9 @@
  * Videos Database can be added here.
  * You can add videos of your wish with different attributes
  * */
-import { v4 as uuid } from 'uuid';
 export const videos = [
   {
-    _id: uuid(),
-    vid: 'v1',
+    _id: 'v1',
     source:
       '	https://i.ytimg.com/vi/0AgPUikpvpM/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLC8PfQD4IS9mWUJdId1_ammy_fU7A',
     title: 'How does Thyristors work? ',
@@ -17,8 +15,7 @@ export const videos = [
     category: 'Electrical'
   },
   {
-    _id: uuid(),
-    vid: 'v2',
+    _id: 'v2',
     source:
       '	https://i.ytimg.com/vi/qVeERT4nyz8/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLBY9TY7nHNY66wqkB_hPXO49PGsxg',
     title: 'How does Inverters work? ',
@@ -29,8 +26,7 @@ export const videos = [
     category: 'Electrical'
   },
   {
-    _id: uuid(),
-    vid: 'v3',
+    _id: 'v3',
     source:
       'https://i.ytimg.com/vi/Unh99Qn7CmI/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLBH2QU6tmtFKPwDHSfj3SF9w1b8Kg',
     title: "MCB's, how do they work?",
@@ -41,8 +37,7 @@ export const videos = [
     category: 'Electrical'
   },
   {
-    _id: uuid(),
-    vid: 'v4',
+    _id: 'v4',
     source:
       'https://i.ytimg.com/vi/devo3kdSPQY/hqdefault.jpg?s…AFwAcABBg==&rs=AOn4CLCDTc-vIY_fAwkmCfEnu5gClZAGMA',
     title: 'How Clutch works ?',
@@ -53,8 +48,7 @@ export const videos = [
     category: 'Automobiles'
   },
   {
-    _id: uuid(),
-    vid: 'v5',
+    _id: 'v5',
     source: 'back.jpg',
     title: 'Automobile Engineering',
     creator: 'The tech Guy',
@@ -63,8 +57,7 @@ export const videos = [
     category: 'Automobiles'
   },
   {
-    _id: uuid(),
-    vid: 'v6',
+    _id: 'v6',
     source: 'back.jpg',
     title: 'Automobile Engineering',
     creator: 'The tech Guy',
@@ -73,8 +66,7 @@ export const videos = [
     category: 'Automobiles'
   },
   {
-    _id: uuid(),
-    vid: 'v7',
+    _id: 'v7',
     source: 'back.jpg',
     title: 'Space Engineering',
     creator: 'The tech Guy',
@@ -83,8 +75,7 @@ export const videos = [
     category: 'Space'
   },
   {
-    _id: uuid(),
-    vid: 'v8',
+    _id: 'v8',
     source: 'back.jpg',
     title: 'Space Engineering',
     creator: 'The tech Guy',
@@ -93,8 +84,7 @@ export const videos = [
     category: 'Space'
   },
   {
-    _id: uuid(),
-    vid: 'v9',
+    _id: 'v9',
     source: 'back.jpg',
     title: 'Space Exploration',
     creator: 'The tech Guy',
@@ -103,8 +93,7 @@ export const videos = [
     category: 'Space'
   },
   {
-    _id: uuid(),
-    vid: 'v10',
+    _id: 'v10',
     source: 'back.jpg',
     title: 'Stuff Engineering',
     creator: 'The tech Guy',
@@ -113,8 +102,7 @@ export const videos = [
     category: 'Stuff'
   },
   {
-    _id: uuid(),
-    vid: 'v11',
+    _id: 'v11',
     source: 'back.jpg',
     title: 'Stuff Engineering',
     creator: 'The tech Guy',
@@ -123,8 +111,7 @@ export const videos = [
     category: 'Stuff'
   },
   {
-    _id: uuid(),
-    vid: 'v12',
+    _id: 'v12',
     source: 'back.jpg',
     title: 'Stuff Engineering',
     creator: 'The tech Guy',
@@ -133,8 +120,7 @@ export const videos = [
     category: 'Stuff'
   },
   {
-    _id: uuid(),
-    vid: 'v13',
+    _id: 'v13',
     source: 'back.jpg',
     title: 'Science ',
     creator: 'The tech Guy',
@@ -143,8 +129,7 @@ export const videos = [
     category: 'Science'
   },
   {
-    _id: uuid(),
-    vid: 'v14',
+    _id: 'v14',
     source: 'back.jpg',
     title: 'Science ',
     creator: 'The tech Guy',
@@ -153,8 +138,7 @@ export const videos = [
     category: 'Science'
   },
   {
-    _id: uuid(),
-    vid: 'v15',
+    _id: 'v15',
     source: 'back.jpg',
     title: 'Science ',
     creator: 'The tech Guy',
@@ -163,8 +147,7 @@ export const videos = [
     category: 'Science'
   },
   {
-    _id: uuid(),
-    vid: 'v16',
+    _id: 'v16',
     source: 'back.jpg',
     title: 'Physics ',
     creator: 'The tech Guy',
@@ -173,8 +156,7 @@ export const videos = [
     category: 'Physics'
   },
   {
-    _id: uuid(),
-    vid: 'v17',
+    _id: 'v17',
     source: 'back.jpg',
     title: 'Physics ',
     creator: 'The tech Guy',
@@ -183,8 +165,7 @@ export const videos = [
     category: 'Physics'
   },
   {
-    _id: uuid(),
-    vid: 'v18',
+    _id: 'v18',
     source: 'back.jpg',
     title: 'Physics ',
     creator: 'The tech Guy',
@@ -193,8 +174,7 @@ export const videos = [
     category: 'Physics'
   },
   {
-    _id: uuid(),
-    vid: 'v19',
+    _id: 'v19',
     source: 'back.jpg',
     title: 'Communication Engineering',
     creator: 'The tech Guy',
@@ -203,8 +183,7 @@ export const videos = [
     category: 'Communication'
   },
   {
-    _id: uuid(),
-    vid: 'v20',
+    _id: 'v20',
     source: 'back.jpg',
     title: 'Communication Engineering',
     creator: 'The tech Guy',
@@ -213,8 +192,7 @@ export const videos = [
     category: 'Communication'
   },
   {
-    _id: uuid(),
-    vid: 'v21',
+    _id: 'v21',
     source: 'back.jpg',
     title: 'Communication Engineering',
     creator: 'The tech Guy',
@@ -223,8 +201,8 @@ export const videos = [
     category: 'Communication'
   },
   {
-    _id: uuid(),
-    vid: 'v22',
+    _id: 'v22',
+
     source: 'back.jpg',
     title: 'Scientists',
     creator: 'The tech Guy',
@@ -233,8 +211,8 @@ export const videos = [
     category: 'Scientists'
   },
   {
-    _id: uuid(),
-    vid: 'v23',
+    _id: 'v23',
+
     source: 'back.jpg',
     title: 'Scientists',
     creator: 'The tech Guy',
@@ -243,8 +221,8 @@ export const videos = [
     category: 'Scientists'
   },
   {
-    _id: uuid(),
-    vid: 'v24',
+    _id: 'v24',
+
     source: 'back.jpg',
     title: 'Scientists',
     creator: 'The tech Guy',

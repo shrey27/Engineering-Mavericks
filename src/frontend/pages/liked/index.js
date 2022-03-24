@@ -1,6 +1,6 @@
 import './liked.css';
 import { useState, useEffect } from 'react';
-import { useLandingCtx } from '../../context';
+import { useLikedCtx } from '../../context';
 import {
   Footer,
   Navbar,
@@ -11,27 +11,16 @@ import {
 } from '../../components';
 
 export default function Liked() {
-  const { filteredList } = useLandingCtx();
-
-  const queryParams = new URLSearchParams(window.location.search);
-  const search = queryParams.get('query');
+  const { state } = useLikedCtx();
+  const { likedList, likedLoader } = state;
 
   const [submenuIndex, setSubmenuIndex] = useState(-1);
   const [modalOpen, setModalOpen] = useState(false);
   const [alteredList, setAlteredList] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (search) {
-      const tempList = filteredList.filter((e) =>
-        e.title.toLowerCase().includes(search.toLowerCase())
-      );
-      setAlteredList([...tempList]);
-    } else {
-      setAlteredList([...filteredList]);
-    }
-    setLoading(false);
-  }, [search, filteredList]);
+    setAlteredList([...likedList]);
+  }, [likedList]);
 
   const handleModal = () => {
     setSubmenuIndex(-1);
@@ -47,7 +36,7 @@ export default function Liked() {
   };
 
   const videoGridProps = {
-    videos: [],
+    videos: alteredList,
     showFilters: false,
     handleSubmenu,
     handleModal,
@@ -59,9 +48,9 @@ export default function Liked() {
       <Navbar />
       <PlaylistModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
       <div className='main__grid'>
-        <Sidebar noVideos={filteredList ? false : true} />
+        <Sidebar noVideos={likedList ? false : true} />
         <div className='main'>
-          {loading ? <Loader /> : <VideoGrid {...videoGridProps} />}
+          {likedLoader ? <Loader /> : <VideoGrid {...videoGridProps} />}
         </div>
       </div>
       <Footer />
