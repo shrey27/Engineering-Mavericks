@@ -46,13 +46,13 @@
 }
 .thumbnail__submenu {
   position: absolute;
-  right: 0.75rem;
-  top: 40%;
+  right: 2.75rem;
+  bottom: 1.5rem;
   width: max-content;
   color: var(--white);
   font-size: 1rem;
   background-color: var(--dismiss--light);
-  z-index: 4;
+  z-index: 10;
 }
 .thumbnail__submenu h1 {
   padding: 0.5rem 1.25rem 0.5rem 0;

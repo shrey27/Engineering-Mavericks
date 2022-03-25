@@ -1,3 +1,5 @@
+import { useLandingCtx } from '../context';
+
 export function useLocalStorage() {
   const data = JSON.parse(localStorage.getItem('userData'));
   if (data) {
@@ -14,3 +16,8 @@ export function useLocalStorage() {
     return;
   }
 }
+
+export const useSingleVideo = (id) => {
+  const { filteredList } = useLandingCtx();
+  return filteredList.find((elem) => elem._id === id);
+};
