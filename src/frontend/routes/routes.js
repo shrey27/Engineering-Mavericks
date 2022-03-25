@@ -16,6 +16,7 @@ export const GETVIDEOS = '/api/videos';
 export const SIGN_UP = '/api/auth/signup';
 export const SIGN_IN = '/api/auth/login';
 export const GETLIKED = '/api/user/likes';
+export const GETHISTORY = '/api/user/history';
 
 // Routes
 export const TWITTEREXT = 'https://twitter.com/home';

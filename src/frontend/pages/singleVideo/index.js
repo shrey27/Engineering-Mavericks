@@ -9,7 +9,7 @@ import {
   PlaylistModal
 } from '../../components';
 import { useParams } from 'react-router-dom';
-import { useLikedCtx } from '../../context';
+import { useLikedCtx, useHistoryCtx } from '../../context';
 
 function VideoPlayer({ source, title, creator, singleVideo, setModalOpen }) {
   const [liked, setLiked] = useState(false);
@@ -64,6 +64,13 @@ export default function SingleVideo() {
   const [modalOpen, setModalOpen] = useState(false);
   const { videoId } = useParams();
   const singleVideo = useSingleVideo(videoId);
+  const { addToHistorylist } = useHistoryCtx();
+
+  useEffect(() => {
+    if (Object.keys(singleVideo).length) {
+      addToHistorylist(singleVideo);
+    }
+  }, []);
 
   return (
     <div>

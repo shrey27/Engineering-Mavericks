@@ -1,6 +1,6 @@
 import './history.css';
 import { useState, useEffect } from 'react';
-import { useLikedCtx } from '../../context';
+import { useHistoryCtx } from '../../context';
 import {
   Footer,
   Navbar,
@@ -11,15 +11,16 @@ import {
 } from '../../components';
 
 export default function History() {
-  const { state } = useLikedCtx();
-  const { loading, watchedVideos } = state;
+  const {
+    state: { historyLoader, watchedVideos }
+  } = useHistoryCtx();
 
   const [submenuIndex, setSubmenuIndex] = useState(-1);
   const [modalOpen, setModalOpen] = useState(false);
   const [alteredList, setAlteredList] = useState([]);
 
   useEffect(() => {
-    setAlteredList([...watchedVideos]);
+    setAlteredList(watchedVideos);
   }, [watchedVideos]);
 
   const handleModal = () => {
@@ -51,7 +52,7 @@ export default function History() {
       <div className='main__grid'>
         <Sidebar noVideos={watchedVideos ? false : true} />
         <div className='main'>
-          {loading ? <Loader /> : <VideoGrid {...videoGridProps} />}
+          {historyLoader ? <Loader /> : <VideoGrid {...videoGridProps} />}
         </div>
       </div>
       <Footer />

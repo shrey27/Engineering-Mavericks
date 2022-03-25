@@ -4,7 +4,8 @@ import {
   GETVIDEOS,
   SIGN_IN,
   SIGN_UP,
-  GETLIKED
+  GETLIKED,
+  GETHISTORY
 } from '../routes/routes';
 const errorStatements = {
   signin: 'User Not Found. Either Sign-up or try again later',
@@ -115,5 +116,70 @@ export const deleteLikedVideo = async (id, token) => {
     return likes;
   } catch (err) {
     console.log('LIKED_DELETE_REQUEST_ERROR', err);
+  }
+};
+
+export const getHistoryVideos = async (token) => {
+  try {
+    const storedHistory = JSON.parse(localStorage.getItem('userData'))?.history;
+    if (storedHistory) {
+      return storedHistory;
+    } else {
+      const {
+        data: { history }
+      } = await axios.get(GETHISTORY, {
+        headers: {
+          authorization: token
+        }
+      });
+      return history;
+    }
+  } catch (err) {
+    console.log('HISTORY_GET_REQUEST_ERROR', err);
+  }
+};
+
+export const addToHistory = async (video, token) => {
+  try {
+    const {
+      data: { history }
+    } = await axios.post(
+      GETHISTORY,
+      { video },
+      { headers: { authorization: token } }
+    );
+    return history;
+  } catch (err) {
+    console.log('HISTORY_POST_REQUEST_ERROR', err);
+  }
+};
+
+export const deleteFromHistory = async (id, token) => {
+  try {
+    const {
+      data: { history }
+    } = await axios.delete(`${GETHISTORY}/${id}`, {
+      headers: {
+        authorization: token
+      }
+    });
+    return history;
+  } catch (err) {
+    console.log('HISTORY_DELETE_REQUEST_ERROR', err);
+  }
+};
+
+export const clearHistory = async (token) => {
+  try {
+    const {
+      data: { history }
+    } = await axios.delete(`${GETHISTORY}/all`, {
+      headers: {
+        authorization: token
+      }
+    });
+    return history;
+  } catch (err) {
+    console.log('CLEAR_ALL_HISTORY_REQUEST_ERROR', err);
   }
 };
