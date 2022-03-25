@@ -1,4 +1,5 @@
 export * from './validation';
 export * from './hooks';
-export * from './authReducer';
-export * from './landingReducer';
+export * from './reducers/authReducer';
+export * from './reducers/landingReducer';
+export * from './reducers/likeReducer';
