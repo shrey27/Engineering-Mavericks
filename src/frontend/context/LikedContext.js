@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { createContext, useContext, useReducer, useEffect } from 'react';
 import { GETLIKED } from '../routes/routes';
-import { useAuthCtx } from './AuthenticationContext';
+import { useAuthCtx } from '../context';
+import { ToastMessage } from '../components';
 
 const LikedContext = createContext();
 
@@ -78,6 +79,8 @@ const LikedProvider = ({ children }) => {
           authorization: token
         }
       });
+      ToastMessage('Deleted from Liked Videos', 'info');
+
       const datatoUpdate = JSON.parse(localStorage.getItem('userData'));
       datatoUpdate.likes = [...likes];
       localStorage.setItem('userData', JSON.stringify(datatoUpdate));
@@ -86,8 +89,10 @@ const LikedProvider = ({ children }) => {
         type: 'UPDATE_ID',
         payload: addedVideosId.filter((e) => e !== id)
       });
+      
     } catch (err) {
       console.log('LIKED_DELETE_REQUEST_ERROR', err);
+      ToastMessage('Cannot Perform this Action right now', 'error');
     }
   };
 
@@ -111,15 +116,18 @@ const LikedProvider = ({ children }) => {
             }
           }
         );
+        ToastMessage('Added to Liked Videos', 'success');
+
         const datatoUpdate = JSON.parse(localStorage.getItem('userData'));
         datatoUpdate.likes = [...likes];
         localStorage.setItem('userData', JSON.stringify(datatoUpdate));
         dispatch({ type: 'LIKE_API_RESPONSE', payload: [...likes] });
-        
         const idArray = likes.map((elem) => elem._id);
         dispatch({ type: 'UPDATE_ID', payload: [...idArray] });
+        
       } catch (err) {
         console.log('LIKED_POST_REQUEST_ERROR', err);
+        ToastMessage('Cannot Perform this Action right now', 'error');
       }
     }
   };
