@@ -42,10 +42,8 @@ function VideoPlayer({ source, title, creator, singleVideo, setModalOpen }) {
       <Iframe
         src={`https://www.youtube.com/embed/${source}`}
         onInferredClick={handleAddToHistory}
-        title='YouTube video player'
         frameBorder='0'
         allowFullScreen
-        autoPlay='1'
       ></Iframe>
       <h1 className='video__title'>{title}</h1>
       <h1 className='video__creator'>{creator}</h1>

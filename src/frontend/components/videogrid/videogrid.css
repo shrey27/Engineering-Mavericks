@@ -1,6 +1,18 @@
 @import '../../utility/styles.css';
 
 /* Video Grid Page */
+.thumbnail__grid__header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem 0.5rem;
+}
+.thumbnail__grid__title {
+  color: var(--white);
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 0 1rem;
+}
 .thumbnail__grid {
   width: 100%;
   display: grid;

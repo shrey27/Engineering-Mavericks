@@ -51,6 +51,7 @@ const HistoryProvider = ({ children }) => {
     dispatch({ type: 'HISTORY_API_REQUEST' });
     const history = await clearHistory(token);
     updateLocalStorage('history', history);
+    dispatch({ type: 'HISTORY_API_RESPONSE', payload: [...history] });
   };
 
   const deleteFromHistoryList = async (id) => {

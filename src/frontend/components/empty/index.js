@@ -6,7 +6,7 @@ export function Empty() {
   return (
     <div className='empty'>
       <img src='empty.webp' className='empty__image' alt='empty' />
-      <h1 className='empty__title'>You have not picked any videos!</h1>
+      <h1 className='empty__title'>Your library looks empty!</h1>
       <Link to={VIDEOS} className='btn btn--auth--solid sb'>
         Start Learning
       </Link>
