@@ -29,6 +29,12 @@ export const navlinks = [
     name: 'Recently Watched',
     path: '/history',
     class: 'fa-solid fa-clock-rotate-left'
+  },
+  {
+    id: 'N4',
+    name: 'Saved for Later',
+    path: '/watchlater',
+    class: 'fa-solid fa-clock'
   }
 ];
 
