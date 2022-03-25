@@ -1,4 +1,5 @@
 import './singlevideo.css';
+import Iframe from 'react-iframe-click';
 import { useState, useEffect } from 'react';
 import { useSingleVideo } from '../../helpers';
 import {
@@ -19,6 +20,8 @@ function VideoPlayer({ source, title, creator, singleVideo, setModalOpen }) {
     state: { addedVideosId }
   } = useLikedCtx();
 
+  const { addToHistorylist } = useHistoryCtx();
+
   useEffect(() => {
     if (addedVideosId && addedVideosId.includes(_id)) setLiked(true);
     else {
@@ -30,15 +33,20 @@ function VideoPlayer({ source, title, creator, singleVideo, setModalOpen }) {
     addToLikedlist({ ...singleVideo });
   };
 
+  const handleAddToHistory = () => {
+    addToHistorylist(singleVideo);
+  };
+
   return (
     <div className='video__container'>
-      <iframe
+      <Iframe
         src={`https://www.youtube.com/embed/${source}`}
+        onInferredClick={handleAddToHistory}
         title='YouTube video player'
         frameBorder='0'
         allowFullScreen
         autoPlay='1'
-      ></iframe>
+      ></Iframe>
       <h1 className='video__title'>{title}</h1>
       <h1 className='video__creator'>{creator}</h1>
       <div className='video__buttons'>
@@ -64,13 +72,6 @@ export default function SingleVideo() {
   const [modalOpen, setModalOpen] = useState(false);
   const { videoId } = useParams();
   const singleVideo = useSingleVideo(videoId);
-  const { addToHistorylist } = useHistoryCtx();
-
-  useEffect(() => {
-    if (Object.keys(singleVideo).length) {
-      addToHistorylist(singleVideo);
-    }
-  }, []);
 
   return (
     <div>
