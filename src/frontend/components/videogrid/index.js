@@ -5,8 +5,14 @@ import { useLikedCtx } from '../../context';
 import { Empty } from '../../components';
 
 export function VideoGrid(props) {
-  const { videos, isWishlist, handleSubmenu, handleModal, submenuIndex } =
-    props;
+  const {
+    videos,
+    isWishlist,
+    isHistory,
+    handleSubmenu,
+    handleModal,
+    submenuIndex
+  } = props;
   const { deleteLikedFromList } = useLikedCtx();
 
   const handleDeleteLikedvideo = (video) => {
@@ -25,7 +31,7 @@ export function VideoGrid(props) {
               <div className='thumbnail' key={elem._id}>
                 <Link to={`${VIDEOS}/${elem._id}`}>
                   <img
-                    src={elem.source}
+                    src={`https://i.ytimg.com/vi/${elem.video}/hqdefault.jpg`}
                     alt={`thumbnail_${index + 1}`}
                     className='thumbnail__banner'
                   />
@@ -55,6 +61,15 @@ export function VideoGrid(props) {
                         <h1 onClick={handleDeleteLikedvideo.bind(this, elem)}>
                           <i className='fa-solid fa-trash'></i>
                           Remove the video
+                        </h1>
+                      )}
+                      {isHistory && (
+                        <h1
+                          onClick={handleDeleteLikedvideo.bind(this, elem)}
+                          className='tag'
+                        >
+                          <i className='fa-solid fa-trash'></i>
+                          Delete from History
                         </h1>
                       )}
                     </div>

@@ -33,7 +33,7 @@ function VideoPlayer({ source, title, creator, singleVideo, setModalOpen }) {
   return (
     <div className='video__container'>
       <iframe
-        src={`${source}`}
+        src={`https://www.youtube.com/embed/${source}`}
         title='YouTube video player'
         frameBorder='0'
         allowFullScreen

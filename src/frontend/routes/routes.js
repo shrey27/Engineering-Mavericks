@@ -15,7 +15,7 @@ export const GETCATEGORIES = '/api/categories';
 export const GETVIDEOS = '/api/videos';
 export const SIGN_UP = '/api/auth/signup';
 export const SIGN_IN = '/api/auth/login';
-export const GETLIKED ='/api/user/likes'
+export const GETLIKED = '/api/user/likes';
 
 // Routes
 export const TWITTEREXT = 'https://twitter.com/home';
@@ -43,10 +43,10 @@ export const availableRoutes = (
     <Route path={LANDING} element={<Landing />} />
     <Route path={MOCKMAN} element={<MockAPI />} />
     <Route path={VIDEOS} element={<VideoListing />} />
-    <Route path={LIKED} element={<Liked />} />
 
     <Route path={LANDING} element={<PrivateRoute />}>
       <Route path={PLAYLIST} element={<Playlist />} />
+      <Route path={LIKED} element={<Liked />} />
       <Route path={HISTORY} element={<History />} />
       <Route path={`${VIDEOS}/:videoId`} element={<SingleVideo />} />
     </Route>
