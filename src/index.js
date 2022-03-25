@@ -6,7 +6,8 @@ import { BrowserRouter } from 'react-router-dom';
 import {
   LandingProvider,
   AuthenticationProvider,
-  LikedProvider
+  LikedProvider,
+  HistoryProvider
 } from './frontend/context';
 
 // Call make Server
@@ -18,7 +19,9 @@ ReactDOM.render(
       <AuthenticationProvider>
         <LandingProvider>
           <LikedProvider>
-            <App />
+            <HistoryProvider>
+              <App />
+            </HistoryProvider>
           </LikedProvider>
         </LandingProvider>
       </AuthenticationProvider>

@@ -47,7 +47,7 @@
   border: 2px solid var(--primary--light);
   background-color: var(--white);
 }
-.input__password {
+.input.input__password {
   width: 95%;
   border: none;
 }

@@ -1,4 +1,5 @@
 import './singlevideo.css';
+import Iframe from 'react-iframe-click';
 import { useState, useEffect } from 'react';
 import { useSingleVideo } from '../../helpers';
 import {
@@ -9,7 +10,7 @@ import {
   PlaylistModal
 } from '../../components';
 import { useParams } from 'react-router-dom';
-import { useLikedCtx } from '../../context';
+import { useLikedCtx, useHistoryCtx } from '../../context';
 
 function VideoPlayer({ source, title, creator, singleVideo, setModalOpen }) {
   const [liked, setLiked] = useState(false);
@@ -18,6 +19,8 @@ function VideoPlayer({ source, title, creator, singleVideo, setModalOpen }) {
     addToLikedlist,
     state: { addedVideosId }
   } = useLikedCtx();
+
+  const { addToHistorylist } = useHistoryCtx();
 
   useEffect(() => {
     if (addedVideosId && addedVideosId.includes(_id)) setLiked(true);
@@ -30,15 +33,18 @@ function VideoPlayer({ source, title, creator, singleVideo, setModalOpen }) {
     addToLikedlist({ ...singleVideo });
   };
 
+  const handleAddToHistory = () => {
+    addToHistorylist(singleVideo);
+  };
+
   return (
     <div className='video__container'>
-      <iframe
-        src={`${source}`}
-        title='YouTube video player'
+      <Iframe
+        src={`https://www.youtube.com/embed/${source}`}
+        onInferredClick={handleAddToHistory}
         frameBorder='0'
         allowFullScreen
-        autoPlay='1'
-      ></iframe>
+      ></Iframe>
       <h1 className='video__title'>{title}</h1>
       <h1 className='video__creator'>{creator}</h1>
       <div className='video__buttons'>

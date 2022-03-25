@@ -23,6 +23,12 @@ export const navlinks = [
     name: 'Liked Videos',
     path: '/liked',
     class: 'fa-regular fa-thumbs-up'
+  },
+  {
+    id: 'N3',
+    name: 'Recently Watched',
+    path: '/history',
+    class: 'fa-solid fa-clock-rotate-left'
   }
 ];
 

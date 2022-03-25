@@ -1,6 +1,14 @@
 import { availableRoutes } from './frontend/routes/routes';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
-  return <div className=''>{availableRoutes}</div>;
+  return (
+    <div className=''>
+      {availableRoutes}
+      <ToastContainer style={{ fontWeight: '500', fontSize: '1.25rem' }} />
+    </div>
+  );
 }
 
 export default App;
