@@ -1,5 +1,5 @@
 import './singlevideo.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSingleVideo } from '../../helpers';
 import {
   Footer,
@@ -12,7 +12,19 @@ import { useParams } from 'react-router-dom';
 import { useLikedCtx } from '../../context';
 
 function VideoPlayer({ source, title, creator, singleVideo, setModalOpen }) {
-  const { addToLikedlist } = useLikedCtx();
+  const [liked, setLiked] = useState(false);
+  const { _id } = singleVideo;
+  const {
+    addToLikedlist,
+    state: { addedVideosId }
+  } = useLikedCtx();
+
+  useEffect(() => {
+    if (addedVideosId && addedVideosId.includes(_id)) setLiked(true);
+    else {
+      setLiked(false);
+    }
+  }, [addedVideosId, _id]);
 
   const handleAddToLike = () => {
     addToLikedlist({ ...singleVideo });
@@ -30,8 +42,12 @@ function VideoPlayer({ source, title, creator, singleVideo, setModalOpen }) {
       <h1 className='video__title'>{title}</h1>
       <h1 className='video__creator'>{creator}</h1>
       <div className='video__buttons'>
-        <button className='video__button' onClick={handleAddToLike}>
-          <i className='fa-solid fa-thumbs-up'></i>Like
+        <button
+          className={`video__button ${liked && 'liked'}`}
+          onClick={handleAddToLike}
+        >
+          <i className='fa-solid fa-thumbs-up'></i>
+          {liked ? 'Liked' : 'Like'}
         </button>
         <button className='video__button'>
           <i className='fa-solid fa-clock'></i>Watch Later

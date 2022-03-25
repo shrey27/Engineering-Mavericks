@@ -43,7 +43,8 @@ iframe {
   padding: 0;
   margin: 0 0.5rem 0 0;
 }
-.video__button:hover {
+.video__button:hover,
+.video__button.liked {
   background-color: var(--tag);
   color: var(--white);
 }

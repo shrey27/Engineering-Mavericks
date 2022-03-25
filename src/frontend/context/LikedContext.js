@@ -24,6 +24,11 @@ const likedReducerFunc = (state, action) => {
         likedList: [...action.payload],
         likedLoader: false
       };
+    case 'UPDATE_ID':
+      return {
+        ...state,
+        addedVideosId: [...action.payload]
+      };
     default:
       return {
         ...state
@@ -38,17 +43,25 @@ const LikedProvider = ({ children }) => {
   const getLikedList = async () => {
     dispatch({ type: 'LIKE_API_REQUEST' });
     try {
-      const {
-        data: { likes }
-      } = await axios.get(GETLIKED);
+      const storedLikes = JSON.parse(localStorage.getItem('userData'))?.likes;
+      if (storedLikes) {
+        dispatch({ type: 'LIKE_API_RESPONSE', payload: storedLikes });
 
-      const datatoUpdate = JSON.parse(localStorage.getItem('userData'));
-      datatoUpdate.likes = [...likes];
-      localStorage.setItem('userData', JSON.stringify(datatoUpdate));
+        const idArray = storedLikes.map((elem) => elem._id);
+        dispatch({ type: 'UPDATE_ID', payload: [...idArray] });
+      } else {
+        const {
+          data: { likes }
+        } = await axios.get(GETLIKED);
+        dispatch({ type: 'LIKE_API_RESPONSE', payload: [...likes] });
 
-      dispatch({ type: 'LIKE_API_RESPONSE', payload: [...likes] });
+        const idArray = likes.map((elem) => elem._id);
+        dispatch({ type: 'UPDATE_ID', payload: [...idArray] });
 
-      console.log('get liked array', likes);
+        const datatoUpdate = JSON.parse(localStorage.getItem('userData'));
+        datatoUpdate.likes = [...likes];
+        localStorage.setItem('userData', JSON.stringify(datatoUpdate));
+      }
     } catch (err) {
       console.log('LIKED_GET_REQUEST_ERROR', err);
     }
@@ -56,6 +69,7 @@ const LikedProvider = ({ children }) => {
 
   const deleteLikedVideo = async (id, video) => {
     dispatch({ type: 'LIKE_API_REQUEST' });
+    const { addedVideosId } = state;
     try {
       const {
         data: { likes }
@@ -64,14 +78,14 @@ const LikedProvider = ({ children }) => {
           authorization: token
         }
       });
-
       const datatoUpdate = JSON.parse(localStorage.getItem('userData'));
       datatoUpdate.likes = [...likes];
       localStorage.setItem('userData', JSON.stringify(datatoUpdate));
-
       dispatch({ type: 'LIKE_API_RESPONSE', payload: [...likes] });
-
-      console.log('delete liked array', likes);
+      dispatch({
+        type: 'UPDATE_ID',
+        payload: addedVideosId.filter((e) => e !== id)
+      });
     } catch (err) {
       console.log('LIKED_DELETE_REQUEST_ERROR', err);
     }
@@ -79,27 +93,34 @@ const LikedProvider = ({ children }) => {
 
   const addToLikedlist = async (video) => {
     dispatch({ type: 'LIKE_API_REQUEST' });
-    try {
-      const {
-        data: { likes }
-      } = await axios.post(
-        GETLIKED,
-        { video },
-        {
-          headers: {
-            authorization: token
+
+    const { addedVideosId } = state;
+
+    if (addedVideosId.includes(video._id)) {
+      deleteLikedVideo(video._id, video);
+    } else {
+      try {
+        const {
+          data: { likes }
+        } = await axios.post(
+          GETLIKED,
+          { video },
+          {
+            headers: {
+              authorization: token
+            }
           }
-        }
-      );
-      const datatoUpdate = JSON.parse(localStorage.getItem('userData'));
-      datatoUpdate.likes = [...likes];
-      localStorage.setItem('userData', JSON.stringify(datatoUpdate));
-
-      dispatch({ type: 'LIKE_API_RESPONSE', payload: [...likes] });
-
-      console.log('post liked array', likes);
-    } catch (err) {
-      console.log('LIKED_POST_REQUEST_ERROR', err);
+        );
+        const datatoUpdate = JSON.parse(localStorage.getItem('userData'));
+        datatoUpdate.likes = [...likes];
+        localStorage.setItem('userData', JSON.stringify(datatoUpdate));
+        dispatch({ type: 'LIKE_API_RESPONSE', payload: [...likes] });
+        
+        const idArray = likes.map((elem) => elem._id);
+        dispatch({ type: 'UPDATE_ID', payload: [...idArray] });
+      } catch (err) {
+        console.log('LIKED_POST_REQUEST_ERROR', err);
+      }
     }
   };
 
