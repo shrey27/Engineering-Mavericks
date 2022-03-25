@@ -7,10 +7,10 @@ import { Empty } from '../../components';
 export function VideoGrid(props) {
   const { videos, isWishlist, handleSubmenu, handleModal, submenuIndex } =
     props;
-  const { deleteLikedVideo } = useLikedCtx();
+  const { deleteLikedFromList } = useLikedCtx();
 
   const handleDeleteLikedvideo = (video) => {
-    deleteLikedVideo(video._id, video);
+    deleteLikedFromList(video._id);
     handleSubmenu(-1);
   };
 
