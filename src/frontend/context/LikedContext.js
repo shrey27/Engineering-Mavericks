@@ -1,22 +1,27 @@
 import { createContext, useContext, useReducer, useEffect } from 'react';
 import { useAuthCtx } from './AuthenticationContext';
 import { addLikedVideo, deleteLikedVideo, getLikedVideos } from '../service';
-import { likedReducerFunc, defaultLikedState } from '../helpers';
+import {
+  likedReducerFunc,
+  defaultLikedState,
+  useLocalStorage
+} from '../helpers';
 
 const LikedContext = createContext();
 
 const LikedProvider = ({ children }) => {
   const [state, dispatch] = useReducer(likedReducerFunc, defaultLikedState);
   const { token } = useAuthCtx();
+  const { updateLocalStorage } = useLocalStorage();
 
   const deleteLikedFromList = async (id) => {
     dispatch({ type: 'LIKE_API_REQUEST' });
     const { addedVideosId } = state;
 
     const likes = await deleteLikedVideo(id, token);
-    const datatoUpdate = JSON.parse(localStorage.getItem('userData'));
-    datatoUpdate.likes = [...likes];
-    localStorage.setItem('userData', JSON.stringify(datatoUpdate));
+
+    updateLocalStorage('likes', likes);
+
     dispatch({ type: 'LIKE_API_RESPONSE', payload: [...likes] });
     dispatch({
       type: 'UPDATE_ID',
@@ -32,9 +37,9 @@ const LikedProvider = ({ children }) => {
       deleteLikedFromList(video._id);
     } else {
       const likes = await addLikedVideo(video, token);
-      const datatoUpdate = JSON.parse(localStorage.getItem('userData'));
-      datatoUpdate.likes = [...likes];
-      localStorage.setItem('userData', JSON.stringify(datatoUpdate));
+
+      updateLocalStorage('likes', likes);
+
       dispatch({ type: 'LIKE_API_RESPONSE', payload: [...likes] });
       const idArray = likes.map((elem) => elem._id);
       dispatch({ type: 'UPDATE_ID', payload: [...idArray] });
