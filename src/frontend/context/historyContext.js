@@ -39,7 +39,6 @@ const HistoryProvider = ({ children }) => {
 
     if (!addedHistoryId.includes(video._id)) {
       const history = await addToHistory(video, token);
-      console.log('history', history);
       updateLocalStorage('history', history);
       dispatch({ type: 'HISTORY_API_RESPONSE', payload: [...history] });
 

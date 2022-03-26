@@ -2,33 +2,9 @@ import { createContext, useContext, useReducer, useEffect } from 'react';
 import { useAuthCtx } from './index';
 import { getPlaylists, addPlaylist, deletePlaylist } from '../service';
 import { useLocalStorage } from '../helpers';
-// import { historyReducerFunction, historyDefaultState } from '../helpers';
+import { playlistReducerFunction, playlistDefaultState } from '../helpers';
 
 const PlaylistContext = createContext();
-
-export const playlistDefaultState = {
-  playloaderLoader: false,
-  playlists: []
-};
-export const playlistReducerFunction = (state, action) => {
-  switch (action.type) {
-    case 'PLAYLIST_API_REQUEST':
-      return {
-        ...state,
-        playloaderLoader: true
-      };
-    case 'PLAYLIST_API_RESPONSE':
-      return {
-        ...state,
-        playlists: action.payload,
-        playloaderLoader: false
-      };
-    default:
-      return {
-        ...state
-      };
-  }
-};
 
 const PlaylistProvider = ({ children }) => {
   const [state, dispatch] = useReducer(
@@ -47,7 +23,11 @@ const PlaylistProvider = ({ children }) => {
 
   const addPlaylistFunction = async (item) => {
     const { playlists } = state;
-    if (playlists?.findIndex((e) => e.playlistName === item.playlistName) < 0) {
+    const name = item.playlistName;
+    if (
+      name.trim().length > 0 &&
+      playlists?.findIndex((e) => e.playlistName === name.trim()) < 0
+    ) {
       dispatch({ type: 'PLAYLIST_API_REQUEST' });
       const playlistsArray = await addPlaylist(item, token);
       updateLocalStorage('playlists', playlistsArray);

@@ -5,3 +5,4 @@ export * from './reducers/landingReducer';
 export * from './reducers/likeReducer';
 export * from './reducers/historyReducer';
 export * from './reducers/watchlaterReducer';
+export * from './reducers/playlistReducer';
