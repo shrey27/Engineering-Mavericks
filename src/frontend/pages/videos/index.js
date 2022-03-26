@@ -1,6 +1,6 @@
 import './videos.css';
 import { useState, useEffect } from 'react';
-import { useLandingCtx } from '../../context';
+import { useLandingCtx, useAuthCtx } from '../../context';
 import {
   Footer,
   Navbar,
@@ -10,6 +10,8 @@ import {
   VideoGrid,
   Filters
 } from '../../components';
+import { useNavigate } from 'react-router-dom';
+import { SIGNIN } from '../../routes/routes';
 
 export default function VideoListing() {
   const {
@@ -17,6 +19,8 @@ export default function VideoListing() {
     dispatch,
     filteredList
   } = useLandingCtx();
+  const { token } = useAuthCtx();
+  const navigate = useNavigate();
 
   const queryParams = new URLSearchParams(window.location.search);
   const search = queryParams.get('query');
@@ -39,8 +43,12 @@ export default function VideoListing() {
   }, [search, filteredList]);
 
   const handleModal = () => {
-    setSubmenuIndex(-1);
-    setModalOpen(true);
+    if (token) {
+      setSubmenuIndex(-1);
+      setModalOpen(true);
+    } else {
+      navigate(SIGNIN);
+    }
   };
 
   const handleSubmenu = (idx) => {

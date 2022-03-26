@@ -14,6 +14,7 @@ export function VideoGrid(props) {
     handleModal,
     submenuIndex
   } = props;
+
   const { deleteLikedFromList } = useLikedCtx();
   const { deleteFromHistoryList, clearHistoryList } = useHistoryCtx();
   const { clearWatchLaterList, deleteFromWatchLaterList, addToWatchlist } =
@@ -93,6 +94,9 @@ export function VideoGrid(props) {
                                 )
                               : handleAddToWatchLater.bind(this, elem)
                           }
+                          className={`${
+                            isWatchlater && 'thumbnail__submenu__delete'
+                          }`}
                         >
                           <i className='fa-regular fa-clock'></i>{' '}
                           {isWatchlater ? 'Remove the Video' : 'Watch Later'}
@@ -107,6 +111,7 @@ export function VideoGrid(props) {
                               this,
                               elem._id
                             )}
+                            className='thumbnail__submenu__delete'
                           >
                             <i className='fa-solid fa-trash'></i>
                             Remove the video
@@ -118,6 +123,7 @@ export function VideoGrid(props) {
                               this,
                               elem._id
                             )}
+                            className='thumbnail__submenu__delete'
                           >
                             <i className='fa-solid fa-trash'></i>
                             Delete from History

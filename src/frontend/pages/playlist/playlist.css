@@ -1,0 +1,37 @@
+@import '../../utility/styles.css';
+@import '../liked/liked.css';
+@import '../../components/videogrid/videogrid.css';
+
+.playlist__banner {
+  margin: 0;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+}
+.playlist__banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.playlist__banner__cover {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--overlay);
+  color: var(--white);
+  width: 50%;
+  height: 100%;
+  font-size: 1.5rem;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.playlist.thumbnail__submenu {
+  position: absolute;
+  right: 3rem;
+  bottom: -1rem;
+  border-radius: 5px;
+}

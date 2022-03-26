@@ -9,6 +9,7 @@ import Signup from '../pages/authentication/Signup';
 import Liked from '../pages/liked';
 import History from '../pages/history';
 import Playlist from '../pages/playlist';
+import SinglePlaylist from '../pages/playlist';
 import WatchLater from '../pages/watchlater';
 
 // API Endpoints
@@ -19,6 +20,7 @@ export const SIGN_IN = '/api/auth/login';
 export const GETLIKED = '/api/user/likes';
 export const GETHISTORY = '/api/user/history';
 export const WATCHLATER = '/api/user/watchlater';
+export const PLAYLISTSAPI = '/api/user/playlists';
 
 // Routes
 export const TWITTEREXT = 'https://twitter.com/home';
@@ -34,7 +36,7 @@ export const SIGNIN = '/signin';
 export const SIGNUP = '/signup';
 export const VIDEOS = '/videolisting';
 export const LIKED = '/liked';
-export const PLAYLIST = '/playlist';
+export const PLAYLIST = '/playlists';
 export const HISTORY = '/history';
 export const WATCH = '/watchlater';
 
@@ -44,12 +46,13 @@ export const availableRoutes = (
     <Route path={GITHUB}>{window.location.replace(GITHUBEXT)}</Route>
     <Route path={LINKEDIN}>{window.location.replace(LINKEDINEXT)}</Route> */}
 
-    <Route path={LANDING} element={<Landing />} />
+    <Route exact path={LANDING} element={<Landing />} />
     <Route path={MOCKMAN} element={<MockAPI />} />
-    <Route path={VIDEOS} element={<VideoListing />} />
+    <Route exact path={VIDEOS} element={<VideoListing />} />
 
-    <Route path={LANDING} element={<PrivateRoute />}>
-      <Route path={PLAYLIST} element={<Playlist />} />
+    <Route exact path={LANDING} element={<PrivateRoute />}>
+      <Route exact path={PLAYLIST} element={<Playlist />} />
+      <Route path={`${PLAYLIST}/:playlistId`} element={<SinglePlaylist />} />
       <Route path={LIKED} element={<Liked />} />
       <Route path={HISTORY} element={<History />} />
       <Route path={WATCH} element={<WatchLater />} />
