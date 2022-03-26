@@ -35,6 +35,12 @@ export const navlinks = [
     name: 'Saved for Later',
     path: '/watchlater',
     class: 'fa-solid fa-clock'
+  },
+  {
+    id: 'N5',
+    name: 'Playlists',
+    path: '/playlists',
+    class: 'fa-solid fa-arrow-down-short-wide'
   }
 ];
 

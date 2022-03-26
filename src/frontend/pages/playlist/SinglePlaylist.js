@@ -1,5 +1,5 @@
 import './playlist.css';
 
-export default function Playlist() {
+export default function SinglePlaylist() {
   return <></>;
 }

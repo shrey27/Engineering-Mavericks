@@ -13,13 +13,18 @@ export function PlaylistModal({ modalOpen, setModalOpen }) {
     }
   };
 
+  const handleCloseModal = () => {
+    setError(false);
+    setModalOpen(false);
+  };
+
   return (
     <div className={`modal ${modalOpen && 'modal__open'} flex-ct-ct`} wide='40'>
       <div
         className='modal__background'
         onClick={() => setModalOpen(false)}
       ></div>
-      <div className='modal__content md-s'>
+      <div className='modal__content modal__content__playlist md-s'>
         <h1 className='md sb mg-half'>Save To</h1>
         <hr />
         <label className='playlist__option'>
@@ -68,7 +73,7 @@ export function PlaylistModal({ modalOpen, setModalOpen }) {
           </div>
         )}
       </div>
-      <span className='modal__close' onClick={() => setModalOpen(false)}>
+      <span className='modal__close' onClick={handleCloseModal}>
         <i className='fas fa-times-circle'></i>
       </span>
     </div>

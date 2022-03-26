@@ -9,12 +9,15 @@
   width: 100%;
   max-width: 25rem;
   border: none;
-  background-color: var(--dismiss);
-  color: var(--white);
   padding: 1.25rem 1.5rem;
   font-size: 1.25rem;
 }
-.modal__content__signout {
+.modal__content.modal__content__playlist {
+  background-color: var(--dismiss);
+  color: var(--white);
+  border: none;
+}
+.modal__content.modal__content__signout {
   background-color: var(--white);
   color: var(--tertiary);
 }
