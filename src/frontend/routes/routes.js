@@ -9,6 +9,7 @@ import Signup from '../pages/authentication/Signup';
 import Liked from '../pages/liked';
 import History from '../pages/history';
 import Playlist from '../pages/playlist';
+import WatchLater from '../pages/watchlater';
 
 // API Endpoints
 export const GETCATEGORIES = '/api/categories';
@@ -17,6 +18,7 @@ export const SIGN_UP = '/api/auth/signup';
 export const SIGN_IN = '/api/auth/login';
 export const GETLIKED = '/api/user/likes';
 export const GETHISTORY = '/api/user/history';
+export const WATCHLATER = '/api/user/watchlater';
 
 // Routes
 export const TWITTEREXT = 'https://twitter.com/home';
@@ -34,6 +36,7 @@ export const VIDEOS = '/videolisting';
 export const LIKED = '/liked';
 export const PLAYLIST = '/playlist';
 export const HISTORY = '/history';
+export const WATCH = '/watchlater';
 
 export const availableRoutes = (
   <Routes>
@@ -49,6 +52,7 @@ export const availableRoutes = (
       <Route path={PLAYLIST} element={<Playlist />} />
       <Route path={LIKED} element={<Liked />} />
       <Route path={HISTORY} element={<History />} />
+      <Route path={WATCH} element={<WatchLater />} />
       <Route path={`${VIDEOS}/:videoId`} element={<SingleVideo />} />
     </Route>
 

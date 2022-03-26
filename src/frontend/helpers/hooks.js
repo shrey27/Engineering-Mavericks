@@ -16,7 +16,7 @@ export function useLocalStorage() {
     localStorage.setItem('userData', JSON.stringify(data));
   };
   if (data) {
-    const { email, password, likes, history, playlists } = data;
+    const { email, password, likes, history, playlists, watchlater } = data;
     const storedToken = localStorage.getItem('token');
     return {
       storedEmail: email,
@@ -24,6 +24,7 @@ export function useLocalStorage() {
       storedLikes: likes,
       storedHistory: history,
       storedPlaylists: playlists,
+      storedWatchlater: watchlater,
       storedToken,
       updateLocalStorage
     };
