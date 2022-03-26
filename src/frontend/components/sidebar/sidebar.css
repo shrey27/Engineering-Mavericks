@@ -29,6 +29,7 @@
 }
 .selected {
   background-color: var(--tertiary--light);
+  margin: 0.25rem 0;
 }
 .sidebar__options__span {
   display: none;
