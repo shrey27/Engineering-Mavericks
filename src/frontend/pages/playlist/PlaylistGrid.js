@@ -20,6 +20,10 @@ export default function PlaylistGrid(props) {
                     alt={`thumbnail_${index + 1}`}
                     className='playlist__banner'
                   />
+                  <div className='playlist__banner__cover'>
+                    <h1>1</h1>
+                    <i className='fa-solid fa-arrow-down-short-wide'></i>
+                  </div>
                 </div>
 
                 <div className='thumbnail__info'>

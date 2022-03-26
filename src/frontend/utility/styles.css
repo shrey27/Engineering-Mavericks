@@ -10,6 +10,7 @@
   --white: rgb(255, 255, 255);
   --dismiss: #27262b;
   --dismiss--light: #3e3d41;
+  --overlay: rgba(0, 0, 0, 0.7);
   --footer--one: #757575;
   --price: green;
   --tag: rgb(177, 3, 32);

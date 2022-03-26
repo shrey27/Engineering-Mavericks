@@ -10,18 +10,24 @@
   position: relative;
 }
 .playlist__banner img {
+  display: block;
   width: 100%;
   height: auto;
-  object-fit: cover;
 }
-.playlist__banner::after {
-  content: 'hello';
+.playlist__banner__cover {
   position: absolute;
   top: 0;
   right: 0;
-  background-color: var(--black);
+  background: var(--overlay);
+  color: var(--white);
   width: 50%;
   height: 100%;
+  font-size: 1.5rem;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .playlist.thumbnail__submenu {
   position: absolute;
