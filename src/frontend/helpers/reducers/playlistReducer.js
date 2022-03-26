@@ -1,6 +1,8 @@
 export const playlistDefaultState = {
   playloaderLoader: false,
-  playlists: []
+  playlists: [],
+  videoId: '',
+  playlistId: ''
 };
 
 export const playlistReducerFunction = (state, action) => {
@@ -15,6 +17,26 @@ export const playlistReducerFunction = (state, action) => {
         ...state,
         playlists: action.payload,
         playloaderLoader: false
+      };
+    case 'ADD_VIDEO_ID':
+      return {
+        ...state,
+        videoId: action.payload
+      };
+    case 'REMOVE_VIDEO_ID':
+      return {
+        ...state,
+        videoId: ''
+      };
+    case 'ADD_PLAYLIST_ID':
+      return {
+        ...state,
+        playlistId: action.payload
+      };
+    case 'REMOVE_PLAYLIST_ID':
+      return {
+        ...state,
+        playlistId: ''
       };
     default:
       return {

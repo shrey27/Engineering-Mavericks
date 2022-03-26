@@ -8,7 +8,9 @@ export function PlaylistModal({ modalOpen, setModalOpen }) {
   const [error, setError] = useState(false);
   const {
     addPlaylistFunction,
-    state: { playlists }
+    addVideoToPlaylistsFunction,
+    state: { playlists, playlistId },
+    dispatch
   } = usePlaylistCtx();
 
   const handleSubmit = (e) => {
@@ -23,12 +25,20 @@ export function PlaylistModal({ modalOpen, setModalOpen }) {
     setPlaylistName('');
     openEditor(false);
     setModalOpen(false);
+    dispatch({ type: 'REMOVE_VIDEO_ID' });
   };
 
   const handleCreatePlaylist = () => {
-    const objectToadd = { playlistName };
-    addPlaylistFunction(objectToadd);
+    addPlaylistFunction({ playlistName });
     handleCloseModal();
+  };
+
+  const handleVideoInPlaylist = (id) => {
+    if (id) {
+      dispatch({ type: 'ADD_PLAYLIST_ID', payload: id });
+      addVideoToPlaylistsFunction(id);
+    } else {
+      dispatch({ type: 'REMOVE_PLAYLIST_ID' });    }
   };
 
   return (
@@ -41,10 +51,17 @@ export function PlaylistModal({ modalOpen, setModalOpen }) {
         <h1 className='md sb mg-half'>Save To</h1>
         <hr />
         {playlists?.map((elem) => {
+          const { _id, playlistName } = elem;
           return (
-            <label className='playlist__option' key={elem.playlistName}>
-              <input type='checkbox' />
-              &nbsp;&nbsp; {elem.playlistName}
+            <label className='playlist__option' key={_id}>
+              <input
+                type='checkbox'
+                checked={playlistId === _id}
+                onChange={(e) =>
+                  handleVideoInPlaylist(e.target.checked ? _id : '')
+                }
+              />
+              &nbsp;&nbsp; {playlistName}
             </label>
           );
         })}

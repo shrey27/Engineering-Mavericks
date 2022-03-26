@@ -1,7 +1,12 @@
 import './videogrid.css';
 import { Link } from 'react-router-dom';
 import { VIDEOS } from '../../routes/routes';
-import { useHistoryCtx, useLikedCtx, useWatchCtx } from '../../context';
+import {
+  useHistoryCtx,
+  useLikedCtx,
+  usePlaylistCtx,
+  useWatchCtx
+} from '../../context';
 import { Empty } from '../../components';
 
 export function VideoGrid(props) {
@@ -19,6 +24,7 @@ export function VideoGrid(props) {
   const { deleteFromHistoryList, clearHistoryList } = useHistoryCtx();
   const { clearWatchLaterList, deleteFromWatchLaterList, addToWatchlist } =
     useWatchCtx();
+  const { dispatch } = usePlaylistCtx();
 
   const handleAddToWatchLater = (video) => {
     addToWatchlist(video);
@@ -35,6 +41,11 @@ export function VideoGrid(props) {
   const handleDeleteWatchedLatervideo = (id) => {
     deleteFromWatchLaterList(id);
     handleSubmenu(-1);
+  };
+
+  const handleModalFunction = (id) => {
+    handleModal();
+    dispatch({ type: 'ADD_VIDEO_ID', payload: id });
   };
 
   return (
@@ -62,11 +73,12 @@ export function VideoGrid(props) {
           )}
           <div className='thumbnail__grid'>
             {videos.map((elem, index) => {
+              const { _id, title, creator, video } = elem;
               return (
-                <div className='thumbnail' key={elem._id}>
-                  <Link to={`${VIDEOS}/${elem._id}`}>
+                <div className='thumbnail' key={_id}>
+                  <Link to={`${VIDEOS}/${_id}`}>
                     <img
-                      src={`https://i.ytimg.com/vi/${elem.video}/hqdefault.jpg`}
+                      src={`https://i.ytimg.com/vi/${video}/hqdefault.jpg`}
                       alt={`thumbnail_${index + 1}`}
                       className='thumbnail__banner'
                     />
@@ -74,8 +86,8 @@ export function VideoGrid(props) {
 
                   <div className='thumbnail__info'>
                     <div className='thumbnail__title'>
-                      <h1>{elem.title}</h1>
-                      <h1 className='thumbnail__description'>{elem.creator}</h1>
+                      <h1>{title}</h1>
+                      <h1 className='thumbnail__description'>{creator}</h1>
                     </div>
                     <div className='thumbnail__info__icon'>
                       <i
@@ -88,10 +100,7 @@ export function VideoGrid(props) {
                         <h1
                           onClick={
                             isWatchlater
-                              ? handleDeleteWatchedLatervideo.bind(
-                                  this,
-                                  elem._id
-                                )
+                              ? handleDeleteWatchedLatervideo.bind(this, _id)
                               : handleAddToWatchLater.bind(this, elem)
                           }
                           className={`${
@@ -101,16 +110,13 @@ export function VideoGrid(props) {
                           <i className='fa-regular fa-clock'></i>{' '}
                           {isWatchlater ? 'Remove the Video' : 'Watch Later'}
                         </h1>
-                        <h1 onClick={handleModal}>
+                        <h1 onClick={handleModalFunction.bind(this, _id)}>
                           <i className='fa-regular fa-circle-play'></i>
                           Add to Playlist
                         </h1>
                         {isWishlist && (
                           <h1
-                            onClick={handleDeleteLikedvideo.bind(
-                              this,
-                              elem._id
-                            )}
+                            onClick={handleDeleteLikedvideo.bind(this, _id)}
                             className='thumbnail__submenu__delete'
                           >
                             <i className='fa-solid fa-trash'></i>
@@ -119,10 +125,7 @@ export function VideoGrid(props) {
                         )}
                         {isHistory && (
                           <h1
-                            onClick={handleDeleteWatchedvideo.bind(
-                              this,
-                              elem._id
-                            )}
+                            onClick={handleDeleteWatchedvideo.bind(this, _id)}
                             className='thumbnail__submenu__delete'
                           >
                             <i className='fa-solid fa-trash'></i>

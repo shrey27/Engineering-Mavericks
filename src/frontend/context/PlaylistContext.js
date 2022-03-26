@@ -1,8 +1,16 @@
 import { createContext, useContext, useReducer, useEffect } from 'react';
 import { useAuthCtx } from './index';
-import { getPlaylists, addPlaylist, deletePlaylist } from '../service';
+import {
+  getPlaylists,
+  addPlaylist,
+  deletePlaylist,
+  getVideosOfPlaylist,
+  addVideoToPlaylist,
+  deleteVideoFromPlaylist
+} from '../service';
 import { useLocalStorage } from '../helpers';
 import { playlistReducerFunction, playlistDefaultState } from '../helpers';
+import { useSingleVideo } from '../helpers';
 
 const PlaylistContext = createContext();
 
@@ -11,7 +19,9 @@ const PlaylistProvider = ({ children }) => {
     playlistReducerFunction,
     playlistDefaultState
   );
+  const { videoId, playlists } = state;
   const { token } = useAuthCtx();
+  const videoToadd = useSingleVideo(videoId);
   const { updateLocalStorage } = useLocalStorage();
 
   const deletePlaylistFunction = async (id) => {
@@ -33,6 +43,24 @@ const PlaylistProvider = ({ children }) => {
       updateLocalStorage('playlists', playlistsArray);
       dispatch({ type: 'PLAYLIST_API_RESPONSE', payload: [...playlistsArray] });
     }
+  };
+
+  const deleteVideoFromPlaylistsFunction = async (id) => {
+    dispatch({ type: 'PLAYLIST_API_REQUEST' });
+    const playlistArray = await deleteVideoFromPlaylist(id, videoToadd, token);
+    console.log('playlis', playlistArray);
+    updateLocalStorage('playlists', playlistArray);
+    dispatch({ type: 'PLAYLIST_API_RESPONSE', payload: [...playlistArray] });
+  };
+
+  const addVideoToPlaylistsFunction = async (id) => {
+    dispatch({ type: 'PLAYLIST_API_REQUEST' });
+    const singlePlaylist = await addVideoToPlaylist(id, videoToadd, token);
+    const arr = [...playlists];
+    const index = arr.findIndex((e) => e._id === singlePlaylist._id);
+    arr[index] = { ...singlePlaylist };
+    updateLocalStorage('playlists', arr);
+    dispatch({ type: 'PLAYLIST_API_RESPONSE', payload: [...arr] });
   };
 
   useEffect(() => {
@@ -61,7 +89,9 @@ const PlaylistProvider = ({ children }) => {
         state,
         dispatch,
         deletePlaylistFunction,
-        addPlaylistFunction
+        addPlaylistFunction,
+        addVideoToPlaylistsFunction,
+        deleteVideoFromPlaylistsFunction
       }}
     >
       {children}

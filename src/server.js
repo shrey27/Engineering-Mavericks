@@ -68,7 +68,7 @@ export function makeServer({ environment = 'development' } = {}) {
           ...item,
           likes: [],
           history: [],
-          playlists: [],
+          playlists: [{ _id: 'default', playlistName: 'default', videos: [] }],
           watchlater: []
         })
       );
