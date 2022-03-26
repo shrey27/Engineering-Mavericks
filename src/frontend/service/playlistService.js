@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { PLAYLISTSAPI } from '../routes/routes';
 
-export const getPlaylists = async () => {
+export const getPlaylists = async (token) => {
   try {
     const {
       data: { playlists }
-    } = await axios.get(PLAYLISTSAPI);
+    } = await axios.get(PLAYLISTSAPI, { headers: { authorization: token } });
 
     return playlists;
   } catch (err) {

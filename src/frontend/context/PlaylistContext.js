@@ -46,9 +46,9 @@ const PlaylistProvider = ({ children }) => {
   };
 
   const addPlaylistFunction = async (item) => {
-    dispatch({ type: 'PLAYLIST_API_RESPONSE' });
     const { playlists } = state;
     if (playlists?.findIndex((e) => e.playlistName === item.playlistName) < 0) {
+      dispatch({ type: 'PLAYLIST_API_REQUEST' });
       const playlistsArray = await addPlaylist(item, token);
       updateLocalStorage('playlists', playlistsArray);
       dispatch({ type: 'PLAYLIST_API_RESPONSE', payload: [...playlistsArray] });
@@ -60,11 +60,12 @@ const PlaylistProvider = ({ children }) => {
       dispatch({ type: 'PLAYLIST_API_REQUEST' });
 
       const playlistsArray = await getPlaylists(token);
-      console.log('playlistsArray', playlistsArray);
+
       dispatch({
         type: 'PLAYLIST_API_RESPONSE',
         payload: playlistsArray?.length ? [...playlistsArray] : []
       });
+
       const datatoUpdate = JSON.parse(localStorage.getItem('userData'));
       datatoUpdate.playlists = [...playlistsArray];
       localStorage.setItem('userData', JSON.stringify(datatoUpdate));
