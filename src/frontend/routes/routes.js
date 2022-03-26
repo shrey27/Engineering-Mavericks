@@ -52,13 +52,12 @@ export const availableRoutes = (
 
     <Route exact path={PLAYLIST} element={<Playlist />} />
     <Route path={`${PLAYLIST}/:playlistId`} element={<SinglePlaylist />} />
-
-    <Route exact path={LANDING} element={<PrivateRoute />}>
-      <Route path={LIKED} element={<Liked />} />
-      <Route path={HISTORY} element={<History />} />
-      <Route path={WATCH} element={<WatchLater />} />
-      <Route path={`${VIDEOS}/:videoId`} element={<SingleVideo />} />
-    </Route>
+    <Route path={LIKED} element={<Liked />} />
+    <Route path={HISTORY} element={<History />} />
+    <Route path={WATCH} element={<WatchLater />} />
+    <Route path={`${VIDEOS}/:videoId`} element={<SingleVideo />} />
+    
+    <Route exact path={LANDING} element={<PrivateRoute />}></Route>
 
     <Route path={SIGNIN} element={<Signin />} />
     <Route path={SIGNUP} element={<Signup />} />
