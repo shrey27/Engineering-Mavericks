@@ -50,14 +50,14 @@ export const availableRoutes = (
     <Route path={MOCKMAN} element={<MockAPI />} />
     <Route exact path={VIDEOS} element={<VideoListing />} />
 
-    <Route exact path={PLAYLIST} element={<Playlist />} />
-    <Route path={`${PLAYLIST}/:playlistId`} element={<SinglePlaylist />} />
-    <Route path={LIKED} element={<Liked />} />
-    <Route path={HISTORY} element={<History />} />
-    <Route path={WATCH} element={<WatchLater />} />
-    <Route path={`${VIDEOS}/:videoId`} element={<SingleVideo />} />
-    
-    <Route exact path={LANDING} element={<PrivateRoute />}></Route>
+    <Route exact path={LANDING} element={<PrivateRoute />}>
+      <Route exact path={PLAYLIST} element={<Playlist />} />
+      <Route path={`${PLAYLIST}/:playlistId`} element={<SinglePlaylist />} />
+      <Route path={LIKED} element={<Liked />} />
+      <Route path={HISTORY} element={<History />} />
+      <Route path={WATCH} element={<WatchLater />} />
+      <Route path={`${VIDEOS}/:videoId`} element={<SingleVideo />} />
+    </Route>
 
     <Route path={SIGNIN} element={<Signin />} />
     <Route path={SIGNUP} element={<Signup />} />
