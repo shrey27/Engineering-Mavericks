@@ -47,20 +47,20 @@ export const availableRoutes = (
     <Route path={LINKEDIN}>{window.location.replace(LINKEDINEXT)}</Route> */}
 
     <Route exact path={LANDING} element={<Landing />} />
-    <Route path={MOCKMAN} element={<MockAPI />} />
+    <Route exact path={MOCKMAN} element={<MockAPI />} />
     <Route exact path={VIDEOS} element={<VideoListing />} />
 
     <Route exact path={LANDING} element={<PrivateRoute />}>
       <Route exact path={PLAYLIST} element={<Playlist />} />
-      <Route path={`${PLAYLIST}/:playlistId`} element={<SinglePlaylist />} />
-      <Route path={LIKED} element={<Liked />} />
-      <Route path={HISTORY} element={<History />} />
-      <Route path={WATCH} element={<WatchLater />} />
-      <Route path={`${VIDEOS}/:videoId`} element={<SingleVideo />} />
+      <Route exact path={`${PLAYLIST}/:playlistId`} element={<SinglePlaylist />} />
+      <Route exact path={LIKED} element={<Liked />} />
+      <Route exact path={HISTORY} element={<History />} />
+      <Route exact path={WATCH} element={<WatchLater />} />
+      <Route exact path={`${VIDEOS}/:videoId`} element={<SingleVideo />} />
     </Route>
 
-    <Route path={SIGNIN} element={<Signin />} />
-    <Route path={SIGNUP} element={<Signup />} />
+    <Route exact path={SIGNIN} element={<Signin />} />
+    <Route exact path={SIGNUP} element={<Signup />} />
     <Route path='*' element={<Landing />} />
   </Routes>
 );
