@@ -111,7 +111,7 @@ export default function Signup() {
                 onChange={(e) =>
                   dispatch({ type: 'SIGNIN-PASSWORD', payload: e.target.value })
                 }
-                onBlur={() => dispatch({ type: 'CLEAR-ALL-ERRORS' })}
+                onFocus={() => dispatch({ type: 'CLEAR-ALL-ERRORS' })}
                 required
               />
               <i
@@ -141,7 +141,7 @@ export default function Signup() {
                     payload: e.target.value
                   })
                 }
-                onBlur={() => dispatch({ type: 'CLEAR-ALL-ERRORS' })}
+                onFocus={() => dispatch({ type: 'CLEAR-ALL-ERRORS' })}
                 required
               />
               <i

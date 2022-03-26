@@ -78,7 +78,7 @@ export default function Signin() {
                 onChange={(e) =>
                   dispatch({ type: 'SIGNIN-PASSWORD', payload: e.target.value })
                 }
-                onBlur={() => dispatch({ type: 'CLEAR-ALL-ERRORS' })}
+                onFocus={() => dispatch({ type: 'CLEAR-ALL-ERRORS' })}
                 required
               />
               <i
