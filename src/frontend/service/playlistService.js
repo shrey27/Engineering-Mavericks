@@ -1,11 +1,13 @@
 import axios from 'axios';
-import { PLAYLIST } from '../routes/routes';
+import { PLAYLISTSAPI } from '../routes/routes';
 
 export const getPlaylists = async () => {
   try {
-    const resp = await axios.get(PLAYLIST);
-    const { data } = await resp;
-    return data.playlists;
+    const {
+      data: { playlists }
+    } = await axios.get(PLAYLISTSAPI);
+
+    return playlists;
   } catch (err) {
     console.log('Get Playlists Error', err);
   }
@@ -16,7 +18,7 @@ export const addPlaylist = async (playlist, token) => {
     const {
       data: { playlists }
     } = await axios.post(
-      PLAYLIST,
+      PLAYLISTSAPI,
       { playlist },
       { headers: { authorization: token } }
     );
@@ -30,7 +32,7 @@ export const deletePlaylist = async (id, token) => {
   try {
     const {
       data: { playlists }
-    } = await axios.delete(`${PLAYLIST}/${id}`, {
+    } = await axios.delete(`${PLAYLISTSAPI}/${id}`, {
       headers: {
         authorization: token
       }
@@ -40,4 +42,3 @@ export const deletePlaylist = async (id, token) => {
     console.log('PLAYLIST_DELETE_REQUEST_ERROR', err);
   }
 };
-

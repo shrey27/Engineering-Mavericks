@@ -25,6 +25,7 @@
   font-weight: normal;
   padding: 0.75rem;
   color: var(--white);
+  width: 100%;
 }
 .selected {
   background-color: var(--tertiary--light);

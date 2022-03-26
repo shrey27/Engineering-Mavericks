@@ -1,9 +1,16 @@
 import './playlist.css';
 import { Empty } from '../../components';
 import { Fragment } from 'react/cjs/react.production.min';
+import { usePlaylistCtx } from '../../context';
 
 export default function PlaylistGrid(props) {
   const { playlists, handleSubmenu, submenuIndex } = props;
+  const { deletePlaylistFunction } = usePlaylistCtx();
+
+  const handleDeletePlaylist = (id) => {
+    deletePlaylistFunction(id);
+    handleSubmenu(-1);
+  };
 
   return (
     <Fragment>
@@ -28,7 +35,7 @@ export default function PlaylistGrid(props) {
 
                 <div className='thumbnail__info'>
                   <div className='thumbnail__title'>
-                    <h1>{elem.title}</h1>
+                    <h1>{elem.playlistName}</h1>
                   </div>
                   <div className='thumbnail__info__icon'>
                     <i
@@ -38,7 +45,10 @@ export default function PlaylistGrid(props) {
                   </div>
                   {index === submenuIndex && (
                     <div className='thumbnail__submenu playlist'>
-                      <h1 className='thumbnail__submenu__delete'>
+                      <h1
+                        className='thumbnail__submenu__delete'
+                        onClick={handleDeletePlaylist.bind(this, elem._id)}
+                      >
                         <i className='fa-solid fa-trash'></i>
                         Delete this Playlist
                       </h1>

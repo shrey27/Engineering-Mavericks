@@ -7,21 +7,21 @@ import { useLocalStorage } from '../helpers';
 const PlaylistContext = createContext();
 
 export const playlistDefaultState = {
-  loading: false,
+  playloaderLoader: false,
   playlists: []
 };
 export const playlistReducerFunction = (state, action) => {
   switch (action.type) {
-    case 'API_REQUEST':
+    case 'PLAYLIST_API_REQUEST':
       return {
         ...state,
-        loading: true
+        playloaderLoader: true
       };
-    case 'API_RESPONSE':
+    case 'PLAYLIST_API_RESPONSE':
       return {
         ...state,
-        playlists: [...action.payload],
-        loading: false
+        playlists: action.payload,
+        playloaderLoader: false
       };
     default:
       return {
@@ -39,30 +39,39 @@ const PlaylistProvider = ({ children }) => {
   const { updateLocalStorage } = useLocalStorage();
 
   const deletePlaylistFunction = async (id) => {
-    dispatch({ type: 'API_REQUEST' });
-    const playlistArray = await deletePlaylist(id, token);
-    updateLocalStorage('playlists', playlistArray);
-    dispatch({ type: 'API_RESPONSE', payload: [...playlistArray] });
+    dispatch({ type: 'PLAYLIST_API_REQUEST' });
+    const playlistsArray = await deletePlaylist(id, token);
+    updateLocalStorage('playlists', playlistsArray);
+    dispatch({ type: 'PLAYLIST_API_RESPONSE', payload: [...playlistsArray] });
   };
 
   const addPlaylistFunction = async (item) => {
-    dispatch({ type: 'API_REQUEST' });
-    const playlistsArray = await addPlaylist(item, token);
-    updateLocalStorage('playlists', playlistsArray);
-    dispatch({ type: 'API_RESPONSE', payload: [...playlistsArray] });
+    dispatch({ type: 'PLAYLIST_API_RESPONSE' });
+    const { playlists } = state;
+    if (playlists?.findIndex((e) => e.playlistName === item.playlistName) < 0) {
+      const playlistsArray = await addPlaylist(item, token);
+      updateLocalStorage('playlists', playlistsArray);
+      dispatch({ type: 'PLAYLIST_API_RESPONSE', payload: [...playlistsArray] });
+    }
   };
 
   useEffect(() => {
-    (async () => {
-      if (token) {
-        dispatch({ type: 'API_REQUEST' });
-        const playlistsArray = await getPlaylists(token);
-        dispatch({ type: 'API_RESPONSE', payload: [...playlistsArray] });
-        const datatoUpdate = JSON.parse(localStorage.getItem('userData'));
-        datatoUpdate.playlists = [...playlistsArray];
-        localStorage.setItem('userData', JSON.stringify(datatoUpdate));
-      }
-    })();
+    const getPlaylistsFunction = async () => {
+      dispatch({ type: 'PLAYLIST_API_REQUEST' });
+
+      const playlistsArray = await getPlaylists(token);
+      console.log('playlistsArray', playlistsArray);
+      dispatch({
+        type: 'PLAYLIST_API_RESPONSE',
+        payload: playlistsArray?.length ? [...playlistsArray] : []
+      });
+      const datatoUpdate = JSON.parse(localStorage.getItem('userData'));
+      datatoUpdate.playlists = [...playlistsArray];
+      localStorage.setItem('userData', JSON.stringify(datatoUpdate));
+    };
+    if (token) {
+      getPlaylistsFunction();
+    }
   }, [token]);
 
   return (
