@@ -114,7 +114,7 @@ export function VideoGrid(props) {
                             isWatchlater && 'thumbnail__submenu__delete'
                           }`}
                         >
-                          <i className='fa-regular fa-clock'></i>{' '}
+                          <i className='fa-regular fa-clock'></i>
                           {isWatchlater ? 'Remove the Video' : 'Watch Later'}
                         </h1>
                         <h1
@@ -124,7 +124,11 @@ export function VideoGrid(props) {
                               : handleModalFunction.bind(this, _id)
                           }
                         >
-                          <i className='fa-regular fa-circle-play'></i>
+                          {!isPlaylist ? (
+                            <i className='fa-regular fa-circle-play'></i>
+                          ) : (
+                            <i className='fa-solid fa-trash'></i>
+                          )}
                           {isPlaylist
                             ? 'Delete from Playlist'
                             : 'Add to Playlist'}

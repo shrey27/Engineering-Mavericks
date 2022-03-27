@@ -13,7 +13,7 @@
   font-size: 1.25rem;
 }
 .modal__content.modal__content__playlist {
-  background-color: var(--dismiss);
+  background-color: var(--tertiary);
   color: var(--white);
   border: none;
 }
