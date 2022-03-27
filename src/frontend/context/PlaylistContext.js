@@ -11,6 +11,7 @@ import {
 import { useLocalStorage } from '../helpers';
 import { playlistReducerFunction, playlistDefaultState } from '../helpers';
 import { useSingleVideo } from '../helpers';
+import { ToastMessage } from '../components';
 
 const PlaylistContext = createContext();
 
@@ -29,6 +30,7 @@ const PlaylistProvider = ({ children }) => {
     const playlistsArray = await deletePlaylist(id, token);
     updateLocalStorage('playlists', playlistsArray);
     dispatch({ type: 'PLAYLIST_API_RESPONSE', payload: [...playlistsArray] });
+    ToastMessage('Playlist was deleted', 'error');
   };
 
   const addPlaylistFunction = async (item) => {
@@ -42,6 +44,7 @@ const PlaylistProvider = ({ children }) => {
       const playlistsArray = await addPlaylist(item, token);
       updateLocalStorage('playlists', playlistsArray);
       dispatch({ type: 'PLAYLIST_API_RESPONSE', payload: [...playlistsArray] });
+      ToastMessage('Playlist created successfully', 'success');
     }
   };
 
@@ -57,6 +60,7 @@ const PlaylistProvider = ({ children }) => {
     arr[index] = { ...singlePlaylist };
     updateLocalStorage('playlists', arr);
     dispatch({ type: 'PLAYLIST_API_RESPONSE', payload: arr });
+    ToastMessage('Video deleted form the playlist', 'error');
   };
 
   const addVideoToPlaylistsFunction = async (id) => {
@@ -67,6 +71,7 @@ const PlaylistProvider = ({ children }) => {
     arr[index] = { ...singlePlaylist };
     updateLocalStorage('playlists', arr);
     dispatch({ type: 'PLAYLIST_API_RESPONSE', payload: arr });
+    ToastMessage('Video added to the playlist', 'success');
   };
 
   useEffect(() => {

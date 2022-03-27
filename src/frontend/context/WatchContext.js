@@ -11,6 +11,7 @@ import {
   watchDefaultState,
   useLocalStorage
 } from '../helpers';
+import { ToastMessage } from '../components';
 
 const WatchContext = createContext();
 
@@ -24,6 +25,7 @@ const WatchProvider = ({ children }) => {
     const watchlater = await clearWatchLater(token);
     updateLocalStorage('watchlater', watchlater);
     dispatch({ type: 'WATCH_API_RESPONSE', payload: [...watchlater] });
+    ToastMessage('Watch list has been cleared', 'info');
   };
 
   const deleteFromWatchLaterList = async (id) => {
@@ -31,6 +33,7 @@ const WatchProvider = ({ children }) => {
     const watchlater = await deleteFromWatchLater(id, token);
     updateLocalStorage('watchlater', watchlater);
     dispatch({ type: 'WATCH_API_RESPONSE', payload: [...watchlater] });
+    ToastMessage('Video was deleted', 'error');
   };
 
   const addToWatchlist = async (video) => {
@@ -46,6 +49,7 @@ const WatchProvider = ({ children }) => {
       const idArray = watchlater.map((elem) => elem._id);
       dispatch({ type: 'UPDATE_WL_ID', payload: [...idArray] });
     }
+    ToastMessage('Video saved for later', 'success');
   };
 
   useEffect(() => {

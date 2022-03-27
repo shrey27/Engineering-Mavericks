@@ -9,6 +9,7 @@ import {
   validationForSignIn,
   validationForSignUp
 } from '../helpers';
+import { ToastMessage } from '../components';
 
 const AuthenticationContext = createContext();
 
@@ -27,12 +28,14 @@ const AuthenticationProvider = ({ children }) => {
           localStorage.setItem('token', encodedToken);
           localStorage.setItem('userData', JSON.stringify(foundUser));
           dispatch({ type: 'TOKEN-SAVED', payload: encodedToken });
+          ToastMessage('Sign In completed', 'success');
           navigate(LANDING);
         } else {
           dispatch({
             type: 'SIGNIN-ERROR',
             payload: response.error
           });
+          ToastMessage('Sign In failed', 'error');
         }
       } else {
         const { storedEmail, storedPassword, storedToken } = storedData;
@@ -42,6 +45,7 @@ const AuthenticationProvider = ({ children }) => {
         ) {
           dispatch({ type: 'TOKEN-SAVED', payload: storedToken });
           dispatch({ type: 'SET-DEFAULT' });
+          ToastMessage('Sign In completed', 'success');
           navigate(LANDING);
         } else {
           dispatch({
@@ -49,6 +53,7 @@ const AuthenticationProvider = ({ children }) => {
             payload: 'User Not Found. Either Sign-up or try again later'
           });
           dispatch({ type: 'SET-DEFAULT' });
+          ToastMessage('Sign In failed', 'error');
         }
       }
     }
@@ -62,11 +67,13 @@ const AuthenticationProvider = ({ children }) => {
         localStorage.setItem('token', encodedToken);
         localStorage.setItem('userData', JSON.stringify(createdUser));
         dispatch({ type: 'TOKEN-SAVED', payload: encodedToken });
+        ToastMessage('Sign Up was successful', 'success');
         navigate(LANDING);
       } else {
         // dispatch({ type: 'SET-DEFAULT' });
         dispatch({ type: 'CLEAR-FIELDS' });
         dispatch({ type: 'SIGNUP-ERROR', payload: response.error });
+        ToastMessage('Sign Up failed', 'error');
       }
     }
   };

@@ -6,6 +6,7 @@ import {
   defaultLikedState,
   useLocalStorage
 } from '../helpers';
+import { ToastMessage } from '../components';
 
 const LikedContext = createContext();
 
@@ -27,6 +28,7 @@ const LikedProvider = ({ children }) => {
       type: 'UPDATE_ID',
       payload: addedVideosId.filter((e) => e !== id)
     });
+    ToastMessage('You have disliked this Video', 'error');
   };
 
   const addToLikedlist = async (video) => {
@@ -43,6 +45,7 @@ const LikedProvider = ({ children }) => {
       dispatch({ type: 'LIKE_API_RESPONSE', payload: [...likes] });
       const idArray = likes.map((elem) => elem._id);
       dispatch({ type: 'UPDATE_ID', payload: [...idArray] });
+      ToastMessage('You have liked this Video', 'success');
     }
   };
 

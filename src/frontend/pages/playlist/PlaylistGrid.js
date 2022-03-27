@@ -35,7 +35,10 @@ export default function PlaylistGrid(props) {
                   onClick={handlePlaylistVideos.bind(this, _id)}
                 >
                   <img
-                    src={pic}
+                    src={
+                      `https://i.ytimg.com/vi/${videos[0].video}/hqdefault.jpg` ??
+                      pic
+                    }
                     alt={`thumbnail_${index + 1}`}
                     className='playlist__banner'
                   />
