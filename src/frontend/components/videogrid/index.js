@@ -114,23 +114,25 @@ export function VideoGrid(props) {
                     </div>
                     {index === submenuIndex && (
                       <div className='thumbnail__submenu'>
-                        <h1
-                          onClick={
-                            isWatchlater
-                              ? handleDeleteWatchedLatervideo.bind(this, _id)
-                              : handleAddToWatchLater.bind(this, elem)
-                          }
-                          className={`${
-                            isWatchlater && 'thumbnail__submenu__delete'
-                          }`}
-                        >
-                          {isWatchlater ? (
-                            <i className='fa-solid fa-trash'></i>
-                          ) : (
-                            <i className='fa-regular fa-clock'></i>
-                          )}
-                          {isWatchlater ? 'Remove the Video' : 'Watch Later'}
-                        </h1>
+                        {!isHistory && (
+                          <h1
+                            onClick={
+                              isWatchlater
+                                ? handleDeleteWatchedLatervideo.bind(this, _id)
+                                : handleAddToWatchLater.bind(this, elem)
+                            }
+                            className={`${
+                              isWatchlater && 'thumbnail__submenu__delete'
+                            }`}
+                          >
+                            {isWatchlater ? (
+                              <i className='fa-solid fa-trash'></i>
+                            ) : (
+                              <i className='fa-regular fa-clock'></i>
+                            )}
+                            {isWatchlater ? 'Remove the Video' : 'Watch Later'}
+                          </h1>
+                        )}
                         <h1
                           onClick={
                             isPlaylist

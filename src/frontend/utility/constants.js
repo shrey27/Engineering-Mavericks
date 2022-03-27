@@ -53,7 +53,7 @@ export const emptyStatments = (keyValue) => {
     case 'watchlater':
       return 'You have not saved any video to watch later';
     case 'playlist':
-      return 'You can make a playlist and save vides to watch again';
+      return 'Create a playlist or start learning';
     case 'playlistvideos':
       return 'You have not saved any video in this playlist';
     default:

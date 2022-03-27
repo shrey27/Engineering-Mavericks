@@ -47,10 +47,7 @@ export function PlaylistModal({ setModalOpen }) {
 
   return (
     <div className='modal modal__open flex-ct-ct' wide='40'>
-      <div
-        className='modal__background'
-        onClick={() => setModalOpen(false)}
-      ></div>
+      <div className='modal__background' onClick={handleCloseModal}></div>
       <div className='modal__content modal__content__playlist md-s'>
         <h1 className='md sb mg-half'>Save To</h1>
         <hr />
