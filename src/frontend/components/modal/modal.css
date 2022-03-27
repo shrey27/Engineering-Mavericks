@@ -26,6 +26,11 @@
   align-items: center;
   margin: 1rem 0;
 }
+input[type='checkbox'] {
+  transform: scale(1.35);
+  background-color: var(--dismiss--light);
+  margin: 0 0.25rem;
+}
 .playlist__input {
   width: 100%;
   margin: 1rem 0 0 0;

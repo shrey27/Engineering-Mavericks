@@ -60,6 +60,7 @@ export function PlaylistModal({ setModalOpen }) {
             <label className='playlist__option' key={_id}>
               <input
                 type='checkbox'
+                className='playlist__option__input'
                 checked={playlistId?.includes(_id)}
                 onChange={(e) => handleVideoInPlaylist(e, _id)}
               />

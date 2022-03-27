@@ -37,7 +37,7 @@ export default function PlaylistGrid(props) {
                 >
                   <img
                     src={
-                      `https://i.ytimg.com/vi/${videos[0].video}/hqdefault.jpg` ??
+                      `https://i.ytimg.com/vi/${videos[0]?.video}/hqdefault.jpg` ??
                       pic
                     }
                     alt={`thumbnail_${index + 1}`}
