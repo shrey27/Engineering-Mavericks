@@ -2,10 +2,11 @@ export const playlistDefaultState = {
   playloaderLoader: false,
   playlists: [],
   videoId: '',
-  playlistId: ''
+  playlistId: []
 };
 
 export const playlistReducerFunction = (state, action) => {
+  const { playlistId } = state;
   switch (action.type) {
     case 'PLAYLIST_API_REQUEST':
       return {
@@ -31,12 +32,17 @@ export const playlistReducerFunction = (state, action) => {
     case 'ADD_PLAYLIST_ID':
       return {
         ...state,
-        playlistId: action.payload
+        playlistId: [...playlistId, action.payload]
       };
     case 'REMOVE_PLAYLIST_ID':
       return {
         ...state,
-        playlistId: ''
+        playlistId: playlistId.filter((elem) => elem !== action.payload)
+      };
+    case 'CLEAR_ALL_PLAYLIST_ID':
+      return {
+        ...state,
+        playlistId: []
       };
     default:
       return {

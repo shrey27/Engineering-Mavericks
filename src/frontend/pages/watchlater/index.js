@@ -48,7 +48,7 @@ export default function History() {
   return (
     <div>
       <Navbar />
-      <PlaylistModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
+      {modalOpen && <PlaylistModal setModalOpen={setModalOpen} />}
       <div className='main__grid'>
         <Sidebar noVideos={watchedLaterVideos ? false : true} />
         <div className='main'>

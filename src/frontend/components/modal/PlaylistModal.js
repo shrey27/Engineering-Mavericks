@@ -27,21 +27,21 @@ export function PlaylistModal({ setModalOpen }) {
     openEditor(false);
     setModalOpen(false);
     dispatch({ type: 'REMOVE_VIDEO_ID' });
-    dispatch({ type: 'REMOVE_PLAYLIST_ID' });
+    dispatch({ type: 'CLEAR_ALL_PLAYLIST_ID' });
   };
 
   const handleCreatePlaylist = () => {
     addPlaylistFunction({ playlistName });
-    handleCloseModal();
+    openEditor(false);
   };
 
   const handleVideoInPlaylist = (e, id) => {
     if (e.target.checked) {
-      dispatch({ type: 'ADD_PLAYLIST_ID', payload: id });
       addVideoToPlaylistsFunction(id);
+      dispatch({ type: 'ADD_PLAYLIST_ID', payload: id });
     } else {
-      dispatch({ type: 'REMOVE_PLAYLIST_ID' });
       deleteVideoFromPlaylistsFunction(id);
+      dispatch({ type: 'REMOVE_PLAYLIST_ID', payload: id });
     }
   };
 
@@ -60,7 +60,7 @@ export function PlaylistModal({ setModalOpen }) {
             <label className='playlist__option' key={_id}>
               <input
                 type='checkbox'
-                checked={playlistId === _id}
+                checked={playlistId?.includes(_id)}
                 onChange={(e) => handleVideoInPlaylist(e, _id)}
               />
               &nbsp;&nbsp; {playlistName}

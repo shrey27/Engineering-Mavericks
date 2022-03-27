@@ -74,7 +74,7 @@ export default function SingleVideo() {
   return (
     <div>
       <Navbar />
-      <PlaylistModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
+      {modalOpen && <PlaylistModal setModalOpen={setModalOpen} />}
       <div className='main__grid'>
         <Sidebar videos={true} />
         <div className='main'>

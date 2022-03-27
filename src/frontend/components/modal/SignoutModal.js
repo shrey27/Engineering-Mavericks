@@ -1,7 +1,7 @@
 import './modal.css';
 import { useAuthCtx } from '../../context';
 
-export function SignoutModal({ signoutModal, setSignoutModal }) {
+export function SignoutModal({ setSignoutModal }) {
   const { handleSignOut } = useAuthCtx();
 
   const handleSignoutFunction = () => {
@@ -10,16 +10,15 @@ export function SignoutModal({ signoutModal, setSignoutModal }) {
   };
 
   return (
-    <div
-      className={`modal ${signoutModal && 'modal__open'} flex-ct-ct`}
-      wide='40'
-    >
+    <div className='modal modal__open flex-ct-ct' wide='40'>
       <div
         className='modal__background'
         onClick={() => setSignoutModal(false)}
       ></div>
       <div className='modal__content modal__content__signout'>
-        <h1 className='md sb cen mg--full'>Are you sure you want to signout ?</h1>
+        <h1 className='md sb cen mg--full'>
+          Are you sure you want to signout ?
+        </h1>
         <div className='flex-ct-ct mg--full'>
           <button
             className='btn btn--auth--solid'

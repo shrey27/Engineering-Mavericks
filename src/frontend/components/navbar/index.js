@@ -26,11 +26,12 @@ export function Navbar({ hideSearchBar }) {
 
   return (
     <div>
-      <SignoutModal
-        signoutModal={signoutModal}
-        setSignoutModal={setSignoutModal}
-        handleSignOut={handleSignOut}
-      />
+      {signoutModal && (
+        <SignoutModal
+          setSignoutModal={setSignoutModal}
+          handleSignOut={handleSignOut}
+        />
+      )}
       <nav className='navbar xs-s border--btm'>
         <section className='begin'>
           <Link to={LANDING} className='start link__style'>

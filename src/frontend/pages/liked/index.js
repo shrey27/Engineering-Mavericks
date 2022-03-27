@@ -47,7 +47,7 @@ export default function Liked() {
   return (
     <div>
       <Navbar />
-      <PlaylistModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
+      {modalOpen && <PlaylistModal setModalOpen={setModalOpen} />}
       <div className='main__grid'>
         <Sidebar noVideos={likedList ? false : true} />
         <div className='main'>
