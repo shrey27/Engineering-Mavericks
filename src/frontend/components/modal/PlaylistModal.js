@@ -2,7 +2,7 @@ import './modal.css';
 import { useState } from 'react';
 import { usePlaylistCtx } from '../../context';
 
-export function PlaylistModal({ setModalOpen }) {
+export function PlaylistModal({ setModalOpen, onPlaylists }) {
   const [editor, openEditor] = useState(false);
   const [playlistName, setPlaylistName] = useState('');
   const [error, setError] = useState(false);
@@ -33,6 +33,9 @@ export function PlaylistModal({ setModalOpen }) {
   const handleCreatePlaylist = () => {
     addPlaylistFunction({ playlistName });
     openEditor(false);
+    if (onPlaylists) {
+      handleCloseModal();
+    }
   };
 
   const handleVideoInPlaylist = (e, id) => {

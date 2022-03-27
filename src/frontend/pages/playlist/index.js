@@ -41,7 +41,9 @@ export default function Playlist() {
   return (
     <div>
       <Navbar />
-      {modalOpen && <PlaylistModal setModalOpen={setModalOpen} />}
+      {modalOpen && (
+        <PlaylistModal setModalOpen={setModalOpen} onPlaylists={true} />
+      )}
       <div className='main__grid'>
         <Sidebar noVideos={playlists ? false : true} />
         <div className='main'>
