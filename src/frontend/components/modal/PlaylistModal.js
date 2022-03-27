@@ -2,13 +2,14 @@ import './modal.css';
 import { useState } from 'react';
 import { usePlaylistCtx } from '../../context';
 
-export function PlaylistModal({ modalOpen, setModalOpen }) {
+export function PlaylistModal({ setModalOpen }) {
   const [editor, openEditor] = useState(false);
   const [playlistName, setPlaylistName] = useState('');
   const [error, setError] = useState(false);
   const {
     addPlaylistFunction,
     addVideoToPlaylistsFunction,
+    deleteVideoFromPlaylistsFunction,
     state: { playlists, playlistId },
     dispatch
   } = usePlaylistCtx();
@@ -26,6 +27,7 @@ export function PlaylistModal({ modalOpen, setModalOpen }) {
     openEditor(false);
     setModalOpen(false);
     dispatch({ type: 'REMOVE_VIDEO_ID' });
+    dispatch({ type: 'REMOVE_PLAYLIST_ID' });
   };
 
   const handleCreatePlaylist = () => {
@@ -33,16 +35,18 @@ export function PlaylistModal({ modalOpen, setModalOpen }) {
     handleCloseModal();
   };
 
-  const handleVideoInPlaylist = (id) => {
-    if (id) {
+  const handleVideoInPlaylist = (e, id) => {
+    if (e.target.checked) {
       dispatch({ type: 'ADD_PLAYLIST_ID', payload: id });
       addVideoToPlaylistsFunction(id);
     } else {
-      dispatch({ type: 'REMOVE_PLAYLIST_ID' });    }
+      dispatch({ type: 'REMOVE_PLAYLIST_ID' });
+      deleteVideoFromPlaylistsFunction(id);
+    }
   };
 
   return (
-    <div className={`modal ${modalOpen && 'modal__open'} flex-ct-ct`} wide='40'>
+    <div className='modal modal__open flex-ct-ct' wide='40'>
       <div
         className='modal__background'
         onClick={() => setModalOpen(false)}
@@ -57,9 +61,7 @@ export function PlaylistModal({ modalOpen, setModalOpen }) {
               <input
                 type='checkbox'
                 checked={playlistId === _id}
-                onChange={(e) =>
-                  handleVideoInPlaylist(e.target.checked ? _id : '')
-                }
+                onChange={(e) => handleVideoInPlaylist(e, _id)}
               />
               &nbsp;&nbsp; {playlistName}
             </label>

@@ -77,13 +77,13 @@ export const addVideoToPlaylist = async (id, video, token) => {
 export const deleteVideoFromPlaylist = async (id, videoId, token) => {
   try {
     const {
-      data: { playlists }
+      data: { playlist }
     } = await axios.delete(`${PLAYLISTSAPI}/${id}/${videoId}`, {
       headers: {
         authorization: token
       }
     });
-    return playlists;
+    return playlist;
   } catch (err) {
     console.log('PLAYLIST_DELETE_VIDEO_REQUEST_ERROR', err);
   }

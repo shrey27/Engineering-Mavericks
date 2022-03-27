@@ -47,10 +47,12 @@ const PlaylistProvider = ({ children }) => {
 
   const deleteVideoFromPlaylistsFunction = async (id) => {
     dispatch({ type: 'PLAYLIST_API_REQUEST' });
-    const playlistArray = await deleteVideoFromPlaylist(id, videoToadd, token);
-    console.log('playlis', playlistArray);
-    updateLocalStorage('playlists', playlistArray);
-    dispatch({ type: 'PLAYLIST_API_RESPONSE', payload: [...playlistArray] });
+    const singlePlaylist = await deleteVideoFromPlaylist(id, videoToadd._id, token);
+    const arr = [...playlists];
+    const index = arr.findIndex((e) => e._id === singlePlaylist._id);
+    arr[index] = { ...singlePlaylist };
+    updateLocalStorage('playlists', arr);
+    dispatch({ type: 'PLAYLIST_API_RESPONSE', payload: arr });
   };
 
   const addVideoToPlaylistsFunction = async (id) => {
@@ -60,7 +62,7 @@ const PlaylistProvider = ({ children }) => {
     const index = arr.findIndex((e) => e._id === singlePlaylist._id);
     arr[index] = { ...singlePlaylist };
     updateLocalStorage('playlists', arr);
-    dispatch({ type: 'PLAYLIST_API_RESPONSE', payload: [...arr] });
+    dispatch({ type: 'PLAYLIST_API_RESPONSE', payload: arr });
   };
 
   useEffect(() => {
