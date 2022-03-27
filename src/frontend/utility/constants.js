@@ -47,15 +47,15 @@ export const navlinks = [
 export const emptyStatments = (keyValue) => {
   switch (keyValue) {
     case 'like':
-      return "You haven't liked any video";
+      return "You have not liked any videos";
     case 'history':
       return 'You should watch some videos';
     case 'watchlater':
-      return 'You have not saved any video to watch later';
+      return 'No videos found to watch later';
     case 'playlist':
-      return 'Create a playlist or start learning';
+      return 'No Playlist found';
     case 'playlistvideos':
-      return 'You have not saved any video in this playlist';
+      return 'Your playlist is empty';
     default:
       return 'This folder is empty';
   }

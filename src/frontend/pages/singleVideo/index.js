@@ -35,9 +35,14 @@ function VideoPlayer({ source, title, creator, singleVideo, setModalOpen }) {
 
   useEffect(() => {
     if (addedVideosId && addedVideosId.includes(_id)) setLiked(true);
+    else setLiked(false);
+  }, [addedVideosId, _id]);
+
+  useEffect(() => {
     if (addedWatchLaterId && addedWatchLaterId.includes(_id))
       setWatchLater(true);
-  }, [addedVideosId, _id, addedWatchLaterId]);
+    else setWatchLater(false);
+  }, [_id, addedWatchLaterId]);
 
   const handleAddToLike = () => {
     addToLikedlist({ ...singleVideo });
@@ -78,7 +83,8 @@ function VideoPlayer({ source, title, creator, singleVideo, setModalOpen }) {
           className={`video__button ${watchlater && 'liked'}`}
           onClick={handleAddToWatchLater}
         >
-          <i className='fa-solid fa-clock'></i>Watch Later
+          <i className='fa-solid fa-clock'></i>
+          {watchlater ? 'Saved for Later' : 'Watch Later'}
         </button>
         <button className='video__button' onClick={handleModal}>
           <i className='fa-solid fa-list'></i>Save to Playlist

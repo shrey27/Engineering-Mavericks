@@ -50,6 +50,8 @@ const HistoryProvider = ({ children }) => {
 
       const idArray = history.map((elem) => elem._id);
       dispatch({ type: 'UPDATE_ID', payload: [...idArray] });
+    } else {
+      dispatch({ type: 'CLOSE_HISTORY_LOADER' });
     }
   };
 
