@@ -11,6 +11,7 @@ import History from '../pages/history';
 import Playlist from '../pages/playlist';
 import SinglePlaylistVideos from '../pages/playlist/SinglePlaylistVideos';
 import WatchLater from '../pages/watchlater';
+import NotFound from '../pages/notfound';
 
 // API Endpoints
 export const GETCATEGORIES = '/api/categories';
@@ -63,6 +64,6 @@ export const availableRoutes = (
 
     <Route exact path={SIGNIN} element={<Signin />} />
     <Route exact path={SIGNUP} element={<Signup />} />
-    <Route path='*' element={<Landing />} />
+    <Route path='*' element={<NotFound />} />
   </Routes>
 );

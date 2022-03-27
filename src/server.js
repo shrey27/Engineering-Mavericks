@@ -68,30 +68,7 @@ export function makeServer({ environment = 'development' } = {}) {
           ...item,
           likes: [],
           history: [],
-          playlists: [
-            {
-              _id: 'default',
-              playlistName: 'default',
-              videos: [
-                {
-                  category: 'Electrical',
-                  creator: 'The tech Guy',
-                  id: '1',
-                  title: 'How does Thyristors work? ',
-                  video: '0AgPUikpvpM',
-                  _id: 'v1'
-                },
-                {
-                  category: 'Electrical',
-                  creator: 'The tech Guy',
-                  id: '2',
-                  title: 'How does Inverters work? ',
-                  video: 'qVeERT4nyz8',
-                  _id: 'v2'
-                }
-              ]
-            }
-          ],
+          playlists: [],
           watchlater: []
         })
       );
