@@ -5,6 +5,7 @@ import { usePlaylistCtx } from '../../context';
 import { useNavigate } from 'react-router-dom';
 import pic from '../../assets/back.webp';
 import { PLAYLIST } from '../../routes/routes';
+import { emptyStatments } from '../../utility/constants';
 
 export default function PlaylistGrid(props) {
   const { playlists, handleSubmenu, submenuIndex } = props;
@@ -23,7 +24,7 @@ export default function PlaylistGrid(props) {
   return (
     <Fragment>
       {!playlists?.length ? (
-        <Empty />
+        <Empty statement={emptyStatments('playlist')} />
       ) : (
         <div className='thumbnail__grid'>
           {playlists.map((elem, index) => {

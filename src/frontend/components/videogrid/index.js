@@ -1,4 +1,5 @@
 import './videogrid.css';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { VIDEOS } from '../../routes/routes';
 import {
@@ -8,6 +9,7 @@ import {
   useWatchCtx
 } from '../../context';
 import { Empty } from '../../components';
+import { emptyStatments } from '../../utility/constants';
 
 export function VideoGrid(props) {
   const {
@@ -27,6 +29,7 @@ export function VideoGrid(props) {
   const { clearWatchLaterList, deleteFromWatchLaterList, addToWatchlist } =
     useWatchCtx();
   const { dispatch, deleteVideoFromPlaylistsFunction } = usePlaylistCtx();
+  const [statement, setStatement] = useState(false);
 
   const handleAddToWatchLater = (video) => {
     addToWatchlist(video);
@@ -56,10 +59,17 @@ export function VideoGrid(props) {
     handleSubmenu(-1);
   };
 
+  useEffect(() => {
+    if (isHistory) setStatement(emptyStatments('history'));
+    if (isPlaylist) setStatement(emptyStatments('playlistvideos'));
+    if (isWishlist) setStatement(emptyStatments('like'));
+    if (isWatchlater) setStatement(emptyStatments('watchlater'));
+  }, [isHistory, isPlaylist, isWatchlater, isWishlist]);
+
   return (
     <>
       {!videos?.length ? (
-        <Empty />
+        <Empty statement={statement} />
       ) : (
         <div>
           {(isHistory || isWatchlater) && (

@@ -44,6 +44,23 @@ export const navlinks = [
   }
 ];
 
+export const emptyStatments = (keyValue) => {
+  switch (keyValue) {
+    case 'like':
+      return "You haven't liked any video";
+    case 'history':
+      return 'You should watch some videos';
+    case 'watchlater':
+      return 'You have not saved any video to watch later';
+    case 'playlist':
+      return 'You can make a playlist and save vides to watch again';
+    case 'playlistvideos':
+      return 'You have not saved any video in this playlist';
+    default:
+      return 'This folder is empty';
+  }
+};
+
 export const testCredentials = {
   username: 'Shrey Pandey',
   email: 'shreyp@gmail.com',
