@@ -124,7 +124,11 @@ export function VideoGrid(props) {
                             isWatchlater && 'thumbnail__submenu__delete'
                           }`}
                         >
-                          <i className='fa-regular fa-clock'></i>
+                          {isWatchlater ? (
+                            <i className='fa-solid fa-trash'></i>
+                          ) : (
+                            <i className='fa-regular fa-clock'></i>
+                          )}
                           {isWatchlater ? 'Remove the Video' : 'Watch Later'}
                         </h1>
                         <h1

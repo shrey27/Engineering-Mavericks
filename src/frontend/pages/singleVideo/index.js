@@ -10,31 +10,50 @@ import {
   PlaylistModal
 } from '../../components';
 import { useParams } from 'react-router-dom';
-import { useLikedCtx, useHistoryCtx } from '../../context';
+import {
+  useLikedCtx,
+  useHistoryCtx,
+  useWatchCtx,
+  usePlaylistCtx
+} from '../../context';
 
 function VideoPlayer({ source, title, creator, singleVideo, setModalOpen }) {
   const [liked, setLiked] = useState(false);
+  const [watchlater, setWatchLater] = useState(false);
   const { _id } = singleVideo;
   const {
     addToLikedlist,
     state: { addedVideosId }
   } = useLikedCtx();
+  const {
+    state: { addedWatchLaterId },
+    addToWatchlist
+  } = useWatchCtx();
 
   const { addToHistorylist } = useHistoryCtx();
+  const { dispatch } = usePlaylistCtx();
 
   useEffect(() => {
     if (addedVideosId && addedVideosId.includes(_id)) setLiked(true);
-    else {
-      setLiked(false);
-    }
-  }, [addedVideosId, _id]);
+    if (addedWatchLaterId && addedWatchLaterId.includes(_id))
+      setWatchLater(true);
+  }, [addedVideosId, _id, addedWatchLaterId]);
 
   const handleAddToLike = () => {
     addToLikedlist({ ...singleVideo });
   };
 
+  const handleAddToWatchLater = () => {
+    addToWatchlist(singleVideo);
+  };
+
   const handleAddToHistory = () => {
     addToHistorylist(singleVideo);
+  };
+
+  const handleModal = () => {
+    setModalOpen(true);
+    dispatch({ type: 'ADD_VIDEO_ID', payload: _id });
   };
 
   return (
@@ -55,10 +74,13 @@ function VideoPlayer({ source, title, creator, singleVideo, setModalOpen }) {
           <i className='fa-solid fa-thumbs-up'></i>
           {liked ? 'Liked' : 'Like'}
         </button>
-        <button className='video__button'>
+        <button
+          className={`video__button ${watchlater && 'liked'}`}
+          onClick={handleAddToWatchLater}
+        >
           <i className='fa-solid fa-clock'></i>Watch Later
         </button>
-        <button className='video__button' onClick={() => setModalOpen(true)}>
+        <button className='video__button' onClick={handleModal}>
           <i className='fa-solid fa-list'></i>Save to Playlist
         </button>
       </div>
