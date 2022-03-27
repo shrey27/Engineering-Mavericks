@@ -1,0 +1,17 @@
+@import '../../utility/styles.css';
+
+.notfound {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  margin: 2rem;
+}
+.notfound__banner {
+  width: 90%;
+  height: auto;
+  object-fit: contain;
+  max-width: 45rem;
+  border-radius: 5px;
+}
