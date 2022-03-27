@@ -15,6 +15,8 @@ export function VideoGrid(props) {
     isWishlist,
     isHistory,
     isWatchlater,
+    isPlaylist,
+    playlistId,
     handleSubmenu,
     handleModal,
     submenuIndex
@@ -24,7 +26,7 @@ export function VideoGrid(props) {
   const { deleteFromHistoryList, clearHistoryList } = useHistoryCtx();
   const { clearWatchLaterList, deleteFromWatchLaterList, addToWatchlist } =
     useWatchCtx();
-  const { dispatch } = usePlaylistCtx();
+  const { dispatch, deleteVideoFromPlaylistsFunction } = usePlaylistCtx();
 
   const handleAddToWatchLater = (video) => {
     addToWatchlist(video);
@@ -48,9 +50,15 @@ export function VideoGrid(props) {
     dispatch({ type: 'ADD_VIDEO_ID', payload: id });
   };
 
+  const handleVideoDeleteFromPlaylist = (id) => {
+    deleteVideoFromPlaylistsFunction(playlistId, id);
+    dispatch({ type: 'REMOVE_PLAYLIST_ID', payload: playlistId });
+    handleSubmenu(-1);
+  };
+
   return (
     <>
-      {!videos.length ? (
+      {!videos?.length ? (
         <Empty />
       ) : (
         <div>
@@ -83,7 +91,6 @@ export function VideoGrid(props) {
                       className='thumbnail__banner'
                     />
                   </Link>
-
                   <div className='thumbnail__info'>
                     <div className='thumbnail__title'>
                       <h1>{title}</h1>
@@ -110,9 +117,17 @@ export function VideoGrid(props) {
                           <i className='fa-regular fa-clock'></i>{' '}
                           {isWatchlater ? 'Remove the Video' : 'Watch Later'}
                         </h1>
-                        <h1 onClick={handleModalFunction.bind(this, _id)}>
+                        <h1
+                          onClick={
+                            isPlaylist
+                              ? handleVideoDeleteFromPlaylist.bind(this, _id)
+                              : handleModalFunction.bind(this, _id)
+                          }
+                        >
                           <i className='fa-regular fa-circle-play'></i>
-                          Add to Playlist
+                          {isPlaylist
+                            ? 'Delete from Playlist'
+                            : 'Add to Playlist'}
                         </h1>
                         {isWishlist && (
                           <h1

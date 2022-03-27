@@ -45,9 +45,13 @@ const PlaylistProvider = ({ children }) => {
     }
   };
 
-  const deleteVideoFromPlaylistsFunction = async (id) => {
+  const deleteVideoFromPlaylistsFunction = async (id, videoId) => {
     dispatch({ type: 'PLAYLIST_API_REQUEST' });
-    const singlePlaylist = await deleteVideoFromPlaylist(id, videoToadd._id, token);
+    const singlePlaylist = await deleteVideoFromPlaylist(
+      id,
+      videoId ?? videoToadd._id,
+      token
+    );
     const arr = [...playlists];
     const index = arr.findIndex((e) => e._id === singlePlaylist._id);
     arr[index] = { ...singlePlaylist };
@@ -92,6 +96,7 @@ const PlaylistProvider = ({ children }) => {
         dispatch,
         deletePlaylistFunction,
         addPlaylistFunction,
+        getVideosOfPlaylist,
         addVideoToPlaylistsFunction,
         deleteVideoFromPlaylistsFunction
       }}

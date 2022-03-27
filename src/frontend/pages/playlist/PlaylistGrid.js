@@ -1,15 +1,23 @@
 import './playlist.css';
+import { Fragment } from 'react';
 import { Empty } from '../../components';
-import { Fragment } from 'react/cjs/react.production.min';
 import { usePlaylistCtx } from '../../context';
+import { useNavigate } from 'react-router-dom';
+import pic from '../../assets/back.webp';
+import { PLAYLIST } from '../../routes/routes';
 
 export default function PlaylistGrid(props) {
   const { playlists, handleSubmenu, submenuIndex } = props;
   const { deletePlaylistFunction } = usePlaylistCtx();
+  const navigate = useNavigate();
 
   const handleDeletePlaylist = (id) => {
     deletePlaylistFunction(id);
     handleSubmenu(-1);
+  };
+
+  const handlePlaylistVideos = (id) => {
+    navigate(`${PLAYLIST}/${id}`);
   };
 
   return (
@@ -19,23 +27,27 @@ export default function PlaylistGrid(props) {
       ) : (
         <div className='thumbnail__grid'>
           {playlists.map((elem, index) => {
+            const { _id, videos, playlistName } = elem;
             return (
-              <div className='thumbnail' key={elem._id}>
-                <div className='playlist__banner'>
+              <div className='thumbnail' key={_id}>
+                <div
+                  className='playlist__banner'
+                  onClick={handlePlaylistVideos.bind(this, _id)}
+                >
                   <img
-                    src='back.jpg'
+                    src={pic}
                     alt={`thumbnail_${index + 1}`}
                     className='playlist__banner'
                   />
                   <div className='playlist__banner__cover'>
-                    <h1>1</h1>
+                    <h1>{videos.length}</h1>
                     <i className='fa-solid fa-arrow-down-short-wide'></i>
                   </div>
                 </div>
 
                 <div className='thumbnail__info'>
                   <div className='thumbnail__title'>
-                    <h1>{elem.playlistName}</h1>
+                    <h1>{playlistName}</h1>
                   </div>
                   <div className='thumbnail__info__icon'>
                     <i
@@ -47,7 +59,7 @@ export default function PlaylistGrid(props) {
                     <div className='thumbnail__submenu playlist'>
                       <h1
                         className='thumbnail__submenu__delete'
-                        onClick={handleDeletePlaylist.bind(this, elem._id)}
+                        onClick={handleDeletePlaylist.bind(this, _id)}
                       >
                         <i className='fa-solid fa-trash'></i>
                         Delete this Playlist

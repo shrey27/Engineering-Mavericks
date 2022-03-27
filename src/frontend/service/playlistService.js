@@ -52,7 +52,6 @@ export const getVideosOfPlaylist = async (id, token) => {
     } = await axios.get(`${PLAYLISTSAPI}/${id}`, {
       headers: { authorization: token }
     });
-
     return playlist;
   } catch (err) {
     console.log('PLAYLIST_GET_VIDEO_REQUEST_ERROR', err);

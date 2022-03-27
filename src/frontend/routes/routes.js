@@ -9,7 +9,7 @@ import Signup from '../pages/authentication/Signup';
 import Liked from '../pages/liked';
 import History from '../pages/history';
 import Playlist from '../pages/playlist';
-import SinglePlaylist from '../pages/playlist';
+import SinglePlaylistVideos from '../pages/playlist/SinglePlaylistVideos';
 import WatchLater from '../pages/watchlater';
 
 // API Endpoints
@@ -50,18 +50,17 @@ export const availableRoutes = (
     <Route exact path={MOCKMAN} element={<MockAPI />} />
     <Route exact path={VIDEOS} element={<VideoListing />} />
 
-    <Route exact path={LANDING} element={<PrivateRoute />}></Route>
-
-    <Route exact path={PLAYLIST} element={<Playlist />} />
-    <Route
-      exact
-      path={`${PLAYLIST}/:playlistId`}
-      element={<SinglePlaylist />}
-    />
-    <Route exact path={LIKED} element={<Liked />} />
-    <Route exact path={HISTORY} element={<History />} />
-    <Route exact path={WATCH} element={<WatchLater />} />
-    <Route exact path={`${VIDEOS}/:videoId`} element={<SingleVideo />} />
+    <Route exact path={LANDING} element={<PrivateRoute />}>
+      <Route exact path={PLAYLIST} element={<Playlist />} />
+      <Route
+        path={`${PLAYLIST}/:playlistId`}
+        element={<SinglePlaylistVideos />}
+      />
+      <Route exact path={LIKED} element={<Liked />} />
+      <Route exact path={HISTORY} element={<History />} />
+      <Route exact path={WATCH} element={<WatchLater />} />
+      <Route exact path={`${VIDEOS}/:videoId`} element={<SingleVideo />} />
+    </Route>
 
     <Route exact path={SIGNIN} element={<Signin />} />
     <Route exact path={SIGNUP} element={<Signup />} />

@@ -1,4 +1,4 @@
-import { useLandingCtx } from '../context';
+import { useLandingCtx, usePlaylistCtx } from '../context';
 
 /*
 
@@ -36,4 +36,12 @@ export function useLocalStorage() {
 export const useSingleVideo = (id) => {
   const { filteredList } = useLandingCtx();
   return filteredList.find((elem) => elem._id === id);
+};
+
+export const useSinglePlaylistVideos = (id) => {
+  const {
+    state: { playlists }
+  } = usePlaylistCtx();
+  const { videos } = playlists.find((elem) => elem._id === id);
+  return videos;
 };
