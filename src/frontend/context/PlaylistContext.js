@@ -65,26 +65,30 @@ const PlaylistProvider = ({ children }) => {
 
   const addVideoToPlaylistsFunction = async (id) => {
     dispatch({ type: 'PLAYLIST_API_REQUEST' });
-    const singlePlaylist = await addVideoToPlaylist(id, videoToadd, token);
-    const arr = [...playlists];
-    const index = arr.findIndex((e) => e._id === singlePlaylist._id);
-    arr[index] = { ...singlePlaylist };
-    updateLocalStorage('playlists', arr);
-    dispatch({ type: 'PLAYLIST_API_RESPONSE', payload: arr });
-    ToastMessage('Video added to the playlist', 'success');
+    const playlist = state.playlists.find((elem) => elem._id === id);
+    const { videos } = playlist;
+    if (!videos.some((e) => e._id === videoToadd._id)) {
+      const singlePlaylist = await addVideoToPlaylist(id, videoToadd, token);
+      const arr = [...playlists];
+      const index = arr.findIndex((e) => e._id === singlePlaylist._id);
+      arr[index] = { ...singlePlaylist };
+      updateLocalStorage('playlists', arr);
+      dispatch({ type: 'PLAYLIST_API_RESPONSE', payload: arr });
+      ToastMessage('Video added to the playlist', 'success');
+    } else {
+      dispatch({ type: 'CLOSE_LOADER' });
+      ToastMessage('Video is already in the playlist', 'info');
+    }
   };
 
   useEffect(() => {
     const getPlaylistsFunction = async () => {
       dispatch({ type: 'PLAYLIST_API_REQUEST' });
-
       const playlistsArray = await getPlaylists(token);
-
       dispatch({
         type: 'PLAYLIST_API_RESPONSE',
         payload: playlistsArray?.length ? [...playlistsArray] : []
       });
-
       const datatoUpdate = JSON.parse(localStorage.getItem('userData'));
       datatoUpdate.playlists = [...playlistsArray];
       localStorage.setItem('userData', JSON.stringify(datatoUpdate));

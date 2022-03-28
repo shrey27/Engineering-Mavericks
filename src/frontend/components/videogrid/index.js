@@ -133,7 +133,7 @@ export function VideoGrid(props) {
                             {isWatchlater ? 'Remove the Video' : 'Watch Later'}
                           </h1>
                         )}
-                        <h1
+                        {<h1
                           onClick={
                             isPlaylist
                               ? handleVideoDeleteFromPlaylist.bind(this, _id)
@@ -146,9 +146,9 @@ export function VideoGrid(props) {
                             <i className='fa-solid fa-trash'></i>
                           )}
                           {isPlaylist
-                            ? 'Delete from Playlist'
+                            ? 'Remove from Playlist'
                             : 'Add to Playlist'}
-                        </h1>
+                        </h1>}
                         {isWishlist && (
                           <h1
                             onClick={handleDeleteLikedvideo.bind(this, _id)}

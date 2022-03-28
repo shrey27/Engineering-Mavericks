@@ -44,6 +44,11 @@ export const playlistReducerFunction = (state, action) => {
         ...state,
         playlistId: []
       };
+    case 'CLOSE_LOADER':
+      return {
+        ...state,
+        playloaderLoader: false
+      };
     default:
       return {
         ...state

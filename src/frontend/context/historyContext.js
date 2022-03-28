@@ -28,6 +28,7 @@ const HistoryProvider = ({ children }) => {
     const history = await clearHistory(token);
     updateLocalStorage('history', history);
     dispatch({ type: 'HISTORY_API_RESPONSE', payload: [...history] });
+    dispatch({ type: 'UPDATE_ID', payload: [] });
     ToastMessage('Your history was cleared', 'info');
   };
 
@@ -36,6 +37,11 @@ const HistoryProvider = ({ children }) => {
     const history = await deleteFromHistory(id, token);
     updateLocalStorage('history', history);
     dispatch({ type: 'HISTORY_API_RESPONSE', payload: [...history] });
+
+    dispatch({
+      type: 'UPDATE_ID',
+      payload: state.addedHistoryId.filter((e) => e !== id)
+    });
     ToastMessage('Video removed from history', 'error');
   };
 
