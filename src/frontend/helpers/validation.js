@@ -20,26 +20,26 @@ export function validationForSignIn(state, dispatch) {
 }
 
 export function validationForSignUp(state, dispatch) {
-  const { username, email, password, cnfPassword } = state;
+  const { username, signupEmail, signupPassword, cnfPassword } = state;
   const errorArray = [];
   if (!username || !username.match(/^[a-zA-Z ]+/)) {
     errorArray.push('SIGNUP-USERNAME-ERROR');
   }
   if (
-    !email ||
-    !email.match(
+    !signupEmail ||
+    !signupEmail.match(
       /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
     )
   ) {
-    errorArray.push('EMAIL-INCORRECT');
+    errorArray.push('SIGNUP-EMAIL-INCORRECT');
   }
-  if (!password || password.length < 8) {
-    errorArray.push('PASSWORD-INCORRECT');
+  if (!signupPassword || signupPassword.length < 8) {
+    errorArray.push('SIGNUP-PASSWORD-INCORRECT');
   }
   if (!cnfPassword || cnfPassword.length < 8) {
     errorArray.push('CONFIRM-PASSWORD-INCORRECT');
   }
-  if (cnfPassword !== password) {
+  if (cnfPassword !== signupPassword) {
     errorArray.push('PASSWORDS-MISMATCH');
   }
   if (errorArray.length) {
