@@ -26,11 +26,12 @@ export function Navbar({ hideSearchBar }) {
 
   return (
     <div>
-      <SignoutModal
-        signoutModal={signoutModal}
-        setSignoutModal={setSignoutModal}
-        handleSignOut={handleSignOut}
-      />
+      {signoutModal && (
+        <SignoutModal
+          setSignoutModal={setSignoutModal}
+          handleSignOut={handleSignOut}
+        />
+      )}
       <nav className='navbar xs-s border--btm'>
         <section className='begin'>
           <Link to={LANDING} className='start link__style'>
@@ -72,8 +73,8 @@ export function Navbar({ hideSearchBar }) {
               className='end__btn btn btn--auth--solid sb'
               onClick={() => setSignoutModal(true)}
             >
-              <i className='fa-solid fa-right-to-bracket'></i>
               <span className='end__span'>SIGN OUT</span>
+              <i className='fa-solid fa-right-to-bracket'></i>
             </button>
           ) : (
             <Link className='end__btn btn btn--auth--solid sb' to={SIGNIN}>

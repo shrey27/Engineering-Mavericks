@@ -44,6 +44,23 @@ export const navlinks = [
   }
 ];
 
+export const emptyStatments = (keyValue) => {
+  switch (keyValue) {
+    case 'like':
+      return "You have not liked any videos";
+    case 'history':
+      return 'You should watch some videos';
+    case 'watchlater':
+      return 'No videos found to watch later';
+    case 'playlist':
+      return 'No Playlist found';
+    case 'playlistvideos':
+      return 'Your playlist is empty';
+    default:
+      return 'This folder is empty';
+  }
+};
+
 export const testCredentials = {
   username: 'Shrey Pandey',
   email: 'shreyp@gmail.com',

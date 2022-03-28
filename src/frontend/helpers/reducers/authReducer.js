@@ -12,6 +12,10 @@ export const defaultState = {
   emailError: '',
   password: '',
   passwordError: '',
+  signupEmail: '',
+  signupEmailError: '',
+  signupPassword: '',
+  signupPasswordError: '',
   cnfPassword: '',
   cnfpasswordError: '',
   username: '',
@@ -31,28 +35,60 @@ export const authReducerFunc = (state, action) => {
         ...state,
         email: action.payload
       };
+    case 'EMAIL-INCORRECT':
+      return {
+        ...state,
+        emailError: 'Enter the email in correct format'
+      };
     case 'SIGNIN-PASSWORD':
       return {
         ...state,
         password: action.payload
+      };
+    case 'PASSWORD-INCORRECT':
+      return {
+        ...state,
+        passwordError: 'Password should be atleast 8 chars long'
+      };
+    case 'SIGNUP-EMAIL':
+      return {
+        ...state,
+        signupEmail: action.payload
+      };
+    case 'SIGNUP-EMAIL-INCORRECT':
+      return {
+        ...state,
+        signupEmailError: 'Enter the email in correct format'
+      };
+    case 'SIGNUP-PASSWORD':
+      return {
+        ...state,
+        signupPassword: action.payload
+      };
+    case 'SIGNUP-PASSWORD-INCORRECT':
+      return {
+        ...state,
+        signupPasswordError: 'Password should be atleast 8 chars long'
       };
     case 'SIGNUP-USERNAME':
       return {
         ...state,
         username: action.payload
       };
-    case 'TOKEN-SAVED':
+    case 'SIGNUP-USERNAME-ERROR':
       return {
         ...state,
-        userdata: 'TOKENSAVED',
-        token: action.payload,
-        signupError: ''
+        userNameError: 'Username can only have alphabets'
       };
-    case 'TOKEN-REMOVED':
+    case 'CONFIRM-PASSWORD':
       return {
         ...state,
-        userdata: '',
-        token: ''
+        cnfPassword: action.payload
+      };
+    case 'CONFIRM-PASSWORD-INCORRECT':
+      return {
+        ...state,
+        cnfpasswordError: 'Password should be atleast 8 chars long'
       };
     case 'SIGNIN-ERROR':
       return {
@@ -69,30 +105,18 @@ export const authReducerFunc = (state, action) => {
         ...state,
         signupError: "Passwords Don't Match"
       };
-    case 'CONFIRM-PASSWORD':
+    case 'TOKEN-SAVED':
       return {
         ...state,
-        cnfPassword: action.payload
+        userdata: 'TOKENSAVED',
+        token: action.payload,
+        signupError: ''
       };
-    case 'EMAIL-INCORRECT':
+    case 'TOKEN-REMOVED':
       return {
         ...state,
-        emailError: 'Enter the email in correct format'
-      };
-    case 'PASSWORD-INCORRECT':
-      return {
-        ...state,
-        passwordError: 'Password should be atleast 8 chars long'
-      };
-    case 'CONFIRM-PASSWORD-INCORRECT':
-      return {
-        ...state,
-        cnfpasswordError: 'Password should be atleast 8 chars long'
-      };
-    case 'SIGNUP-USERNAME-ERROR':
-      return {
-        ...state,
-        userNameError: 'Username can only have alphabets'
+        userdata: '',
+        token: ''
       };
     case 'CLEAR-ALL-ERRORS':
       return {

@@ -4,11 +4,10 @@
   margin: 0 0.95rem;
   width: 96%;
   overflow-x: auto;
-  padding: 1.5rem 0.5rem 0.75rem 0;
+  padding: 1.5rem 0.5rem 1.25rem 0;
 }
 .filter::-webkit-scrollbar {
-  height: 3px;
-  display: none;
+  height: 6px;
 }
 
 .filter__option {

@@ -1,7 +1,13 @@
 import './playlist.css';
 import { useState, useEffect } from 'react';
 import { usePlaylistCtx } from '../../context';
-import { Footer, Navbar, Sidebar, Loader } from '../../components';
+import {
+  Footer,
+  Navbar,
+  Sidebar,
+  Loader,
+  PlaylistModal
+} from '../../components';
 import PlaylistGrid from './PlaylistGrid';
 
 export default function Playlist() {
@@ -11,6 +17,7 @@ export default function Playlist() {
 
   const [submenuIndex, setSubmenuIndex] = useState(-1);
   const [alteredList, setAlteredList] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     setAlteredList([...playlists]);
@@ -27,12 +34,16 @@ export default function Playlist() {
   const videoGridProps = {
     playlists: alteredList,
     handleSubmenu,
-    submenuIndex
+    submenuIndex,
+    setModalOpen
   };
 
   return (
     <div>
       <Navbar />
+      {modalOpen && (
+        <PlaylistModal setModalOpen={setModalOpen} onPlaylists={true} />
+      )}
       <div className='main__grid'>
         <Sidebar noVideos={playlists ? false : true} />
         <div className='main'>

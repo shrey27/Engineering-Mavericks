@@ -16,6 +16,11 @@ export const watchReducerFunction = (state, action) => {
         watchedLaterVideos: [...action.payload],
         watchloader: false
       };
+    case 'WATCH_CLOSE_LOADER':
+      return {
+        ...state,
+        watchloader: false
+      };
     case 'UPDATE_WL_ID':
       return {
         ...state,

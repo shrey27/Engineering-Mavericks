@@ -6,8 +6,12 @@ import {
   deleteFromHistory,
   clearHistory
 } from '../service';
-import { useLocalStorage } from '../helpers';
-import { historyReducerFunction, historyDefaultState } from '../helpers';
+import { ToastMessage } from '../components';
+import {
+  historyReducerFunction,
+  historyDefaultState,
+  useLocalStorage
+} from '../helpers';
 
 const HistoryContext = createContext();
 
@@ -24,6 +28,8 @@ const HistoryProvider = ({ children }) => {
     const history = await clearHistory(token);
     updateLocalStorage('history', history);
     dispatch({ type: 'HISTORY_API_RESPONSE', payload: [...history] });
+    dispatch({ type: 'UPDATE_ID', payload: [] });
+    ToastMessage('Your history was cleared', 'info');
   };
 
   const deleteFromHistoryList = async (id) => {
@@ -31,6 +37,12 @@ const HistoryProvider = ({ children }) => {
     const history = await deleteFromHistory(id, token);
     updateLocalStorage('history', history);
     dispatch({ type: 'HISTORY_API_RESPONSE', payload: [...history] });
+
+    dispatch({
+      type: 'UPDATE_ID',
+      payload: state.addedHistoryId.filter((e) => e !== id)
+    });
+    ToastMessage('Video removed from history', 'error');
   };
 
   const addToHistorylist = async (video) => {
@@ -44,6 +56,8 @@ const HistoryProvider = ({ children }) => {
 
       const idArray = history.map((elem) => elem._id);
       dispatch({ type: 'UPDATE_ID', payload: [...idArray] });
+    } else {
+      dispatch({ type: 'CLOSE_HISTORY_LOADER' });
     }
   };
 

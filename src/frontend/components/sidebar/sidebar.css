@@ -58,6 +58,10 @@
     padding: 1.25rem;
     width: 100%;
   }
+  .selected {
+    background-color: var(--tertiary--light);
+    margin: 0;
+  }
   .sidebar__options span {
     margin: 0 1rem;
   }

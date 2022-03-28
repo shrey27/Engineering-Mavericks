@@ -2,13 +2,16 @@ import './modal.css';
 import { useState } from 'react';
 import { usePlaylistCtx } from '../../context';
 
-export function PlaylistModal({ modalOpen, setModalOpen }) {
+export function PlaylistModal({ setModalOpen, onPlaylists }) {
   const [editor, openEditor] = useState(false);
   const [playlistName, setPlaylistName] = useState('');
   const [error, setError] = useState(false);
   const {
     addPlaylistFunction,
-    state: { playlists }
+    addVideoToPlaylistsFunction,
+    deleteVideoFromPlaylistsFunction,
+    state: { playlists, playlistId },
+    dispatch
   } = usePlaylistCtx();
 
   const handleSubmit = (e) => {
@@ -23,28 +26,45 @@ export function PlaylistModal({ modalOpen, setModalOpen }) {
     setPlaylistName('');
     openEditor(false);
     setModalOpen(false);
+    dispatch({ type: 'REMOVE_VIDEO_ID' });
+    dispatch({ type: 'CLEAR_ALL_PLAYLIST_ID' });
   };
 
   const handleCreatePlaylist = () => {
-    const objectToadd = { playlistName };
-    addPlaylistFunction(objectToadd);
-    handleCloseModal();
+    addPlaylistFunction({ playlistName });
+    openEditor(false);
+    if (onPlaylists) {
+      handleCloseModal();
+    }
+  };
+
+  const handleVideoInPlaylist = (e, id) => {
+    if (e.target.checked) {
+      addVideoToPlaylistsFunction(id);
+      dispatch({ type: 'ADD_PLAYLIST_ID', payload: id });
+    } else {
+      deleteVideoFromPlaylistsFunction(id);
+      dispatch({ type: 'REMOVE_PLAYLIST_ID', payload: id });
+    }
   };
 
   return (
-    <div className={`modal ${modalOpen && 'modal__open'} flex-ct-ct`} wide='40'>
-      <div
-        className='modal__background'
-        onClick={() => setModalOpen(false)}
-      ></div>
+    <div className='modal modal__open flex-ct-ct' wide='40'>
+      <div className='modal__background' onClick={handleCloseModal}></div>
       <div className='modal__content modal__content__playlist md-s'>
         <h1 className='md sb mg-half'>Save To</h1>
         <hr />
         {playlists?.map((elem) => {
+          const { _id, playlistName } = elem;
           return (
-            <label className='playlist__option' key={elem.playlistName}>
-              <input type='checkbox' />
-              &nbsp;&nbsp; {elem.playlistName}
+            <label className='playlist__option' key={_id}>
+              <input
+                type='checkbox'
+                className='playlist__option__input'
+                checked={playlistId?.includes(_id)}
+                onChange={(e) => handleVideoInPlaylist(e, _id)}
+              />
+              &nbsp;&nbsp; {playlistName}
             </label>
           );
         })}

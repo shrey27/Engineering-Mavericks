@@ -19,7 +19,7 @@ export function Footer({ fixed }) {
           <i className='fa-brands fa-linkedin'></i>
         </a>
       </div>
-      <span className='footer__text tag sm reg cen mg--half'>
+      <span className='footer__text tag sm sb cen mg--half'>
         © 2022 Engineering Mavericks Pvt Ltd. All rights reserved.
       </span>
     </footer>

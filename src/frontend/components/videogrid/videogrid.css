@@ -58,7 +58,7 @@
 }
 .thumbnail__submenu {
   position: absolute;
-  right: 2.75rem;
+  right: 3rem;
   bottom: 1.5rem;
   width: max-content;
   color: var(--white);

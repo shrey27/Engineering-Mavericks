@@ -1,8 +1,15 @@
 import './videogrid.css';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { VIDEOS } from '../../routes/routes';
-import { useHistoryCtx, useLikedCtx, useWatchCtx } from '../../context';
+import {
+  useHistoryCtx,
+  useLikedCtx,
+  usePlaylistCtx,
+  useWatchCtx
+} from '../../context';
 import { Empty } from '../../components';
+import { emptyStatments } from '../../utility/constants';
 
 export function VideoGrid(props) {
   const {
@@ -10,6 +17,8 @@ export function VideoGrid(props) {
     isWishlist,
     isHistory,
     isWatchlater,
+    isPlaylist,
+    playlistId,
     handleSubmenu,
     handleModal,
     submenuIndex
@@ -19,6 +28,8 @@ export function VideoGrid(props) {
   const { deleteFromHistoryList, clearHistoryList } = useHistoryCtx();
   const { clearWatchLaterList, deleteFromWatchLaterList, addToWatchlist } =
     useWatchCtx();
+  const { dispatch, deleteVideoFromPlaylistsFunction } = usePlaylistCtx();
+  const [statement, setStatement] = useState(false);
 
   const handleAddToWatchLater = (video) => {
     addToWatchlist(video);
@@ -37,10 +48,28 @@ export function VideoGrid(props) {
     handleSubmenu(-1);
   };
 
+  const handleModalFunction = (id) => {
+    handleModal();
+    dispatch({ type: 'ADD_VIDEO_ID', payload: id });
+  };
+
+  const handleVideoDeleteFromPlaylist = (id) => {
+    deleteVideoFromPlaylistsFunction(playlistId, id);
+    dispatch({ type: 'REMOVE_PLAYLIST_ID', payload: playlistId });
+    handleSubmenu(-1);
+  };
+
+  useEffect(() => {
+    if (isHistory) setStatement(emptyStatments('history'));
+    if (isPlaylist) setStatement(emptyStatments('playlistvideos'));
+    if (isWishlist) setStatement(emptyStatments('like'));
+    if (isWatchlater) setStatement(emptyStatments('watchlater'));
+  }, [isHistory, isPlaylist, isWatchlater, isWishlist]);
+
   return (
     <>
-      {!videos.length ? (
-        <Empty />
+      {!videos?.length ? (
+        <Empty statement={statement} />
       ) : (
         <div>
           {(isHistory || isWatchlater) && (
@@ -62,20 +91,20 @@ export function VideoGrid(props) {
           )}
           <div className='thumbnail__grid'>
             {videos.map((elem, index) => {
+              const { _id, title, creator, video } = elem;
               return (
-                <div className='thumbnail' key={elem._id}>
-                  <Link to={`${VIDEOS}/${elem._id}`}>
+                <div className='thumbnail' key={_id}>
+                  <Link to={`${VIDEOS}/${_id}`}>
                     <img
-                      src={`https://i.ytimg.com/vi/${elem.video}/hqdefault.jpg`}
+                      src={`https://i.ytimg.com/vi/${video}/hqdefault.jpg`}
                       alt={`thumbnail_${index + 1}`}
                       className='thumbnail__banner'
                     />
                   </Link>
-
                   <div className='thumbnail__info'>
                     <div className='thumbnail__title'>
-                      <h1>{elem.title}</h1>
-                      <h1 className='thumbnail__description'>{elem.creator}</h1>
+                      <h1>{title}</h1>
+                      <h1 className='thumbnail__description'>{creator}</h1>
                     </div>
                     <div className='thumbnail__info__icon'>
                       <i
@@ -85,32 +114,44 @@ export function VideoGrid(props) {
                     </div>
                     {index === submenuIndex && (
                       <div className='thumbnail__submenu'>
-                        <h1
+                        {!isHistory && (
+                          <h1
+                            onClick={
+                              isWatchlater
+                                ? handleDeleteWatchedLatervideo.bind(this, _id)
+                                : handleAddToWatchLater.bind(this, elem)
+                            }
+                            className={`${
+                              isWatchlater && 'thumbnail__submenu__delete'
+                            }`}
+                          >
+                            {isWatchlater ? (
+                              <i className='fa-solid fa-trash'></i>
+                            ) : (
+                              <i className='fa-regular fa-clock'></i>
+                            )}
+                            {isWatchlater ? 'Remove the Video' : 'Watch Later'}
+                          </h1>
+                        )}
+                        {<h1
                           onClick={
-                            isWatchlater
-                              ? handleDeleteWatchedLatervideo.bind(
-                                  this,
-                                  elem._id
-                                )
-                              : handleAddToWatchLater.bind(this, elem)
+                            isPlaylist
+                              ? handleVideoDeleteFromPlaylist.bind(this, _id)
+                              : handleModalFunction.bind(this, _id)
                           }
-                          className={`${
-                            isWatchlater && 'thumbnail__submenu__delete'
-                          }`}
                         >
-                          <i className='fa-regular fa-clock'></i>{' '}
-                          {isWatchlater ? 'Remove the Video' : 'Watch Later'}
-                        </h1>
-                        <h1 onClick={handleModal}>
-                          <i className='fa-regular fa-circle-play'></i>
-                          Add to Playlist
-                        </h1>
+                          {!isPlaylist ? (
+                            <i className='fa-regular fa-circle-play'></i>
+                          ) : (
+                            <i className='fa-solid fa-trash'></i>
+                          )}
+                          {isPlaylist
+                            ? 'Remove from Playlist'
+                            : 'Add to Playlist'}
+                        </h1>}
                         {isWishlist && (
                           <h1
-                            onClick={handleDeleteLikedvideo.bind(
-                              this,
-                              elem._id
-                            )}
+                            onClick={handleDeleteLikedvideo.bind(this, _id)}
                             className='thumbnail__submenu__delete'
                           >
                             <i className='fa-solid fa-trash'></i>
@@ -119,10 +160,7 @@ export function VideoGrid(props) {
                         )}
                         {isHistory && (
                           <h1
-                            onClick={handleDeleteWatchedvideo.bind(
-                              this,
-                              elem._id
-                            )}
+                            onClick={handleDeleteWatchedvideo.bind(this, _id)}
                             className='thumbnail__submenu__delete'
                           >
                             <i className='fa-solid fa-trash'></i>

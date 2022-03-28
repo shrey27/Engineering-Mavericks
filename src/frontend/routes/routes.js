@@ -9,8 +9,9 @@ import Signup from '../pages/authentication/Signup';
 import Liked from '../pages/liked';
 import History from '../pages/history';
 import Playlist from '../pages/playlist';
-import SinglePlaylist from '../pages/playlist';
+import SinglePlaylistVideos from '../pages/playlist/SinglePlaylistVideos';
 import WatchLater from '../pages/watchlater';
+import NotFound from '../pages/notfound';
 
 // API Endpoints
 export const GETCATEGORIES = '/api/categories';
@@ -47,20 +48,23 @@ export const availableRoutes = (
     <Route path={LINKEDIN}>{window.location.replace(LINKEDINEXT)}</Route> */}
 
     <Route exact path={LANDING} element={<Landing />} />
-    <Route path={MOCKMAN} element={<MockAPI />} />
+    <Route exact path={MOCKMAN} element={<MockAPI />} />
     <Route exact path={VIDEOS} element={<VideoListing />} />
 
     <Route exact path={LANDING} element={<PrivateRoute />}>
       <Route exact path={PLAYLIST} element={<Playlist />} />
-      <Route path={`${PLAYLIST}/:playlistId`} element={<SinglePlaylist />} />
-      <Route path={LIKED} element={<Liked />} />
-      <Route path={HISTORY} element={<History />} />
-      <Route path={WATCH} element={<WatchLater />} />
-      <Route path={`${VIDEOS}/:videoId`} element={<SingleVideo />} />
+      <Route
+        path={`${PLAYLIST}/:playlistId`}
+        element={<SinglePlaylistVideos />}
+      />
+      <Route exact path={LIKED} element={<Liked />} />
+      <Route exact path={HISTORY} element={<History />} />
+      <Route exact path={WATCH} element={<WatchLater />} />
+      <Route exact path={`${VIDEOS}/:videoId`} element={<SingleVideo />} />
     </Route>
 
-    <Route path={SIGNIN} element={<Signin />} />
-    <Route path={SIGNUP} element={<Signup />} />
-    <Route path='*' element={<Landing />} />
+    <Route exact path={SIGNIN} element={<Signin />} />
+    <Route exact path={SIGNUP} element={<Signup />} />
+    <Route path='*' element={<NotFound />} />
   </Routes>
 );

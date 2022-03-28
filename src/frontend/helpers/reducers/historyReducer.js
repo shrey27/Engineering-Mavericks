@@ -1,5 +1,5 @@
 export const historyDefaultState = {
-  loading: false,
+  historyLoader: false,
   watchedVideos: [],
   addedHistoryId: []
 };
@@ -14,6 +14,11 @@ export const historyReducerFunction = (state, action) => {
       return {
         ...state,
         watchedVideos: [...action.payload],
+        historyLoader: false
+      };
+    case 'CLOSE_HISTORY_LOADER':
+      return {
+        ...state,
         historyLoader: false
       };
     case 'UPDATE_ID':

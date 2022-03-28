@@ -1,6 +1,5 @@
-import './history.css';
+import './playlist.css';
 import { useState, useEffect } from 'react';
-import { useHistoryCtx } from '../../context';
 import {
   Footer,
   Navbar,
@@ -9,19 +8,24 @@ import {
   Loader,
   VideoGrid
 } from '../../components';
+import { useSinglePlaylistVideos } from '../../helpers';
+import { useParams } from 'react-router-dom';
+import { usePlaylistCtx } from '../../context';
 
-export default function History() {
+export default function SinglePlaylistVideos() {
   const {
-    state: { historyLoader, watchedVideos }
-  } = useHistoryCtx();
+    state: { playloaderLoader }
+  } = usePlaylistCtx();
+  const { playlistId } = useParams();
+  const videos = useSinglePlaylistVideos(playlistId);
 
   const [submenuIndex, setSubmenuIndex] = useState(-1);
   const [modalOpen, setModalOpen] = useState(false);
   const [alteredList, setAlteredList] = useState([]);
 
   useEffect(() => {
-    setAlteredList(watchedVideos);
-  }, [watchedVideos]);
+    setAlteredList(videos);
+  }, [videos]);
 
   const handleModal = () => {
     setSubmenuIndex(-1);
@@ -42,7 +46,8 @@ export default function History() {
     handleSubmenu,
     handleModal,
     submenuIndex,
-    isHistory: true
+    playlistId,
+    isPlaylist: true
   };
 
   return (
@@ -50,9 +55,9 @@ export default function History() {
       <Navbar />
       {modalOpen && <PlaylistModal setModalOpen={setModalOpen} />}
       <div className='main__grid'>
-        <Sidebar noVideos={watchedVideos ? false : true} />
+        <Sidebar noVideos={alteredList ? false : true} />
         <div className='main'>
-          {historyLoader ? <Loader /> : <VideoGrid {...videoGridProps} />}
+          {playloaderLoader ? <Loader /> : <VideoGrid {...videoGridProps} />}
         </div>
       </div>
       <Footer />

@@ -13,7 +13,7 @@
   font-size: 1.25rem;
 }
 .modal__content.modal__content__playlist {
-  background-color: var(--dismiss);
+  background-color: var(--tertiary);
   color: var(--white);
   border: none;
 }
@@ -25,6 +25,11 @@
   display: flex;
   align-items: center;
   margin: 1rem 0;
+}
+input[type='checkbox'] {
+  transform: scale(1.35);
+  background-color: var(--dismiss--light);
+  margin: 0 0.25rem;
 }
 .playlist__input {
   width: 100%;
