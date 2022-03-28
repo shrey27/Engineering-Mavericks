@@ -34,6 +34,10 @@ function VideoPlayer({ source, title, creator, singleVideo, setModalOpen }) {
   const { dispatch } = usePlaylistCtx();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     if (addedVideosId && addedVideosId.includes(_id)) setLiked(true);
     else setLiked(false);
   }, [addedVideosId, _id]);

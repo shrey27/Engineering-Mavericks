@@ -1,10 +1,31 @@
 import './filters.css';
 import { categoryList } from '../../utility/constants';
+import { useRef, useState, Fragment } from 'react';
 
 export function Filters({ handleFilterChange, filter }) {
+  const [leftbtnHide, setLeftBtnHide] = useState(false);
+  const [rightbtnHide, setRightBtnHide] = useState(false);
+  const filteRef = useRef();
+
+  // useEffect(() => {
+  //   if (filteRef.scrollX === 0) {
+  //     setLeftBtnHide(true);
+  //   }
+  //   if (filteRef.scrollX === 1000) {
+  //     setRightBtnHide(true);
+  //   }
+  // }, []);
+
+  const scrollLeftHandler = () => {
+    filteRef.current.scrollLeft -= 60;
+  };
+  const scrollRightHandler = () => {
+    filteRef.current.scrollLeft += 60;
+  };
+
   return (
     <div className='filter'>
-      <div className='mg--half'>
+      <div className='filter_ctr' ref={filteRef}>
         {categoryList.map((elem, idx) => {
           return (
             <label
@@ -24,6 +45,22 @@ export function Filters({ handleFilterChange, filter }) {
             </label>
           );
         })}
+      </div>
+      <div className='filter_btn_ctr '>
+        <button
+          className='btn filter_btn shadow'
+          onClick={scrollLeftHandler}
+          disabled={leftbtnHide}
+        >
+          <i class='fa-solid fa-chevron-left'></i>
+        </button>
+        <button
+          className='btn filter_btn shadow'
+          onClick={scrollRightHandler}
+          disabled={rightbtnHide}
+        >
+          <i class='fa-solid fa-chevron-right'></i>
+        </button>
       </div>
     </div>
   );

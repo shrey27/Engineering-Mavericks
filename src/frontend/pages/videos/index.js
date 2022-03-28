@@ -31,6 +31,10 @@ export default function VideoListing() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     if (search) {
       const tempList = filteredList.filter((e) =>
         e.title.toLowerCase().includes(search.toLowerCase())
