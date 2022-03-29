@@ -18,11 +18,8 @@ const LikedProvider = ({ children }) => {
   const deleteLikedFromList = async (id) => {
     dispatch({ type: 'LIKE_API_REQUEST' });
     const { addedVideosId } = state;
-
     const likes = await deleteLikedVideo(id, token);
-
     updateLocalStorage('likes', likes);
-
     dispatch({ type: 'LIKE_API_RESPONSE', payload: [...likes] });
     dispatch({
       type: 'UPDATE_ID',
@@ -34,14 +31,11 @@ const LikedProvider = ({ children }) => {
   const addToLikedlist = async (video) => {
     dispatch({ type: 'LIKE_API_REQUEST' });
     const { addedVideosId } = state;
-
     if (addedVideosId.includes(video._id)) {
       deleteLikedFromList(video._id);
     } else {
       const likes = await addLikedVideo(video, token);
-
-      updateLocalStorage('likes', likes);
-
+      updateLocalStorage('likes', [...likes]);
       dispatch({ type: 'LIKE_API_RESPONSE', payload: [...likes] });
       const idArray = likes.map((elem) => elem._id);
       dispatch({ type: 'UPDATE_ID', payload: [...idArray] });

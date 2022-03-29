@@ -1,10 +1,8 @@
 import './filters.css';
 import { categoryList } from '../../utility/constants';
-import { useRef, useState, Fragment } from 'react';
+import { useRef } from 'react';
 
 export function Filters({ handleFilterChange, filter }) {
-  const [leftbtnHide, setLeftBtnHide] = useState(false);
-  const [rightbtnHide, setRightBtnHide] = useState(false);
   const filteRef = useRef();
 
   // useEffect(() => {
@@ -47,18 +45,10 @@ export function Filters({ handleFilterChange, filter }) {
         })}
       </div>
       <div className='filter_btn_ctr '>
-        <button
-          className='btn filter_btn shadow'
-          onClick={scrollLeftHandler}
-          disabled={leftbtnHide}
-        >
+        <button className='btn filter_btn shadow' onClick={scrollLeftHandler}>
           <i class='fa-solid fa-chevron-left'></i>
         </button>
-        <button
-          className='btn filter_btn shadow'
-          onClick={scrollRightHandler}
-          disabled={rightbtnHide}
-        >
+        <button className='btn filter_btn shadow' onClick={scrollRightHandler}>
           <i class='fa-solid fa-chevron-right'></i>
         </button>
       </div>
