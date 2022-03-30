@@ -3,19 +3,14 @@ import { GETHISTORY } from '../routes/routes';
 
 export const getHistoryVideos = async (token) => {
   try {
-    const storedHistory = JSON.parse(localStorage.getItem('userData'))?.history;
-    if (storedHistory) {
-      return storedHistory;
-    } else {
-      const {
-        data: { history }
-      } = await axios.get(GETHISTORY, {
-        headers: {
-          authorization: token
-        }
-      });
-      return history;
-    }
+    const {
+      data: { history }
+    } = await axios.get(GETHISTORY, {
+      headers: {
+        authorization: token
+      }
+    });
+    return history;
   } catch (err) {
     console.log('HISTORY_GET_REQUEST_ERROR', err);
   }

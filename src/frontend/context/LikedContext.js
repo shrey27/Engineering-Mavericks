@@ -20,7 +20,10 @@ const LikedProvider = ({ children }) => {
     const { addedVideosId } = state;
     const likes = await deleteLikedVideo(id, token);
     updateLocalStorage('likes', likes);
-    dispatch({ type: 'LIKE_API_RESPONSE', payload: [...likes] });
+    dispatch({
+      type: 'LIKE_API_RESPONSE',
+      payload: likes
+    });
     dispatch({
       type: 'UPDATE_ID',
       payload: addedVideosId.filter((e) => e !== id)
@@ -35,8 +38,11 @@ const LikedProvider = ({ children }) => {
       deleteLikedFromList(video._id);
     } else {
       const likes = await addLikedVideo(video, token);
-      updateLocalStorage('likes', [...likes]);
-      dispatch({ type: 'LIKE_API_RESPONSE', payload: [...likes] });
+      dispatch({
+        type: 'LIKE_API_RESPONSE',
+        payload: likes
+      });
+      updateLocalStorage('likes', likes);
       const idArray = likes.map((elem) => elem._id);
       dispatch({ type: 'UPDATE_ID', payload: [...idArray] });
       ToastMessage('You have liked this Video', 'success');

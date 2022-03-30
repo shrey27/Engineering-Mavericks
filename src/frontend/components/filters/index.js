@@ -46,10 +46,10 @@ export function Filters({ handleFilterChange, filter }) {
       </div>
       <div className='filter_btn_ctr '>
         <button className='btn filter_btn shadow' onClick={scrollLeftHandler}>
-          <i class='fa-solid fa-chevron-left'></i>
+          <i className='fa-solid fa-chevron-left'></i>
         </button>
         <button className='btn filter_btn shadow' onClick={scrollRightHandler}>
-          <i class='fa-solid fa-chevron-right'></i>
+          <i className='fa-solid fa-chevron-right'></i>
         </button>
       </div>
     </div>

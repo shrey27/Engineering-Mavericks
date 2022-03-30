@@ -90,6 +90,11 @@ const AuthenticationProvider = ({ children }) => {
     const storedData = localStorage.getItem('userData');
     if (storedData) {
       dispatch({ type: 'TOKEN-SAVED', payload: localStorage.getItem('token') });
+      const data = JSON.parse(storedData);
+      dispatch({
+        type: 'SIGNUP-USERNAME',
+        payload: `${data.firstName} ${data.lastName}`
+      });
     }
   }, []);
 
