@@ -1,5 +1,5 @@
 import './videogrid.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { VIDEOS } from '../../routes/routes';
 import {
@@ -12,6 +12,7 @@ import {
 import { Empty } from '../../components';
 import { emptyStatments } from '../../utility/constants';
 import { ToastMessage } from '../toast';
+import { useOutsideClick } from '../../helpers/hooks';
 
 export function VideoGrid(props) {
   const {
@@ -33,6 +34,15 @@ export function VideoGrid(props) {
     useWatchCtx();
   const { dispatch, deleteVideoFromPlaylistsFunction } = usePlaylistCtx();
   const [statement, setStatement] = useState(false);
+  
+  const clickOutsideRef = useRef(null);
+  const clickOutsideValue = useOutsideClick(clickOutsideRef);
+
+  useEffect(() => {
+    if (clickOutsideValue) {
+      handleSubmenu(-1);
+    }
+  }, [clickOutsideValue, handleSubmenu]);
 
   const handleAddToWatchLater = (video) => {
     if (!token) {
@@ -118,7 +128,10 @@ export function VideoGrid(props) {
                       <h1>{title}</h1>
                       <h1 className='thumbnail__description'>{creator}</h1>
                     </div>
-                    <div className='thumbnail__info__icon'>
+                    <div
+                      className='thumbnail__info__icon'
+                      ref={clickOutsideRef}
+                    >
                       <i
                         className='fa-solid fa-ellipsis-vertical'
                         onClick={handleSubmenu.bind(this, index)}
