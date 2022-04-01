@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { VIDEOS } from '../../routes/routes';
 import {
+  useAuthCtx,
   useHistoryCtx,
   useLikedCtx,
   usePlaylistCtx,
@@ -10,6 +11,7 @@ import {
 } from '../../context';
 import { Empty } from '../../components';
 import { emptyStatments } from '../../utility/constants';
+import { ToastMessage } from '../toast';
 
 export function VideoGrid(props) {
   const {
@@ -24,6 +26,7 @@ export function VideoGrid(props) {
     submenuIndex
   } = props;
 
+  const { token } = useAuthCtx();
   const { deleteLikedFromList } = useLikedCtx();
   const { deleteFromHistoryList, clearHistoryList } = useHistoryCtx();
   const { clearWatchLaterList, deleteFromWatchLaterList, addToWatchlist } =
@@ -32,7 +35,11 @@ export function VideoGrid(props) {
   const [statement, setStatement] = useState(false);
 
   const handleAddToWatchLater = (video) => {
-    addToWatchlist(video);
+    if (!token) {
+      ToastMessage('Please Sign In to explore the entire webpage', 'warning');
+    } else {
+      addToWatchlist(video);
+    }
     handleSubmenu(-1);
   };
   const handleDeleteLikedvideo = (id) => {
@@ -49,8 +56,13 @@ export function VideoGrid(props) {
   };
 
   const handleModalFunction = (id) => {
-    handleModal();
-    dispatch({ type: 'ADD_VIDEO_ID', payload: id });
+    if (!token) {
+      ToastMessage('Please Sign In to explore the entire webpage', 'warning');
+    } else {
+      handleModal();
+      dispatch({ type: 'ADD_VIDEO_ID', payload: id });
+    }
+    handleSubmenu(-1);
   };
 
   const handleVideoDeleteFromPlaylist = (id) => {
@@ -133,22 +145,24 @@ export function VideoGrid(props) {
                             {isWatchlater ? 'Remove the Video' : 'Watch Later'}
                           </h1>
                         )}
-                        {<h1
-                          onClick={
-                            isPlaylist
-                              ? handleVideoDeleteFromPlaylist.bind(this, _id)
-                              : handleModalFunction.bind(this, _id)
-                          }
-                        >
-                          {!isPlaylist ? (
-                            <i className='fa-regular fa-circle-play'></i>
-                          ) : (
-                            <i className='fa-solid fa-trash'></i>
-                          )}
-                          {isPlaylist
-                            ? 'Remove from Playlist'
-                            : 'Add to Playlist'}
-                        </h1>}
+                        {
+                          <h1
+                            onClick={
+                              isPlaylist
+                                ? handleVideoDeleteFromPlaylist.bind(this, _id)
+                                : handleModalFunction.bind(this, _id)
+                            }
+                          >
+                            {!isPlaylist ? (
+                              <i className='fa-regular fa-circle-play'></i>
+                            ) : (
+                              <i className='fa-solid fa-trash'></i>
+                            )}
+                            {isPlaylist
+                              ? 'Remove from Playlist'
+                              : 'Add to Playlist'}
+                          </h1>
+                        }
                         {isWishlist && (
                           <h1
                             onClick={handleDeleteLikedvideo.bind(this, _id)}

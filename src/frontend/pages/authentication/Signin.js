@@ -23,6 +23,7 @@ export default function Signin() {
     e.preventDefault();
     dispatch({ type: 'SIGNIN-EMAIL', payload: loginCredentials.email });
     dispatch({ type: 'SIGNIN-PASSWORD', payload: loginCredentials.password });
+    dispatch({ type: 'SIGNUP-USERNAME', payload: loginCredentials.username });
   };
 
   const onSignInHandler = (e) => {

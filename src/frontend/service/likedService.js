@@ -3,19 +3,14 @@ import { GETLIKED } from '../routes/routes';
 
 export const getLikedVideos = async (token) => {
   try {
-    const storedLikes = JSON.parse(localStorage.getItem('userData'))?.likes;
-    if (storedLikes) {
-      return storedLikes;
-    } else {
-      const {
-        data: { likes }
-      } = await axios.get(GETLIKED, {
-        headers: {
-          authorization: token
-        }
-      });
-      return likes;
-    }
+    const {
+      data: { likes }
+    } = await axios.get(GETLIKED, {
+      headers: {
+        authorization: token
+      }
+    });
+    return likes;
   } catch (err) {
     console.log('LIKED_GET_REQUEST_ERROR', err);
   }

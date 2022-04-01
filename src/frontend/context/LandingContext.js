@@ -29,11 +29,11 @@ function LandingProvider({ children }) {
     e.preventDefault();
     if (search.trim().length > 0) {
       dispatch({ type: 'SET_FILTER', payload: 'All' });
-      navigate({
-        pathname: VIDEOS,
-        search: `query=${search.trim()}`
-      });
     }
+    navigate({
+      pathname: VIDEOS,
+      search: `query=${search.trim()}`
+    });
   };
 
   const getCategoriesList = async () => {

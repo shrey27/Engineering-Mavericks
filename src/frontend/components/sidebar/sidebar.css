@@ -39,6 +39,7 @@
 @media screen and (min-width: 325px) {
   .sidebar__options__span {
     display: inline;
+    text-align: center;
   }
 }
 
@@ -62,7 +63,8 @@
     background-color: var(--tertiary--light);
     margin: 0;
   }
-  .sidebar__options span {
-    margin: 0 1rem;
+  .sidebar__options__span {
+    margin: 0;
+    text-align: start;
   }
 }

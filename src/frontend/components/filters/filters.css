@@ -1,15 +1,49 @@
 @import '../../utility/styles.css';
 
 .filter {
-  margin: 0 0.95rem;
-  width: 96%;
-  overflow-x: auto;
-  padding: 1.5rem 0.5rem 1.25rem 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  padding: 0 1rem;
 }
-.filter::-webkit-scrollbar {
-  height: 6px;
+.filter_btn_ctr {
+  display: flex;
+  justify-content: space-between;
+  grid-column: 1/2;
+  grid-row: 1/2;
 }
+.btn.filter_btn {
+  display: inline-block;
 
+  background-color: var(--tertiary--light);
+  border-radius: 5px;
+  color: var(--white);
+  padding: 1.5rem 0.45rem;
+  margin: 0;
+  border: none;
+  outline: none;
+  box-shadow: 0 0.5em 1em -0.125em var(--tertiary--light),
+    0 0 0 1px var(--tertiary--light);
+}
+.btn.filter_btn:hover {
+  background-color: var(--tertiary);
+  border: none;
+  outline: none;
+}
+.filter_ctr {
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  width: 99%;
+  padding: 2rem 0rem 2rem 2.25rem;
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+.filter_ctr::-webkit-scrollbar {
+  height: 0px;
+}
+.filter__option__ctr {
+  display: inline;
+}
 .filter__option {
   font-size: 1rem;
   font-weight: bold;
@@ -27,4 +61,17 @@
 }
 .filter__option__input {
   display: none;
+}
+@media screen and (min-width: 1024px) {
+  .filter_ctr {
+    width: 98%;
+  }
+}
+@media screen and (min-width: 1300px) {
+  .btn.filter_btn {
+    display: none;
+  }
+  .filter_ctr {
+    padding: 2rem 0rem 1rem 0rem;
+  }
 }

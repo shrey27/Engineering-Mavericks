@@ -10,7 +10,7 @@ import { SignoutModal } from '../modal/SignoutModal';
 export function Navbar({ hideSearchBar }) {
   const [signoutModal, setSignoutModal] = useState(false);
   const { state, dispatch, handleSearchSubmit } = useLandingCtx();
-  const { token, handleSignOut } = useAuthCtx();
+  const { token, handleSignOut, username } = useAuthCtx();
   const { search } = state;
 
   const handleSearch = (e) => {
@@ -69,13 +69,20 @@ export function Navbar({ hideSearchBar }) {
         </section>
         <section className='end'>
           {token ? (
-            <button
-              className='end__btn btn btn--auth--solid sb'
-              onClick={() => setSignoutModal(true)}
-            >
-              <span className='end__span'>SIGN OUT</span>
-              <i className='fa-solid fa-right-to-bracket'></i>
-            </button>
+            <div className='menu'>
+              <i className='far fa-user-circle menu__icon'></i>
+              <div className='submenu'>
+                <h1 className='md sb cen'>Hey {username}</h1>
+                <hr className='mg--full' />
+                <button
+                  className='end__btn btn btn--auth--solid sb'
+                  onClick={() => setSignoutModal(true)}
+                >
+                  <span className='end__span'>SIGN OUT</span>
+                  <i className='fa-solid fa-right-to-bracket'></i>
+                </button>
+              </div>
+            </div>
           ) : (
             <Link className='end__btn btn btn--auth--solid sb' to={SIGNIN}>
               <span className='end__span'>SIGN IN</span>

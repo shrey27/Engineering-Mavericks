@@ -3,21 +3,14 @@ import { WATCHLATER } from '../routes/routes';
 
 export const getWatchLaterVideos = async (token) => {
   try {
-    const storedWatchlater = JSON.parse(
-      localStorage.getItem('userData')
-    )?.history;
-    if (storedWatchlater) {
-      return storedWatchlater;
-    } else {
-      const {
-        data: { watchlater }
-      } = await axios.get(WATCHLATER, {
-        headers: {
-          authorization: token
-        }
-      });
-      return watchlater;
-    }
+    const {
+      data: { watchlater }
+    } = await axios.get(WATCHLATER, {
+      headers: {
+        authorization: token
+      }
+    });
+    return watchlater;
   } catch (err) {
     console.log('WATCH_LATER_GET_REQUEST_ERROR', err);
   }

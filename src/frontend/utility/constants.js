@@ -47,7 +47,7 @@ export const navlinks = [
 export const emptyStatments = (keyValue) => {
   switch (keyValue) {
     case 'like':
-      return "You have not liked any videos";
+      return 'You have not liked any videos';
     case 'history':
       return 'You should watch some videos';
     case 'watchlater':
@@ -70,5 +70,6 @@ export const testCredentials = {
 
 export const loginCredentials = {
   email: 'carljones1234@gmail.com',
-  password: 'carljones1234'
+  password: 'carljones1234',
+  username: 'Carl Jones'
 };
