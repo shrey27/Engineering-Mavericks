@@ -2,13 +2,7 @@ import './singlevideo.css';
 import Iframe from 'react-iframe-click';
 import { useState, useEffect } from 'react';
 import { useSingleVideo } from '../../helpers';
-import {
-  Footer,
-  Navbar,
-  Sidebar,
-  Loader,
-  PlaylistModal
-} from '../../components';
+import { Footer, Navbar, Loader, PlaylistModal } from '../../components';
 import { useParams } from 'react-router-dom';
 import {
   useLikedCtx,
@@ -16,8 +10,16 @@ import {
   useWatchCtx,
   usePlaylistCtx
 } from '../../context';
+import Suggestions from './Suggestions';
 
-function VideoPlayer({ source, title, creator, singleVideo, setModalOpen }) {
+function VideoPlayer({
+  source,
+  title,
+  creator,
+  description,
+  singleVideo,
+  setModalOpen
+}) {
   const [liked, setLiked] = useState(false);
   const [watchlater, setWatchLater] = useState(false);
   const { _id } = singleVideo;
@@ -67,32 +69,38 @@ function VideoPlayer({ source, title, creator, singleVideo, setModalOpen }) {
 
   return (
     <div className='video__container'>
-      <Iframe
-        src={`https://www.youtube.com/embed/${source}`}
-        onInferredClick={handleAddToHistory}
-        frameBorder='0'
-        allowFullScreen
-      ></Iframe>
-      <h1 className='video__title'>{title}</h1>
-      <h1 className='video__creator'>{creator}</h1>
-      <div className='video__buttons'>
-        <button
-          className={`video__button ${liked && 'liked'}`}
-          onClick={handleAddToLike}
-        >
-          <i className='fa-solid fa-thumbs-up'></i>
-          {liked ? 'Liked' : 'Like'}
-        </button>
-        <button
-          className={`video__button ${watchlater && 'liked'}`}
-          onClick={handleAddToWatchLater}
-        >
-          <i className='fa-solid fa-clock'></i>
-          {watchlater ? 'Saved for Later' : 'Watch Later'}
-        </button>
-        <button className='video__button' onClick={handleModal}>
-          <i className='fa-solid fa-list'></i>Save to Playlist
-        </button>
+      <div className='video__iframe'>
+        <Iframe
+          src={`https://www.youtube.com/embed/${source}`}
+          onInferredClick={handleAddToHistory}
+          frameBorder='0'
+          allowFullScreen
+        ></Iframe>
+      </div>
+      <div className='video__control'>
+        <h1 className='video__title'>{title}</h1>
+        <h1 className='video__creator'>{creator}</h1>
+        <p className='video__description'>{description}</p>
+        <div className='video__buttons'>
+          <button
+            className={`video__button ${liked && 'liked'}`}
+            onClick={handleAddToLike}
+          >
+            <i className='fa-solid fa-thumbs-up'></i>
+            {liked ? 'Liked' : 'Like'}
+          </button>
+          <button
+            className={`video__button ${watchlater && 'liked'}`}
+            onClick={handleAddToWatchLater}
+          >
+            <i className='fa-solid fa-clock'></i>
+            {watchlater ? 'Saved for Later' : 'Watch Later'}
+          </button>
+          <button className='video__button' onClick={handleModal}>
+            <i className='fa-solid fa-list'></i>Save to Playlist
+          </button>
+        </div>
+        <Suggestions />
       </div>
     </div>
   );
@@ -107,8 +115,8 @@ export default function SingleVideo() {
     <div>
       <Navbar />
       {modalOpen && <PlaylistModal setModalOpen={setModalOpen} />}
-      <div className='main__grid'>
-        <Sidebar videos={true} />
+      <div className=''>
+        {/* <Sidebar videos={true} /> */}
         <div className='main'>
           {!singleVideo ? (
             <Loader />
@@ -118,6 +126,7 @@ export default function SingleVideo() {
               title={singleVideo?.title}
               creator={singleVideo?.creator}
               singleVideo={singleVideo}
+              description={singleVideo?.description}
               setModalOpen={setModalOpen}
             />
           )}

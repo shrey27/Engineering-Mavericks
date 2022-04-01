@@ -3,6 +3,7 @@
 .video__container {
   width: 99vw;
   height: auto;
+  margin: 1rem 0;
 }
 iframe {
   height: 100%;
@@ -16,7 +17,14 @@ iframe {
 }
 .video__creator {
   font-size: 1.25rem;
-  color: var(--footer--one);
+  color: var(--white);
+  margin: 0.5rem 2rem;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+.video__description {
+  font-size: 1.25rem;
+  color:var(--white);
   margin: 0.5rem 2rem;
   font-weight: normal;
 }
@@ -50,9 +58,21 @@ iframe {
 }
 
 @media screen and (min-width: 1024px) {
-  .video__container {
-    width: 100%;
-    height: 100%;
+  .video__iframe {
+    width: 80%;
+    height: auto;
+    margin: auto;
+    border-radius: 5px;
+    padding: 1rem;
+    background-color: var(--tertiary);
+  }
+  .video__control {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
   }
   iframe {
     height: auto;
