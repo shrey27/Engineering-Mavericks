@@ -1,6 +1,7 @@
 import './Category.css';
 import { useLandingCtx } from '../../context';
 import { Loader } from '../../components/Loader';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export default function Category() {
   const {
@@ -20,7 +21,7 @@ export default function Category() {
               <h1>{elem.categoryName}</h1>
               <h2>{elem.description}</h2>
             </div>
-            <img
+            <LazyLoadImage
               src={`${elem.source}.webp`}
               alt='categoryImg'
               className='category__banner'
