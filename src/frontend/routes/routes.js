@@ -50,7 +50,6 @@ export const availableRoutes = (
     <Route exact path={LANDING} element={<Landing />} />
     <Route exact path={MOCKMAN} element={<MockAPI />} />
     <Route exact path={VIDEOS} element={<VideoListing />} />
-    <Route exact path={`${VIDEOS}/:videoId`} element={<SingleVideo />} />
     <Route exact path={SIGNIN} element={<Signin />} />
     <Route exact path={SIGNUP} element={<Signup />} />
     <Route path='*' element={<NotFound />} />
@@ -64,6 +63,7 @@ export const availableRoutes = (
       <Route exact path={LIKED} element={<Liked />} />
       <Route exact path={HISTORY} element={<History />} />
       <Route exact path={WATCH} element={<WatchLater />} />
+      <Route exact path={`${VIDEOS}/:videoId`} element={<SingleVideo />} />
     </Route>
   </Routes>
 );
