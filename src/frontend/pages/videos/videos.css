@@ -1,1 +1,13 @@
 @import '../../utility/styles.css';
+
+.sort__btn {
+  margin: 1rem;
+  padding: 0.5rem;
+  color: var(--white);
+  background: transparent;
+  border: 2px solid var(--white);
+  max-width: fit-content;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}

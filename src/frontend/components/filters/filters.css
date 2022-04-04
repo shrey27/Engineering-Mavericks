@@ -33,7 +33,7 @@
   overflow-x: scroll;
   scroll-behavior: smooth;
   width: 99%;
-  padding: 2rem 0rem 1rem;
+  padding: 1rem 0rem;
   grid-column: 1/2;
   grid-row: 1/2;
 }

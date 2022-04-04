@@ -1,6 +1,5 @@
 import './videos.css';
 import { useState, useEffect } from 'react';
-
 import { useLandingCtx, useAuthCtx } from '../../context';
 import {
   Footer,
@@ -21,30 +20,31 @@ export default function VideoListing() {
     filteredList
   } = useLandingCtx();
   const { token } = useAuthCtx();
-  const navigate = useNavigate();  
+  const navigate = useNavigate();
   const queryParams = new URLSearchParams(window.location.search);
   const search = queryParams.get('query');
 
+  const [sort, setSort] = useState(false);
   const [submenuIndex, setSubmenuIndex] = useState(-1);
   const [modalOpen, setModalOpen] = useState(false);
   const [alteredList, setAlteredList] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
+    let tempList = [...filteredList];
     if (search) {
-      const tempList = filteredList.filter((e) =>
+      tempList = tempList.filter((e) =>
         e.title.toLowerCase().includes(search.toLowerCase())
       );
-      setAlteredList([...tempList]);
-    } else {
-      setAlteredList([...filteredList]);
     }
-    setLoading(false);
-  }, [search, filteredList]);
+    if (sort) {
+      tempList = tempList.sort((a, b) => b.videoDate - a.videoDate);
+    }
+    setAlteredList([...tempList]);
+  }, [search, filteredList, sort]);
 
   const handleModal = () => {
     if (token) {
@@ -82,12 +82,14 @@ export default function VideoListing() {
       <div className='main__grid'>
         <Sidebar noVideos={filteredList ? false : true} />
         <div className='main'>
+          <div className='flex-ct-st xs-s'>
+            <button onClick={() => setSort(true)} className='btn btn--auth'>
+              Show latest videos <i className='fa-solid fa-sort'></i>
+            </button>
+          </div>
           <Filters handleFilterChange={handleFilterChange} filter={filter} />
-          {loading ? (
-            <Loader />
-          ) : (
-            <VideoGrid {...videoGridProps}/>
-          )}
+          {/* {loading ? <Loader /> : <VideoGrid {...videoGridProps} />} */}
+          <VideoGrid {...videoGridProps} />
         </div>
       </div>
       <Footer />
