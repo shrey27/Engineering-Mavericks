@@ -36,6 +36,7 @@ export function PlaylistModal({ setModalOpen, onPlaylists }) {
     if (onPlaylists) {
       handleCloseModal();
     }
+    setPlaylistName('');
   };
 
   const handleVideoInPlaylist = (e, id) => {
