@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { VIDEOS } from '../routes/routes';
 import { getCategories, getVideos } from '../service';
 import { defaultLandingState, landingReducer } from '../helpers';
+import { ToastMessage } from '../components';
 
 const LandingContext = createContext();
 
@@ -21,7 +22,7 @@ const filterVideos = (filter, videoList) => {
 function LandingProvider({ children }) {
   const navigate = useNavigate();
   const [state, dispatch] = useReducer(landingReducer, defaultLandingState);
-  const { filter, search, videoList } = state;
+  const { filter, search, videoList, categoryList } = state;
 
   const filteredList = filterVideos(filter, videoList);
 
@@ -46,6 +47,25 @@ function LandingProvider({ children }) {
     dispatch({ type: 'GET_VIDEOS', payload: videos });
   };
 
+  const addNewVideo = async (formObject) => {
+    const { youtubeId, category, creator, title, description } = formObject;
+    const categoryCaseChange =
+      category[0].toUpperCase() + category.substring(1).toLowerCase();
+    if (!categoryList.includes(categoryCaseChange)) {
+      dispatch({ type: 'GET_CATEGORY', payload: [...categoryList, category] });
+    }
+    const videoObject = {
+      _id: `v${videoList.length + 1}`,
+      video: youtubeId,
+      creator,
+      title,
+      category,
+      description
+    };
+    dispatch({ type: 'GET_VIDEOS', payload: [...videoList, videoObject] });
+    ToastMessage('Video uploaded successfully', 'success');
+  };
+
   useEffect(() => {
     getCategoriesList();
     getVideosList();
@@ -53,7 +73,7 @@ function LandingProvider({ children }) {
 
   return (
     <LandingContext.Provider
-      value={{ state, dispatch, handleSearchSubmit, filteredList }}
+      value={{ state, dispatch, handleSearchSubmit, filteredList, addNewVideo }}
     >
       {children}
     </LandingContext.Provider>

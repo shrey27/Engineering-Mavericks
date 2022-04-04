@@ -14,7 +14,6 @@
 }
 .btn.filter_btn {
   display: inline-block;
-
   background-color: var(--tertiary--light);
   border-radius: 5px;
   color: var(--white);
@@ -34,7 +33,7 @@
   overflow-x: scroll;
   scroll-behavior: smooth;
   width: 99%;
-  padding: 2rem 0rem 2rem 2.25rem;
+  padding: 2rem 0rem 1rem;
   grid-column: 1/2;
   grid-row: 1/2;
 }

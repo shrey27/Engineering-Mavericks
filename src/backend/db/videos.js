@@ -8,14 +8,18 @@ export const videos = [
     title: 'How does Thyristors work? ',
     creator: 'The tech Guy',
     video: '0AgPUikpvpM',
-    category: 'Electrical'
+    category: 'Electrical',
+    description:
+      'Do you know that a semiconductor device called a ‘thyristor’ solves the huge issue of power transfer from a generating station to consumers located far away? Traditional AC power transmissions face huge power losses and also suffer from the issue of stability and controllability. '
   },
   {
     _id: 'v2',
     title: 'How does Inverters work? ',
     creator: 'The tech Guy',
     video: 'qVeERT4nyz8',
-    category: 'Electrical'
+    category: 'Electrical',
+    description:
+      'Inverters have taken a prominent role in the modern technological world due to the sudden rise of electric cars and renewable energy technologies. Inverters convert DC power  to AC power. They are also used in Uninterruptible Power Supplies, Control of Electrical Machines and Active Power filtering.'
   },
   {
     _id: 'v3',

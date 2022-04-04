@@ -62,7 +62,7 @@
 .menu {
   color: var(--white);
   height: 5rem;
-  padding: 5% 0;
+  padding: 25% 0;
 }
 .menu__icon {
   font-size: 1.75rem;
@@ -96,5 +96,8 @@
   }
   .header__nav__auth {
     display: block;
+  }
+  .menu {
+    padding: 5% 0;
   }
 }
