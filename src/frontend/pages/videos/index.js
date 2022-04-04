@@ -83,7 +83,7 @@ export default function VideoListing() {
         <Sidebar noVideos={filteredList ? false : true} />
         <div className='main'>
           <div className='flex-ct-st xs-s'>
-            <button onClick={() => setSort(true)} className='btn btn--auth'>
+            <button onClick={() => setSort(true)} className='btn btn--auth sb'>
               Show latest videos <i className='fa-solid fa-sort'></i>
             </button>
           </div>
