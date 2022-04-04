@@ -19,7 +19,7 @@ const AuthenticationProvider = ({ children }) => {
   const navigate = useNavigate();
   const storedData = useLocalStorage();
 
-  const handleSignIn = async () => {
+  const handleSignIn = async (navigateTo) => {
     if (validationForSignIn(state, dispatch)) {
       if (!rememberMe) {
         const response = await signInApi(email, password);
@@ -29,7 +29,7 @@ const AuthenticationProvider = ({ children }) => {
           localStorage.setItem('userData', JSON.stringify(foundUser));
           dispatch({ type: 'TOKEN-SAVED', payload: encodedToken });
           ToastMessage('Sign In completed', 'success');
-          navigate(LANDING);
+          navigate(navigateTo ?? LANDING, { replace: true });
         } else {
           dispatch({
             type: 'SIGNIN-ERROR',
@@ -46,7 +46,7 @@ const AuthenticationProvider = ({ children }) => {
           dispatch({ type: 'TOKEN-SAVED', payload: storedToken });
           dispatch({ type: 'SET-DEFAULT' });
           ToastMessage('Sign In completed', 'success');
-          navigate(LANDING);
+          navigate(navigateTo ?? LANDING, { replace: true });
         } else {
           dispatch({
             type: 'SIGNIN-ERROR',

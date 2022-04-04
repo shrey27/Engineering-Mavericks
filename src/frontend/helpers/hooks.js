@@ -1,13 +1,11 @@
 import { useLandingCtx, usePlaylistCtx } from '../context';
 
 /*
-
 1.) const datatoUpdate = JSON.parse(localStorage.getItem('userData'));
 2.) datatoUpdate.likes = [...likes];
 3.) localStorage.setItem('userData', JSON.stringify(datatoUpdate));
 
 1,2,3 => updateLocalStorage
-
 */
 export function useLocalStorage() {
   const data = JSON.parse(localStorage.getItem('userData'));
@@ -45,3 +43,4 @@ export const useSinglePlaylistVideos = (id) => {
   const { videos } = playlists.find((elem) => elem._id === id);
   return videos;
 };
+

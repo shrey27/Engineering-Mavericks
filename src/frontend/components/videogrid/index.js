@@ -12,6 +12,7 @@ import {
 import { Empty } from '../../components';
 import { emptyStatments } from '../../utility/constants';
 import { ToastMessage } from '../toast';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export function VideoGrid(props) {
   const {
@@ -107,7 +108,7 @@ export function VideoGrid(props) {
               return (
                 <div className='thumbnail' key={_id}>
                   <Link to={`${VIDEOS}/${_id}`}>
-                    <img
+                    <LazyLoadImage
                       src={`https://i.ytimg.com/vi/${video}/hqdefault.jpg`}
                       alt={`thumbnail_${index + 1}`}
                       className='thumbnail__banner'

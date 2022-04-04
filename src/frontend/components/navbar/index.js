@@ -72,7 +72,7 @@ export function Navbar({ hideSearchBar }) {
             <div className='menu'>
               <i className='far fa-user-circle menu__icon'></i>
               <div className='submenu'>
-                <h1 className='md sb cen'>Hey {username}</h1>
+                <h1 className='md sb cen'>Hey {username.split(' ')[0]}</h1>
                 <hr className='mg--full' />
                 <button
                   className='end__btn btn btn--auth--solid sb'

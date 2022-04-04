@@ -3,6 +3,7 @@ import { Navbar } from '../../components';
 import { Link } from 'react-router-dom';
 import { VIDEOS } from '../../routes/routes';
 import pic from '../../assets/wallbanner.webp';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export default function Header() {
   return (
@@ -22,7 +23,7 @@ export default function Header() {
           </Link>
         </div>
         <div className='header__body__banner'>
-          <img src={pic} alt='banner' className='header__banner' />
+          <LazyLoadImage src={pic} alt='banner' className='header__banner' />
         </div>
       </div>
     </div>

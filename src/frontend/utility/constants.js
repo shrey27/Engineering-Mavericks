@@ -73,3 +73,90 @@ export const loginCredentials = {
   password: 'carljones1234',
   username: 'Carl Jones'
 };
+
+export const suggestedVideos = [
+  {
+    _id: 'v9',
+    title: 'The Journeys of Apollo',
+    creator: 'The tech Guy',
+    video: 'GNJpoP642wc',
+    category: 'Space'
+  },
+  {
+    _id: 'v10',
+    title: 'What we found when we went looking for another Earth',
+    creator: 'The tech Guy',
+    video: 'lrAFaONyLtU',
+    category: 'Stuff'
+  },
+  {
+    _id: 'v11',
+    title: 'How does an Escalator work?',
+    creator: 'The tech Guy',
+    video: '1jfNIBtfWDY',
+    category: 'Stuff'
+  },
+  {
+    _id: 'v12',
+    title: 'How V8 Engines Work - A Simple Explanation',
+    creator: 'The tech Guy',
+    video: 'KZLygdpg3LU',
+    category: 'Stuff'
+  },
+  {
+    _id: 'v16',
+    title: 'The interesting engineering behind the SHAPE of Train wheels! ',
+    creator: 'The tech Guy',
+    video: 'XzgryPhtc1Y',
+    category: 'Physics'
+  },
+  {
+    _id: 'v17',
+    title: 'Tesla Turbine | The interesting physics behind it ',
+    creator: 'The tech Guy',
+    video: 'AfCyzIbpLN4',
+    category: 'Physics'
+  },
+  {
+    _id: 'v18',
+    title: 'The Fastest train ever built | The complete physics of it ',
+    creator: 'The tech Guy',
+    video: 'XjwF-STGtfE',
+    category: 'Physics'
+  },
+  {
+    _id: 'v19',
+    title: 'Internet & Telecommunication Technology',
+    creator: 'The tech Guy',
+    video: '0WSTtgyDz4U',
+    category: 'Communication'
+  },
+  {
+    _id: 'v20',
+    title: 'How does the INTERNET work?',
+    creator: 'The tech Guy',
+    video: 'x3c1ih2NJEg',
+    category: 'Communication'
+  },
+  {
+    _id: 'v21',
+    title: 'Understanding Electromagnetic Radiation!',
+    creator: 'The tech Guy',
+    video: 'FWCN_uI5ygY',
+    category: 'Communication'
+  },
+  {
+    _id: 'v22',
+    title: 'The Tragic Story of Nikola Tesla',
+    creator: 'The tech Guy',
+    video: 'FeUA-0G1p5k',
+    category: 'Scientists'
+  },
+  {
+    _id: 'v23',
+    title: 'Nikola Tesla vs Thomas Edison EPIC NEW Documentary 2015 HD',
+    creator: 'The tech Guy',
+    video: 'Cidg4Xfpjmc',
+    category: 'Scientists'
+  }
+];

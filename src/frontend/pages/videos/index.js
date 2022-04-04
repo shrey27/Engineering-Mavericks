@@ -1,5 +1,6 @@
 import './videos.css';
 import { useState, useEffect } from 'react';
+
 import { useLandingCtx, useAuthCtx } from '../../context';
 import {
   Footer,
@@ -20,8 +21,7 @@ export default function VideoListing() {
     filteredList
   } = useLandingCtx();
   const { token } = useAuthCtx();
-  const navigate = useNavigate();
-
+  const navigate = useNavigate();  
   const queryParams = new URLSearchParams(window.location.search);
   const search = queryParams.get('query');
 
@@ -83,7 +83,11 @@ export default function VideoListing() {
         <Sidebar noVideos={filteredList ? false : true} />
         <div className='main'>
           <Filters handleFilterChange={handleFilterChange} filter={filter} />
-          {loading ? <Loader /> : <VideoGrid {...videoGridProps} />}
+          {loading ? (
+            <Loader />
+          ) : (
+            <VideoGrid {...videoGridProps}/>
+          )}
         </div>
       </div>
       <Footer />
