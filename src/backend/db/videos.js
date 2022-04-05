@@ -2,11 +2,15 @@
  * Videos Database can be added here.
  * You can add videos of your wish with different attributes
  * */
+import { v4 as uuid } from 'uuid';
 export const videos = [
   {
     _id: 'v1',
     viewCount: 0,
-    comments: ['lorem ipsum', 'lorem ipsum'],
+    comments: [
+      { _id: uuid(), comment: 'Lorem Ipsum Lorem Ipsum Lorem Ipsum' },
+      { _id: uuid(), comment: 'Lorem Ipsum Lorem Ipsum Lorem Ipsum' }
+    ],
     videoDate: '1572615545',
     title: 'How does Thyristors work? ',
     creator: 'The tech Guy',

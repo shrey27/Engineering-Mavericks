@@ -12,16 +12,32 @@ iframe {
   aspect-ratio: 16/9;
 }
 .video__title {
+  width: 95%;
   font-size: 1.5rem;
+  font-weight: 500;
   color: var(--white);
-  margin: 1rem 2rem 0.5rem;
+  margin: 1rem 2rem;
+}
+.video__title__tag {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--white);
+  margin: 1rem 2rem;
+  background-color: var(--tag);
+  padding: 0.5rem;
+  border-radius: 5px;
+  width: fit-content;
 }
 .video__creator {
   font-size: 1.25rem;
+  font-weight: 700;
   color: var(--white);
   margin: 0.5rem 2rem;
-  font-weight: normal;
   text-transform: uppercase;
+  background-color: var(--tertiary);
+  padding: 0.75rem;
+  border-radius: 5px;
+  width: fit-content;
 }
 .video__description {
   font-size: 1.25rem;
@@ -62,9 +78,58 @@ iframe {
 .comments {
   color: var(--white);
   margin: 1rem 2rem;
+  width: 100%;
 }
-
-/* Media Query Screens */
+.comments__heading {
+  font-size: 1.25rem;
+  margin: 1rem 0;
+  background-color: var(--white);
+  border-radius: 5px;
+  padding: 0.5rem;
+  color: var(--tertiary);
+  width: fit-content;
+}
+.comments__input {
+  width: 70%;
+  border: none;
+  outline: none;
+  padding: 0.5rem;
+  font-size: 1.25rem;
+  background: transparent;
+  color: var(--white);
+  border-bottom: 2px solid var(--dismiss--light);
+}
+.comments__statement {
+  max-width: 80%;
+  font-size: 1.25rem;
+}
+.btn__trash {
+  padding: 0.45rem 0.15rem;
+  border-radius: 5px;
+  border: none;
+  color: var(--tag);
+  border-radius: 50%;
+  margin: 0 0.5rem;
+}
+.stack {
+  width: 80%;
+}
+.stack__item {
+  width: 100%;
+  margin: 0.5rem;
+  background-color: var(--tertiary);
+  border: 1px solid var(--tertiary);
+  padding: 0.5rem;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.stack__item[index='odd'] {
+  background-color: var(--tertiary--light);
+  border: 1px solid var(--dismiss--light);
+}
+/*Media Query Screens */
 @media screen and (min-width: 1024px) {
   .video__iframe {
     width: 80%;
@@ -86,5 +151,14 @@ iframe {
     height: auto;
     width: 100%;
     aspect-ratio: 26/9;
+  }
+  .stack {
+    width: 60%;
+  }
+  .comments__input {
+    width: 60%;
+  }
+  .comments__statement {
+    max-width: 60%;
   }
 }

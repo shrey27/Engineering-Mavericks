@@ -25,6 +25,8 @@ categories are
 - Single Video Page- Viewer can play the video, like it, save for later or add
   video to a playlist
 - Single video page also shows viewers a list of suggested videos
+- Comments on every single video page
+- Upload a new youtube video, using URL and some basic information
 - Playlists page- CTA for creating a playlist, editing videos in a playlist
 - Liked Videos Page- shows list of all the liked videos
 - Watch Later videos page- Stores videos which were saved in watch later on
@@ -45,6 +47,9 @@ categories are
   playlist or watch later
 - All the images are wrapped inside alazy loader component for more optimised
   webapp UX
+- Infinite Scrolling on video Listing page
+- Add, edit or delete comments on Single video Page
+- Upload a video of pre-exisiting category or new category with updated filters
 - Toast messages on every screen to acknowledge user actions
 
 ## Tech stack used

@@ -29,7 +29,7 @@ html {
 }
 body {
   margin: 0 auto;
-  width: 100%;
+  width: 99.5vw;
   height: 100vh;
   overflow-x: hidden;
   background-color: var(--tertiary--light);

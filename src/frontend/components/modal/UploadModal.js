@@ -61,6 +61,7 @@ export function UploadModal({ setuploadModal }) {
               type='text'
               name='url'
               id='url'
+              autoComplete='off'
               value={newVideo?.url}
               onChange={(e) =>
                 setNewVideo({ ...newVideo, url: e.target.value })
@@ -77,6 +78,7 @@ export function UploadModal({ setuploadModal }) {
               type='text'
               name='videoTitle'
               id='videoTitle'
+              autoComplete='off'
               value={newVideo?.title}
               onChange={(e) =>
                 setNewVideo({ ...newVideo, title: e.target.value })
@@ -93,6 +95,7 @@ export function UploadModal({ setuploadModal }) {
               type='text'
               name='creator'
               id='creator'
+              autoComplete='off'
               value={newVideo?.creator}
               onChange={(e) =>
                 setNewVideo({ ...newVideo, creator: e.target.value })
@@ -109,6 +112,7 @@ export function UploadModal({ setuploadModal }) {
               type='text'
               name='category'
               id='category'
+              autoComplete='off'
               value={newVideo?.category}
               onChange={(e) =>
                 setNewVideo({ ...newVideo, category: e.target.value })
@@ -125,6 +129,7 @@ export function UploadModal({ setuploadModal }) {
               type='text'
               name='description'
               id='description'
+              autoComplete='off'
               value={newVideo?.description}
               onChange={(e) =>
                 setNewVideo({ ...newVideo, description: e.target.value })

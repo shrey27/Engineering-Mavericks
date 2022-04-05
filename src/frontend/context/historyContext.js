@@ -60,7 +60,10 @@ const HistoryProvider = ({ children }) => {
     } else {
       dispatch({ type: 'CLOSE_HISTORY_LOADER' });
     }
-    landingDispatch({ type: 'UPDATE_VIEWCOUNT', payload: video._id });
+    landingDispatch({
+      type: 'UPDATE_VIEWCOUNT',
+      payload: { videoId: video._id }
+    });
   };
 
   useEffect(() => {
