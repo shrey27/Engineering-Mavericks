@@ -66,6 +66,20 @@ function LandingProvider({ children }) {
     ToastMessage('Video uploaded successfully', 'success');
   };
 
+  const updateCommentsOnVideo = (videoId, comment) => {
+    const video = videoList.find((item) => item._id === videoId);
+    if (video.comments.includes(comment)) {
+      video.comments = video.comments.filter((elem) => elem !== comment);
+    } else {
+      video.comments.push(comment);
+    }
+  };
+
+  const getComments = (videoId) => {
+    const video = videoList.find((item) => item._id === videoId);
+    return video.comments;
+  };
+
   useEffect(() => {
     getCategoriesList();
     getVideosList();
@@ -73,7 +87,15 @@ function LandingProvider({ children }) {
 
   return (
     <LandingContext.Provider
-      value={{ state, dispatch, handleSearchSubmit, filteredList, addNewVideo }}
+      value={{
+        state,
+        dispatch,
+        handleSearchSubmit,
+        filteredList,
+        addNewVideo,
+        updateCommentsOnVideo,
+        getComments
+      }}
     >
       {children}
     </LandingContext.Provider>

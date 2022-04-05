@@ -12,17 +12,16 @@ import {
 } from '../../context';
 import Suggestions from './Suggestions';
 
-function VideoPlayer({
-  source,
-  title,
-  creator,
-  description,
-  singleVideo,
-  setModalOpen
-}) {
+function VideoPlayer({ singleVideo, setModalOpen }) {
   const [liked, setLiked] = useState(false);
   const [watchlater, setWatchLater] = useState(false);
-  const { _id } = singleVideo;
+  const {
+    _id,
+    video: source,
+    title,
+    creator,
+    description
+  } = singleVideo;
   const {
     addToLikedlist,
     state: { addedVideosId }
@@ -122,11 +121,7 @@ export default function SingleVideo() {
             <Loader />
           ) : (
             <VideoPlayer
-              source={singleVideo?.video}
-              title={singleVideo?.title}
-              creator={singleVideo?.creator}
               singleVideo={singleVideo}
-              description={singleVideo?.description}
               setModalOpen={setModalOpen}
             />
           )}

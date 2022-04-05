@@ -5,6 +5,7 @@
 export const videos = [
   {
     _id: 'v1',
+    comments: ['lorem ipsum', 'lorem ipsum'],
     videoDate: '1572615545',
     title: 'How does Thyristors work? ',
     creator: 'The tech Guy',
@@ -15,6 +16,7 @@ export const videos = [
   },
   {
     _id: 'v2',
+    comments: [],
     videoDate: '1506865145',
     title: 'How does Inverters work? ',
     creator: 'The tech Guy',
@@ -25,6 +27,7 @@ export const videos = [
   },
   {
     _id: 'v3',
+    comments: [],
     videoDate: '1614605945',
     title: "MCB's, how do they work?",
     creator: 'The tech Guy',
@@ -35,6 +38,7 @@ export const videos = [
   },
   {
     _id: 'v4',
+    comments: [],
     videoDate: '1512135545',
     title: 'How Clutch works ?',
     video: 'devo3kdSPQY',
@@ -45,6 +49,7 @@ export const videos = [
   },
   {
     _id: 'v5',
+    comments: [],
     videoDate: '1643722745',
     title: 'Interesting concept behind your car window',
     creator: 'The tech Guy',
@@ -55,6 +60,7 @@ export const videos = [
   },
   {
     _id: 'v6',
+    comments: [],
     videoDate: '1606829945',
     title: "Tesla Model 3's Motor",
     creator: 'The tech Guy',
@@ -65,6 +71,7 @@ export const videos = [
   },
   {
     _id: 'v7',
+    comments: [],
     videoDate: '1435757945',
     title: 'How It works: The International Space Station',
     creator: 'The tech Guy',
@@ -75,6 +82,7 @@ export const videos = [
   },
   {
     _id: 'v8',
+    comments: [],
     videoDate: '1409578745',
     title: "NASA Space Shuttle's Final Voyage of Atlantis",
     creator: 'The tech Guy',
@@ -85,6 +93,7 @@ export const videos = [
   },
   {
     _id: 'v9',
+    comments: [],
     videoDate: '1405517945',
     title: 'The Journeys of Apollo',
     creator: 'The tech Guy',
@@ -95,6 +104,7 @@ export const videos = [
   },
   {
     _id: 'v10',
+    comments: [],
     videoDate: '1641044345',
     title: 'What we found when we went looking for another Earth',
     creator: 'The tech Guy',
@@ -105,6 +115,7 @@ export const videos = [
   },
   {
     _id: 'v11',
+    comments: [],
     videoDate: '1572615545',
     title: 'How does an Escalator work?',
     creator: 'The tech Guy',
@@ -115,6 +126,7 @@ export const videos = [
   },
   {
     _id: 'v12',
+    comments: [],
     videoDate: '1522589945',
     title: 'How V8 Engines Work - A Simple Explanation',
     creator: 'The tech Guy',
@@ -125,6 +137,7 @@ export const videos = [
   },
   {
     _id: 'v13',
+    comments: [],
     videoDate: '1643722745',
     title:
       'Scientists Terrifying New Discovery Under Sahara Desert Changes Everything! ',
@@ -136,6 +149,7 @@ export const videos = [
   },
   {
     _id: 'v14',
+    comments: [],
     videoDate: '1603201145',
     title: "15 Oldest Technologies That Scientists Can't Explain",
     creator: 'The tech Guy',
@@ -146,6 +160,7 @@ export const videos = [
   },
   {
     _id: 'v15',
+    comments: [],
     videoDate: '1599313145',
     title: 'Survivor Says Something New About the Bermuda Triangle Mystery ',
     creator: 'The tech Guy',
@@ -156,6 +171,7 @@ export const videos = [
   },
   {
     _id: 'v16',
+    comments: [],
     videoDate: '1640785145',
     title: 'The interesting engineering behind the SHAPE of Train wheels! ',
     creator: 'The tech Guy',
@@ -166,6 +182,7 @@ export const videos = [
   },
   {
     _id: 'v17',
+    comments: [],
     videoDate: '1622727545',
     title: 'Tesla Turbine | The interesting physics behind it ',
     creator: 'The tech Guy',
@@ -176,6 +193,7 @@ export const videos = [
   },
   {
     _id: 'v18',
+    comments: [],
     videoDate: '1623850745',
     title: 'The Fastest train ever built | The complete physics of it ',
     creator: 'The tech Guy',
@@ -186,6 +204,7 @@ export const videos = [
   },
   {
     _id: 'v19',
+    comments: [],
     videoDate: '1569937145',
     title: 'Internet & Telecommunication Technology',
     creator: 'The tech Guy',
@@ -196,6 +215,7 @@ export const videos = [
   },
   {
     _id: 'v20',
+    comments: [],
     videoDate: '1559137145',
     title: 'How does the INTERNET work?',
     creator: 'The tech Guy',
@@ -206,6 +226,7 @@ export const videos = [
   },
   {
     _id: 'v21',
+    comments: [],
     videoDate: '1569245945',
     title: 'Understanding Electromagnetic Radiation!',
     creator: 'The tech Guy',
@@ -216,6 +237,7 @@ export const videos = [
   },
   {
     _id: 'v22',
+    comments: [],
     videoDate: '1593610745',
     title: 'The Tragic Story of Nikola Tesla',
     creator: 'The tech Guy',
@@ -225,6 +247,7 @@ export const videos = [
   },
   {
     _id: 'v23',
+    comments: [],
     videoDate: '1535809145',
     title: 'Nikola Tesla vs Thomas Edison EPIC NEW Documentary',
     creator: 'The tech Guy',
@@ -234,6 +257,7 @@ export const videos = [
   },
   {
     _id: 'v24',
+    comments: [],
     videoDate: '1613914745',
     title: 'BBC: Inside Einsteins Mind (Science Documentary )',
     creator: 'The tech Guy',

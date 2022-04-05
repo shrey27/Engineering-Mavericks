@@ -1,5 +1,6 @@
 @import '../../utility/styles.css';
 
+/* Video container */
 .video__container {
   width: 99vw;
   height: auto;
@@ -24,7 +25,7 @@ iframe {
 }
 .video__description {
   font-size: 1.25rem;
-  color:var(--white);
+  color: var(--white);
   margin: 0.5rem 2rem;
   font-weight: normal;
 }
@@ -57,6 +58,13 @@ iframe {
   color: var(--white);
 }
 
+/* Comments */
+.comments {
+  color: var(--white);
+  margin: 1rem 2rem;
+}
+
+/* Media Query Screens */
 @media screen and (min-width: 1024px) {
   .video__iframe {
     width: 80%;
