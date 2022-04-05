@@ -107,6 +107,7 @@ export default function VideoListing() {
   const handleFilterChange = (e) => {
     dispatch({ type: 'SET_FILTER', payload: e.target.value });
   };
+
   const videoGridProps = {
     videos: alteredList,
     showFilters: true,

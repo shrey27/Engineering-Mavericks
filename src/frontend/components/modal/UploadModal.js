@@ -9,22 +9,20 @@ export function UploadModal({ setuploadModal }) {
     category: '',
     creator: '',
     title: '',
-    description: '',
-    videoDate: ''
+    description: ''
   });
   const [error, setError] = useState(false);
   const { addNewVideo } = useLandingCtx();
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const { url, category, creator, title, description, videoDate } = newVideo;
+    const { url, category, creator, title, description } = newVideo;
     if (
       !url?.trim().length ||
       !category?.trim().length ||
       !creator?.trim().length ||
       !title?.trim().length ||
-      !description?.trim().length ||
-      !videoDate.length
+      !description?.trim().length
     )
       setError(true);
     else {
@@ -114,22 +112,6 @@ export function UploadModal({ setuploadModal }) {
               value={newVideo?.category}
               onChange={(e) =>
                 setNewVideo({ ...newVideo, category: e.target.value })
-              }
-              onFocus={() => setError(false)}
-            />
-          </div>
-          <div className='authentication__input'>
-            <label htmlFor='videoDate' className='label'>
-              Date of Upload
-            </label>
-            <input
-              className='input sm-s'
-              type='date'
-              name='videoDate'
-              id='videoDate'
-              value={newVideo?.videoDate}
-              onChange={(e) =>
-                setNewVideo({ ...newVideo, videoDate: e.target.value })
               }
               onFocus={() => setError(false)}
             />

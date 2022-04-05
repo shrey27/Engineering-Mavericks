@@ -27,7 +27,7 @@ function getId(url) {
 function LandingProvider({ children }) {
   const navigate = useNavigate();
   const [state, dispatch] = useReducer(landingReducer, defaultLandingState);
-  const { filter, search, videoList, categoryList, after, more } = state;
+  const { filter, search, videoList, savedFilterList, after, more } = state;
 
   const load = () => {
     dispatch({ type: 'SET_LOADING' });
@@ -35,7 +35,7 @@ function LandingProvider({ children }) {
     setTimeout(() => {
       const newData = videoList?.slice(after, after + perPage);
       dispatch({ type: 'RESET_LOADING', newData });
-    }, 600);
+    }, 300);
   };
 
   const filterList = (list) => {
@@ -59,14 +59,16 @@ function LandingProvider({ children }) {
   };
 
   const addNewVideo = async (formObject) => {
-    const { url, category, creator, title, description, videoDate } =
-      formObject;
-    const date = videoDate.split('-');
-    const newdate = new Date(date[0], date[1] - 1, date[2]);
-    const categoryCaseChange =
-      category[0].toUpperCase() + category.substring(1).toLowerCase();
-    if (!categoryList.includes(categoryCaseChange)) {
-      dispatch({ type: 'GET_CATEGORY', payload: [...categoryList, category] });
+    const { url, category, creator, title, description } = formObject;
+    if (
+      !savedFilterList.some(
+        (item) => item.toLowerCase() === category.toLowerCase()
+      )
+    ) {
+      dispatch({
+        type: 'ADD_FILTER',
+        payload: category
+      });
     }
     const videoObject = {
       _id: `v${videoList.length + 1}`,
@@ -75,7 +77,7 @@ function LandingProvider({ children }) {
       title,
       category,
       description,
-      videoDate: newdate.valueOf()
+      videoDate: new Date()
     };
     dispatch({ type: 'GET_VIDEOS', payload: videoList.concat(videoObject) });
     if (!more) {

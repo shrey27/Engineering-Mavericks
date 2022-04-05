@@ -3,6 +3,17 @@ export const defaultLandingState = {
   search: '',
   filter: 'All',
   categoryList: [],
+  savedFilterList: [
+    'All',
+    'Electrical',
+    'Automobiles',
+    'Space',
+    'Stuff',
+    'Science',
+    'Physics',
+    'Communication',
+    'Scientists'
+  ],
   videoList: [],
   more: true,
   data: [],
@@ -33,6 +44,11 @@ export const landingReducer = (state, action) => {
         ...state,
         search: ''
       };
+    case 'ADD_FILTER':
+      return {
+        ...state,
+        savedFilterList: [...state.savedFilterList, action.payload]
+      };
     case 'SET_FILTER':
       return {
         ...state,
@@ -41,7 +57,7 @@ export const landingReducer = (state, action) => {
     case 'SET_DATA':
       return {
         ...state,
-        data: [...state.data, ...action.payload]
+        data: [...action.payload, ...state.data]
       };
     case 'SET_LOADING':
       return { ...state, loading: true };

@@ -30,7 +30,7 @@
   outline: none;
 }
 .filter_ctr {
-  overflow-x: scroll;
+  overflow-x: auto;
   scroll-behavior: smooth;
   width: 99%;
   padding: 1rem 0rem;
@@ -38,7 +38,8 @@
   grid-row: 1/2;
 }
 .filter_ctr::-webkit-scrollbar {
-  height: 0px;
+  height: 5px;
+  margin: 0.5rem 0;
 }
 .filter__option__ctr {
   display: inline;
