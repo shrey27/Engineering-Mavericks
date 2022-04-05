@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer, useEffect } from 'react';
-import { useAuthCtx } from './index';
+import { useAuthCtx, useLandingCtx } from './index';
 import {
   getHistoryVideos,
   addToHistory,
@@ -22,9 +22,7 @@ const HistoryProvider = ({ children }) => {
   );
   const { token } = useAuthCtx();
   const { updateLocalStorage } = useLocalStorage();
-  // const {
-  //   state: { data }
-  // } = useLandingCtx();
+  const { dispatch: landingDispatch } = useLandingCtx();
 
   const clearHistoryList = async () => {
     dispatch({ type: 'HISTORY_API_REQUEST' });
@@ -62,8 +60,7 @@ const HistoryProvider = ({ children }) => {
     } else {
       dispatch({ type: 'CLOSE_HISTORY_LOADER' });
     }
-    // const videoItem = data.find((item) => item._id === video._id);
-    // videoItem.viewCount++;
+    landingDispatch({ type: 'UPDATE_VIEWCOUNT', payload: video._id });
   };
 
   useEffect(() => {

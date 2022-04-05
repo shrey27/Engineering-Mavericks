@@ -57,7 +57,16 @@ export const landingReducer = (state, action) => {
     case 'SET_DATA':
       return {
         ...state,
-        data: [...action.payload, ...state.data]
+        data: [...state.data, ...action.payload]
+      };
+    case 'UPDATE_VIEWCOUNT':
+      const videoId = action.payload;
+      const temp = state.data;
+      const videoIndex = temp.findIndex((item) => item._id === videoId);
+      temp[videoIndex].viewCount++;
+      return {
+        ...state,
+        data: [...temp]
       };
     case 'SET_LOADING':
       return { ...state, loading: true };

@@ -77,7 +77,8 @@ function LandingProvider({ children }) {
       title,
       category,
       description,
-      videoDate: new Date()
+      videoDate: new Date(),
+      viewCount: 0
     };
     dispatch({ type: 'GET_VIDEOS', payload: videoList.concat(videoObject) });
     if (!more) {
