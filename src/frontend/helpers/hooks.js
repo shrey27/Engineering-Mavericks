@@ -32,8 +32,10 @@ export function useLocalStorage() {
 }
 
 export const useSingleVideo = (id) => {
-  const { filterList } = useLandingCtx();
-  return filterList()?.find((elem) => elem._id === id);
+  const {
+    state: { videoList }
+  } = useLandingCtx();
+  return videoList?.find((elem) => elem._id === id);
 };
 
 export const useSinglePlaylistVideos = (id) => {
@@ -43,4 +45,3 @@ export const useSinglePlaylistVideos = (id) => {
   const { videos } = playlists.find((elem) => elem._id === id);
   return videos;
 };
-

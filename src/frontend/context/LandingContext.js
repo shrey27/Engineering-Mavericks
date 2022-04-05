@@ -54,7 +54,10 @@ function LandingProvider({ children }) {
   };
 
   const addNewVideo = async (formObject) => {
-    const { youtubeId, category, creator, title, description } = formObject;
+    const { youtubeId, category, creator, title, description, videoDate } =
+      formObject;
+    const date = videoDate.split('-');
+    const newdate = new Date(date[0], date[1] - 1, date[2]);
     const categoryCaseChange =
       category[0].toUpperCase() + category.substring(1).toLowerCase();
     if (!categoryList.includes(categoryCaseChange)) {
@@ -66,10 +69,10 @@ function LandingProvider({ children }) {
       creator,
       title,
       category,
-      description
+      description,
+      videoDate: newdate.valueOf()
     };
     dispatch({ type: 'GET_VIDEOS', payload: [...videoList, videoObject] });
-    dispatch({ type: 'SET_DATA', payload: [videoObject] });
     ToastMessage('Video uploaded successfully', 'success');
   };
 

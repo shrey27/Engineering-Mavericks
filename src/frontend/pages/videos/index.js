@@ -66,7 +66,7 @@ export default function VideoListing() {
     };
   }, [element]);
 
-  /**********************/
+  /******************************************************/
 
   useEffect(() => {
     window.scrollTo(0, 0);

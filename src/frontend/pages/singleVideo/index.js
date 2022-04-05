@@ -115,7 +115,6 @@ export default function SingleVideo() {
       <Navbar />
       {modalOpen && <PlaylistModal setModalOpen={setModalOpen} />}
       <div className=''>
-        {/* <Sidebar videos={true} /> */}
         <div className='main'>
           {!singleVideo ? (
             <Loader />

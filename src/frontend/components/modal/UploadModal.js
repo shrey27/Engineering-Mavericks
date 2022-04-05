@@ -9,20 +9,23 @@ export function UploadModal({ setuploadModal }) {
     category: '',
     creator: '',
     title: '',
-    description: ''
+    description: '',
+    videoDate: ''
   });
   const [error, setError] = useState(false);
   const { addNewVideo } = useLandingCtx();
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const { youtubeId, category, creator, title, description } = newVideo;
+    const { youtubeId, category, creator, title, description, videoDate } =
+      newVideo;
     if (
       !youtubeId?.trim().length ||
       !category?.trim().length ||
       !creator?.trim().length ||
       !title?.trim().length ||
-      !description?.trim().length
+      !description?.trim().length ||
+      !videoDate.length
     )
       setError(true);
     else {
@@ -44,7 +47,7 @@ export function UploadModal({ setuploadModal }) {
         onClick={() => setuploadModal(false)}
       ></div>
       <div className='modal__content modal__content__signout'>
-        <h1 className='primary cen md mg-full'>UPLOAD A VIDEO</h1>
+        <h1 className='primary cen md mg-half'>UPLOAD A VIDEO</h1>
         <hr />
         {error && (
           <h1 className='tag cen md mg-full'>
@@ -69,14 +72,14 @@ export function UploadModal({ setuploadModal }) {
             />
           </div>
           <div>
-            <label htmlFor='title' className='label'>
+            <label htmlFor='videoTitle' className='label'>
               Title
             </label>
             <input
               className='input sm-s'
               type='text'
-              name='title'
-              id='title'
+              name='videoTitle'
+              id='videoTitle'
               value={newVideo?.title}
               onChange={(e) =>
                 setNewVideo({ ...newVideo, title: e.target.value })
@@ -112,6 +115,22 @@ export function UploadModal({ setuploadModal }) {
               value={newVideo?.category}
               onChange={(e) =>
                 setNewVideo({ ...newVideo, category: e.target.value })
+              }
+              onFocus={() => setError(false)}
+            />
+          </div>
+          <div className='authentication__input'>
+            <label htmlFor='videoDate' className='label'>
+              Date of Upload
+            </label>
+            <input
+              className='input sm-s'
+              type='date'
+              name='videoDate'
+              id='videoDate'
+              value={newVideo?.videoDate}
+              onChange={(e) =>
+                setNewVideo({ ...newVideo, videoDate: e.target.value })
               }
               onFocus={() => setError(false)}
             />
