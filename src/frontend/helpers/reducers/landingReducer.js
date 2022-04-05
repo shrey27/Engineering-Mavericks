@@ -3,8 +3,13 @@ export const defaultLandingState = {
   search: '',
   filter: 'All',
   categoryList: [],
-  videoList: []
+  videoList: [],
+  more: true,
+  data: [],
+  after: 4
 };
+
+const perPage = 4;
 
 export const landingReducer = (state, action) => {
   switch (action.type) {
@@ -32,6 +37,21 @@ export const landingReducer = (state, action) => {
       return {
         ...state,
         filter: action.payload
+      };
+    case 'SET_DATA':
+      return {
+        ...state,
+        data: [...state.data, ...action.payload]
+      };
+    case 'SET_LOADING':
+      return { ...state, loading: true };
+    case 'RESET_LOADING':
+      return {
+        ...state,
+        loading: false,
+        data: [...state.data, ...action.newData],
+        more: action.newData.length === perPage,
+        after: state.after + action.newData.length
       };
     default:
       return {

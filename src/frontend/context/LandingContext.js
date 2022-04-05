@@ -7,14 +7,14 @@ import { ToastMessage } from '../components';
 
 const LandingContext = createContext();
 
+const perPage = 4;
+
 const filterVideos = (filter, videoList) => {
-  let tempList = [...videoList];
+  let tempList = videoList;
   if (filter) {
-    tempList = [
-      ...tempList.filter((e) =>
-        filter === 'All' ? true : e.category === filter
-      )
-    ];
+    tempList = tempList?.filter((e) =>
+      filter === 'All' ? true : e.category === filter
+    );
   }
   return tempList;
 };
@@ -22,9 +22,20 @@ const filterVideos = (filter, videoList) => {
 function LandingProvider({ children }) {
   const navigate = useNavigate();
   const [state, dispatch] = useReducer(landingReducer, defaultLandingState);
-  const { filter, search, videoList, categoryList } = state;
+  const { filter, search, videoList, categoryList, after } = state;
 
-  const filteredList = filterVideos(filter, videoList);
+  const load = () => {
+    dispatch({ type: 'SET_LOADING' });
+
+    setTimeout(() => {
+      const newData = videoList?.slice(after, after + perPage);
+      dispatch({ type: 'RESET_LOADING', newData });
+    }, 300);
+  };
+
+  const filterList = (list) => {
+    return filterVideos(filter, list);
+  };
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -40,11 +51,6 @@ function LandingProvider({ children }) {
   const getCategoriesList = async () => {
     const categories = await getCategories();
     dispatch({ type: 'GET_CATEGORY', payload: categories });
-  };
-
-  const getVideosList = async () => {
-    const videos = await getVideos();
-    dispatch({ type: 'GET_VIDEOS', payload: videos });
   };
 
   const addNewVideo = async (formObject) => {
@@ -63,6 +69,7 @@ function LandingProvider({ children }) {
       description
     };
     dispatch({ type: 'GET_VIDEOS', payload: [...videoList, videoObject] });
+    dispatch({ type: 'SET_DATA', payload: [videoObject] });
     ToastMessage('Video uploaded successfully', 'success');
   };
 
@@ -81,6 +88,12 @@ function LandingProvider({ children }) {
   };
 
   useEffect(() => {
+    const getVideosList = async () => {
+      const videos = await getVideos();
+      dispatch({ type: 'GET_VIDEOS', payload: videos });
+      const newData = videos?.slice(0, 4);
+      dispatch({ type: 'SET_DATA', payload: newData });
+    };
     getCategoriesList();
     getVideosList();
   }, []);
@@ -91,10 +104,11 @@ function LandingProvider({ children }) {
         state,
         dispatch,
         handleSearchSubmit,
-        filteredList,
+        filterList,
         addNewVideo,
         updateCommentsOnVideo,
-        getComments
+        getComments,
+        load
       }}
     >
       {children}
