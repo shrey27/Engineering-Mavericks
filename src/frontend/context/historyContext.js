@@ -22,6 +22,9 @@ const HistoryProvider = ({ children }) => {
   );
   const { token } = useAuthCtx();
   const { updateLocalStorage } = useLocalStorage();
+  // const {
+  //   state: { data }
+  // } = useLandingCtx();
 
   const clearHistoryList = async () => {
     dispatch({ type: 'HISTORY_API_REQUEST' });
@@ -59,6 +62,8 @@ const HistoryProvider = ({ children }) => {
     } else {
       dispatch({ type: 'CLOSE_HISTORY_LOADER' });
     }
+    // const videoItem = data.find((item) => item._id === video._id);
+    // videoItem.viewCount++;
   };
 
   useEffect(() => {

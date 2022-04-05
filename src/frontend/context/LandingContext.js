@@ -4,7 +4,6 @@ import { VIDEOS } from '../routes/routes';
 import { getCategories, getVideos } from '../service';
 import { defaultLandingState, landingReducer } from '../helpers';
 import { ToastMessage } from '../components';
-import { v4 as uuid } from 'uuid';
 const LandingContext = createContext();
 
 const perPage = 4;
@@ -28,7 +27,7 @@ function getId(url) {
 function LandingProvider({ children }) {
   const navigate = useNavigate();
   const [state, dispatch] = useReducer(landingReducer, defaultLandingState);
-  const { filter, search, videoList, categoryList, after } = state;
+  const { filter, search, videoList, categoryList, after, more } = state;
 
   const load = () => {
     dispatch({ type: 'SET_LOADING' });
@@ -70,7 +69,7 @@ function LandingProvider({ children }) {
       dispatch({ type: 'GET_CATEGORY', payload: [...categoryList, category] });
     }
     const videoObject = {
-      _id: uuid(),
+      _id: `v${videoList.length + 1}`,
       video: getId(url),
       creator,
       title,
@@ -78,9 +77,10 @@ function LandingProvider({ children }) {
       description,
       videoDate: newdate.valueOf()
     };
-    
-    // dispatch({ type: 'GET_VIDEOS', payload: [...videoList, videoObject] });
-    dispatch({ type: 'SET_DATA', payload: [videoObject] });
+    dispatch({ type: 'GET_VIDEOS', payload: videoList.concat(videoObject) });
+    if (!more) {
+      dispatch({ type: 'SET_DATA', payload: [videoObject] });
+    }
     ToastMessage('Video uploaded successfully', 'success');
   };
 

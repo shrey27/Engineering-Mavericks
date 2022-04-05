@@ -20,7 +20,8 @@ function VideoPlayer({ singleVideo, setModalOpen }) {
     video: source,
     title,
     creator,
-    description
+    description,
+    viewCount
   } = singleVideo;
   const {
     addToLikedlist,
@@ -77,9 +78,13 @@ function VideoPlayer({ singleVideo, setModalOpen }) {
         ></Iframe>
       </div>
       <div className='video__control'>
-        <h1 className='video__title'>{title}</h1>
+        <h1 className='video__title'>
+          {title}
+          <span className='video__description'>Total Views {viewCount}</span>
+        </h1>
         <h1 className='video__creator'>{creator}</h1>
         <p className='video__description'>{description}</p>
+
         <div className='video__buttons'>
           <button
             className={`video__button ${liked && 'liked'}`}

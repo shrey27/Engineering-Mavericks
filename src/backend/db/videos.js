@@ -5,6 +5,7 @@
 export const videos = [
   {
     _id: 'v1',
+    viewCount: 0,
     comments: ['lorem ipsum', 'lorem ipsum'],
     videoDate: '1572615545',
     title: 'How does Thyristors work? ',
@@ -16,6 +17,7 @@ export const videos = [
   },
   {
     _id: 'v2',
+    viewCount: 0,
     comments: [],
     videoDate: '1506865145',
     title: 'How does Inverters work? ',
@@ -27,6 +29,7 @@ export const videos = [
   },
   {
     _id: 'v3',
+    viewCount: 0,
     comments: [],
     videoDate: '1614605945',
     title: "MCB's, how do they work?",
@@ -38,6 +41,7 @@ export const videos = [
   },
   {
     _id: 'v4',
+    viewCount: 0,
     comments: [],
     videoDate: '1512135545',
     title: 'How Clutch works ?',
@@ -49,6 +53,7 @@ export const videos = [
   },
   {
     _id: 'v5',
+    viewCount: 0,
     comments: [],
     videoDate: '1643722745',
     title: 'Interesting concept behind your car window',
@@ -60,6 +65,7 @@ export const videos = [
   },
   {
     _id: 'v6',
+    viewCount: 0,
     comments: [],
     videoDate: '1606829945',
     title: "Tesla Model 3's Motor",
@@ -71,6 +77,7 @@ export const videos = [
   },
   {
     _id: 'v7',
+    viewCount: 0,
     comments: [],
     videoDate: '1435757945',
     title: 'How It works: The International Space Station',
@@ -82,6 +89,7 @@ export const videos = [
   },
   {
     _id: 'v8',
+    viewCount: 0,
     comments: [],
     videoDate: '1409578745',
     title: "NASA Space Shuttle's Final Voyage of Atlantis",
@@ -93,6 +101,7 @@ export const videos = [
   },
   {
     _id: 'v9',
+    viewCount: 0,
     comments: [],
     videoDate: '1405517945',
     title: 'The Journeys of Apollo',
@@ -104,6 +113,7 @@ export const videos = [
   },
   {
     _id: 'v10',
+    viewCount: 0,
     comments: [],
     videoDate: '1641044345',
     title: 'What we found when we went looking for another Earth',
@@ -115,6 +125,7 @@ export const videos = [
   },
   {
     _id: 'v11',
+    viewCount: 0,
     comments: [],
     videoDate: '1572615545',
     title: 'How does an Escalator work?',
@@ -126,6 +137,7 @@ export const videos = [
   },
   {
     _id: 'v12',
+    viewCount: 0,
     comments: [],
     videoDate: '1522589945',
     title: 'How V8 Engines Work - A Simple Explanation',
@@ -137,6 +149,7 @@ export const videos = [
   },
   {
     _id: 'v13',
+    viewCount: 0,
     comments: [],
     videoDate: '1643722745',
     title:
@@ -149,6 +162,7 @@ export const videos = [
   },
   {
     _id: 'v14',
+    viewCount: 0,
     comments: [],
     videoDate: '1603201145',
     title: "15 Oldest Technologies That Scientists Can't Explain",
@@ -160,6 +174,7 @@ export const videos = [
   },
   {
     _id: 'v15',
+    viewCount: 0,
     comments: [],
     videoDate: '1599313145',
     title: 'Survivor Says Something New About the Bermuda Triangle Mystery ',
@@ -171,6 +186,7 @@ export const videos = [
   },
   {
     _id: 'v16',
+    viewCount: 0,
     comments: [],
     videoDate: '1640785145',
     title: 'The interesting engineering behind the SHAPE of Train wheels! ',
@@ -182,6 +198,7 @@ export const videos = [
   },
   {
     _id: 'v17',
+    viewCount: 0,
     comments: [],
     videoDate: '1622727545',
     title: 'Tesla Turbine | The interesting physics behind it ',
@@ -193,6 +210,7 @@ export const videos = [
   },
   {
     _id: 'v18',
+    viewCount: 0,
     comments: [],
     videoDate: '1623850745',
     title: 'The Fastest train ever built | The complete physics of it ',
@@ -204,6 +222,7 @@ export const videos = [
   },
   {
     _id: 'v19',
+    viewCount: 0,
     comments: [],
     videoDate: '1569937145',
     title: 'Internet & Telecommunication Technology',
@@ -215,6 +234,7 @@ export const videos = [
   },
   {
     _id: 'v20',
+    viewCount: 0,
     comments: [],
     videoDate: '1559137145',
     title: 'How does the INTERNET work?',
@@ -226,6 +246,7 @@ export const videos = [
   },
   {
     _id: 'v21',
+    viewCount: 0,
     comments: [],
     videoDate: '1569245945',
     title: 'Understanding Electromagnetic Radiation!',
@@ -237,6 +258,7 @@ export const videos = [
   },
   {
     _id: 'v22',
+    viewCount: 0,
     comments: [],
     videoDate: '1593610745',
     title: 'The Tragic Story of Nikola Tesla',
@@ -247,6 +269,7 @@ export const videos = [
   },
   {
     _id: 'v23',
+    viewCount: 0,
     comments: [],
     videoDate: '1535809145',
     title: 'Nikola Tesla vs Thomas Edison EPIC NEW Documentary',
@@ -257,6 +280,7 @@ export const videos = [
   },
   {
     _id: 'v24',
+    viewCount: 0,
     comments: [],
     videoDate: '1613914745',
     title: 'BBC: Inside Einsteins Mind (Science Documentary )',
