@@ -5,7 +5,7 @@ import { useLandingCtx } from '../../context';
 
 export function UploadModal({ setuploadModal }) {
   const [newVideo, setNewVideo] = useState({
-    youtubeId: '',
+    url: '',
     category: '',
     creator: '',
     title: '',
@@ -17,10 +17,9 @@ export function UploadModal({ setuploadModal }) {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const { youtubeId, category, creator, title, description, videoDate } =
-      newVideo;
+    const { url, category, creator, title, description, videoDate } = newVideo;
     if (
-      !youtubeId?.trim().length ||
+      !url?.trim().length ||
       !category?.trim().length ||
       !creator?.trim().length ||
       !title?.trim().length ||
@@ -56,17 +55,17 @@ export function UploadModal({ setuploadModal }) {
         )}
         <form onSubmit={handleFormSubmit} onReset={handleFormCancel}>
           <div className='authentication__input'>
-            <label htmlFor='youtubeId' className='label'>
-              YouTube Video ID
+            <label htmlFor='url' className='label'>
+              YouTube Video URL
             </label>
             <input
               className='input sm-s'
               type='text'
-              name='youtubeId'
-              id='youtubeId'
-              value={newVideo?.youtubeId}
+              name='url'
+              id='url'
+              value={newVideo?.url}
               onChange={(e) =>
-                setNewVideo({ ...newVideo, youtubeId: e.target.value })
+                setNewVideo({ ...newVideo, url: e.target.value })
               }
               onFocus={() => setError(false)}
             />

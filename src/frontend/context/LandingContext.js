@@ -4,7 +4,7 @@ import { VIDEOS } from '../routes/routes';
 import { getCategories, getVideos } from '../service';
 import { defaultLandingState, landingReducer } from '../helpers';
 import { ToastMessage } from '../components';
-
+import { v4 as uuid } from 'uuid';
 const LandingContext = createContext();
 
 const perPage = 4;
@@ -18,6 +18,12 @@ const filterVideos = (filter, videoList) => {
   }
   return tempList;
 };
+
+function getId(url) {
+  let regex =
+    /(youtu.*be.*)\/(watch\?v=|embed\/|v|shorts|)(.*?((?=[&#?])|$))/gm;
+  return regex.exec(url)[3];
+}
 
 function LandingProvider({ children }) {
   const navigate = useNavigate();
@@ -54,7 +60,7 @@ function LandingProvider({ children }) {
   };
 
   const addNewVideo = async (formObject) => {
-    const { youtubeId, category, creator, title, description, videoDate } =
+    const { url, category, creator, title, description, videoDate } =
       formObject;
     const date = videoDate.split('-');
     const newdate = new Date(date[0], date[1] - 1, date[2]);
@@ -64,15 +70,17 @@ function LandingProvider({ children }) {
       dispatch({ type: 'GET_CATEGORY', payload: [...categoryList, category] });
     }
     const videoObject = {
-      _id: `v${videoList.length + 1}`,
-      video: youtubeId,
+      _id: uuid(),
+      video: getId(url),
       creator,
       title,
       category,
       description,
       videoDate: newdate.valueOf()
     };
-    dispatch({ type: 'GET_VIDEOS', payload: [...videoList, videoObject] });
+    
+    // dispatch({ type: 'GET_VIDEOS', payload: [...videoList, videoObject] });
+    dispatch({ type: 'SET_DATA', payload: [videoObject] });
     ToastMessage('Video uploaded successfully', 'success');
   };
 

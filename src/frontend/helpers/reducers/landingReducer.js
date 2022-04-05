@@ -21,7 +21,7 @@ export const landingReducer = (state, action) => {
     case 'GET_VIDEOS':
       return {
         ...state,
-        videoList: [...action.payload]
+        videoList: action.payload
       };
     case 'SET_SEARCH':
       return {
