@@ -30,7 +30,7 @@ function LandingProvider({ children }) {
     setTimeout(() => {
       const newData = videoList?.slice(after, after + perPage);
       dispatch({ type: 'RESET_LOADING', newData });
-    }, 300);
+    }, 600);
   };
 
   const filterList = (list) => {

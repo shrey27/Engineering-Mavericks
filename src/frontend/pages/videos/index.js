@@ -16,7 +16,6 @@ import { SIGNIN } from '../../routes/routes';
 export default function VideoListing() {
   const {
     state: { loading, more, data, filter },
-    filteredList,
     dispatch,
     load,
     filterList
