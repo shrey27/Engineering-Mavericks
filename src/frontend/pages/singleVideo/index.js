@@ -1,5 +1,4 @@
 import './singlevideo.css';
-import Iframe from 'react-iframe-click';
 import { useState, useEffect } from 'react';
 import { useSingleVideo } from '../../helpers';
 import { Footer, Navbar, Loader, PlaylistModal } from '../../components';
@@ -12,6 +11,7 @@ import {
 } from '../../context';
 import Suggestions from './Suggestions';
 import Comments from './Comments';
+import ReactPlayer from 'react-player/youtube';
 
 function VideoPlayer({ singleVideo, setModalOpen }) {
   const [liked, setLiked] = useState(false);
@@ -71,12 +71,13 @@ function VideoPlayer({ singleVideo, setModalOpen }) {
   return (
     <div className='video__container'>
       <div className='video__iframe'>
-        <Iframe
-          src={`https://www.youtube.com/embed/${source}`}
-          onInferredClick={handleAddToHistory}
-          frameBorder='0'
-          allowFullScreen
-        ></Iframe>
+        <ReactPlayer
+          url={`https://www.youtube.com/embed/${source}`}
+          controls
+          width='100%'
+          height='100%'
+          onStart={handleAddToHistory}
+        />
       </div>
       <div className='video__control'>
         <h1 className='video__title'>{title}</h1>
