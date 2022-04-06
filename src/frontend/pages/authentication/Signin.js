@@ -14,13 +14,12 @@ export default function Signin() {
     emailError,
     passwordError,
     signinError,
-    signinRememberMe,
     dispatch,
     handleSignIn
   } = useAuthCtx();
 
   const location = useLocation();
-  const from = location.state?.from?.pathname || '/';
+  const from = location?.state?.from?.pathname || '/';
 
   const onSignInTestCredentials = (e) => {
     e.preventDefault();
@@ -93,7 +92,7 @@ export default function Signin() {
 
             <h1 className='input__error'>{passwordError}</h1>
           </div>
-          <div className='flex-ct-st signin__remember'>
+          {/* <div className='flex-ct-st signin__remember'>
             <input
               className='sm-s'
               type='checkbox'
@@ -105,7 +104,7 @@ export default function Signin() {
             <label htmlFor='remember__signin' className='label'>
               Remember me
             </label>
-          </div>
+          </div> */}
           <button
             type='submit'
             className='btn btn--wide btn--auth--solid sb'
