@@ -6,10 +6,13 @@ import { v4 as uuid } from 'uuid';
 export const videos = [
   {
     _id: 'v1',
-    viewCount: 0,
+    viewCount: 1,
     comments: [
-      { _id: uuid(), comment: 'Lorem Ipsum Lorem Ipsum Lorem Ipsum' },
-      { _id: uuid(), comment: 'Lorem Ipsum Lorem Ipsum Lorem Ipsum' }
+      {
+        _id: uuid(),
+        comment: 'Video is loaded with concepts and highly intutive'
+      },
+      { _id: uuid(), comment: 'Animation is great and content is awesome.' }
     ],
     videoDate: '1572615545',
     title: 'How does Thyristors work? ',

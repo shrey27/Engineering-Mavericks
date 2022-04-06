@@ -12,7 +12,7 @@ iframe {
   aspect-ratio: 16/9;
 }
 .video__title {
-  width: 95%;
+  width: auto;
   font-size: 1.5rem;
   font-weight: 500;
   color: var(--white);
@@ -37,7 +37,7 @@ iframe {
   background-color: var(--tertiary);
   padding: 0.75rem;
   border-radius: 5px;
-  width: fit-content;
+  width: max-content;
 }
 .video__description {
   font-size: 1.25rem;
@@ -77,17 +77,23 @@ iframe {
 /* Comments */
 .comments {
   color: var(--white);
-  margin: 1rem 2rem;
-  width: 100%;
+  margin: 0.5rem 2rem;
+  width: auto;
 }
-.comments__heading {
+.comments__heading,
+.comments__heading__tag {
+  display: inline-block;
   font-size: 1.25rem;
-  margin: 1rem 0;
+  margin: 1.5rem 0.5rem;
   background-color: var(--white);
   border-radius: 5px;
   padding: 0.5rem;
   color: var(--tertiary);
-  width: fit-content;
+  width: max-content;
+}
+.comments__heading__tag {
+  background-color: var(--tag);
+  color: var(--white);
 }
 .comments__input {
   width: 70%;
@@ -112,18 +118,22 @@ iframe {
   margin: 0 0.5rem;
 }
 .stack {
-  width: 80%;
+  width: 90%;
 }
 .stack__item {
   width: 100%;
   margin: 0.5rem;
   background-color: var(--tertiary);
   border: 1px solid var(--tertiary);
-  padding: 0.5rem;
+  padding: 0.75rem;
   border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.stack__item div {
+  display: flex;
+  align-items: center;
 }
 .stack__item[index='odd'] {
   background-color: var(--tertiary--light);
@@ -154,6 +164,9 @@ iframe {
   }
   .stack {
     width: 60%;
+  }
+  .comments {
+    width: 100%;
   }
   .comments__input {
     width: 60%;

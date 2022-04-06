@@ -11,7 +11,7 @@ export default function PrivateRoutes() {
       {token ? (
         <Outlet />
       ) : (
-        <Navigate to={SIGNIN} state={{ from: location }} replace />
+        <Navigate to={SIGNIN} state={{ from: location }} replace={true} />
       )}
     </Fragment>
   );

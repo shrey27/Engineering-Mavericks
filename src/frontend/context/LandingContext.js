@@ -4,6 +4,8 @@ import { VIDEOS } from '../routes/routes';
 import { getCategories, getVideos } from '../service';
 import { defaultLandingState, landingReducer } from '../helpers';
 import { ToastMessage } from '../components';
+import { v4 as uuid } from 'uuid';
+
 const LandingContext = createContext();
 
 const perPage = 4;
@@ -87,13 +89,35 @@ function LandingProvider({ children }) {
     ToastMessage('Video uploaded successfully', 'success');
   };
 
-  const updateCommentsOnVideo = (videoId, comment) => {
-    const video = videoList.find((item) => item._id === videoId);
-    if (video.comments.includes(comment)) {
-      video.comments = video.comments.filter((elem) => elem !== comment);
+  const updateCommentsOnVideo = (videoId, commentId, newComment, toEdit) => {
+    let commentToUpdate = videoList.find(
+      (item) => item._id === videoId
+    ).comments;
+    if (commentId.trim().length) {
+      if (toEdit) {
+        commentToUpdate = commentToUpdate.reduce(
+          (acc, curr) =>
+            curr._id === commentId
+              ? [...acc, { ...curr, comment: newComment }]
+              : [...acc, curr],
+          []
+        );
+      } else {
+        commentToUpdate = commentToUpdate.filter(
+          (elem) => elem._id !== commentId
+        );
+      }
     } else {
-      video.comments.push(comment);
+      commentToUpdate = commentToUpdate.concat({
+        _id: uuid(),
+        comment: newComment
+      });
     }
+
+    dispatch({
+      type: 'UPDATE_COMMENTS',
+      payload: { videoId, comments: commentToUpdate }
+    });
   };
 
   const getComments = (videoId) => {

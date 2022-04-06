@@ -11,6 +11,7 @@ import {
   usePlaylistCtx
 } from '../../context';
 import Suggestions from './Suggestions';
+import Comments from './Comments';
 
 function VideoPlayer({ singleVideo, setModalOpen }) {
   const [liked, setLiked] = useState(false);
@@ -78,10 +79,7 @@ function VideoPlayer({ singleVideo, setModalOpen }) {
         ></Iframe>
       </div>
       <div className='video__control'>
-        <h1 className='video__title'>
-          {title}
-          <span className='video__description'>Total Views {viewCount}</span>
-        </h1>
+        <h1 className='video__title'>{title}</h1>
         <h1 className='video__creator'>{creator}</h1>
         <p className='video__description'>{description}</p>
 
@@ -104,6 +102,8 @@ function VideoPlayer({ singleVideo, setModalOpen }) {
             <i className='fa-solid fa-list'></i>Save to Playlist
           </button>
         </div>
+        {/* <h1 className='video__title__tag'>{viewCount} Views </h1> */}
+        <Comments videoId={_id} viewCount={viewCount} />
         <Suggestions />
       </div>
     </div>

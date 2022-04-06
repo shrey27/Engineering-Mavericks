@@ -23,6 +23,8 @@ export const defaultLandingState = {
 const perPage = 4;
 
 export const landingReducer = (state, action) => {
+  const templist = state.data;
+
   switch (action.type) {
     case 'GET_CATEGORY':
       return {
@@ -60,13 +62,23 @@ export const landingReducer = (state, action) => {
         data: [...state.data, ...action.payload]
       };
     case 'UPDATE_VIEWCOUNT':
-      const videoId = action.payload;
-      const temp = state.data;
-      const videoIndex = temp.findIndex((item) => item._id === videoId);
-      temp[videoIndex].viewCount++;
+      let { videoId } = action?.payload;
+      let videoIndex = templist.findIndex((item) => item._id === videoId);
+      templist[videoIndex].viewCount++;
       return {
         ...state,
-        data: [...temp]
+        data: [...templist]
+      };
+    case 'UPDATE_COMMENTS':
+      let { videoId: videoToUpdateId, comments: updatedComments } =
+        action?.payload;
+      let videoToUpdateIndex = templist.findIndex(
+        (item) => item._id === videoToUpdateId
+      );
+      templist[videoToUpdateIndex].comments = [...updatedComments];
+      return {
+        ...state,
+        data: [...templist]
       };
     case 'SET_LOADING':
       return { ...state, loading: true };
