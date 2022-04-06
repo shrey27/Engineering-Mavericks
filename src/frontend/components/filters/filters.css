@@ -1,49 +1,53 @@
 @import '../../utility/styles.css';
 
+/* Filter container */
 .filter {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
+  display: flex;
+  align-items: center;
   padding: 0 1rem;
 }
-.filter_btn_ctr {
-  display: flex;
-  justify-content: space-between;
-  grid-column: 1/2;
-  grid-row: 1/2;
-}
-.btn.filter_btn {
+
+/* FIlter Buttons */
+.filter_btn {
   display: inline-block;
   background-color: var(--tertiary--light);
   border-radius: 5px;
   color: var(--white);
-  padding: 1.5rem 0.45rem;
+  padding: 0;
+  height: 0;
   margin: 0;
+  opacity: 0;
   border: none;
   outline: none;
-  box-shadow: 0 0.5em 1em -0.125em var(--tertiary--light),
-    0 0 0 1px var(--tertiary--light);
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
 }
-.btn.filter_btn:hover {
+.filter_btn:hover {
   background-color: var(--tertiary);
   border: none;
   outline: none;
 }
+.btn_left,
+.btn_right {
+  height: 100%;
+  width: auto;
+  opacity: 1;
+  padding: 1.5rem 0.45rem;
+}
+
+/* Filter options container */
 .filter_ctr {
   overflow-x: auto;
   scroll-behavior: smooth;
-  width: 99%;
-  padding: 1rem 0rem;
-  grid-column: 1/2;
-  grid-row: 1/2;
+  width: 94%;
+  margin: 0 auto;
+  padding: 0.95rem 0;
 }
 .filter_ctr::-webkit-scrollbar {
-  height: 5px;
-  margin: 0.5rem 0;
+  height: 0;
 }
-.filter__option__ctr {
-  display: inline;
-}
+
+/* Filter option */
 .filter__option {
   font-size: 1rem;
   font-weight: bold;
@@ -62,17 +66,4 @@
 }
 .filter__option__input {
   display: none;
-}
-@media screen and (min-width: 1024px) {
-  .filter_ctr {
-    width: 98%;
-  }
-}
-@media screen and (min-width: 1300px) {
-  .btn.filter_btn {
-    display: none;
-  }
-  .filter_ctr {
-    padding: 2rem 0rem 1rem 0rem;
-  }
 }
