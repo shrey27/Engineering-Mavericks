@@ -88,12 +88,14 @@ body {
   background-color: var(--white);
   border: 2px solid var(--tertiary);
   border-radius: 4px;
+  padding: 0.25rem 0.5rem;
 }
 .btn--auth--solid {
   color: var(--white);
   background-color: var(--tag);
   border: 2px solid var(--tag);
   border-radius: 4px;
+  padding: 0.5rem 0.5rem;
 }
 .btn--auth:hover {
   border: 2px solid var(--tertiary);
