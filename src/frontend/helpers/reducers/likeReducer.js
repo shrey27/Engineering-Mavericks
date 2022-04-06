@@ -14,13 +14,17 @@ export const likedReducerFunc = (state, action) => {
     case 'LIKE_API_RESPONSE':
       return {
         ...state,
-        likedList: [...action.payload],
-        likedLoader: false
+        likedList: [...action.payload]
       };
     case 'UPDATE_ID':
       return {
         ...state,
         addedVideosId: [...action.payload]
+      };
+    case 'STOP_LIKE_LOADER':
+      return {
+        ...state,
+        likedLoader: false
       };
     default:
       return {

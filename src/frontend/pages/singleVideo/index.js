@@ -26,7 +26,7 @@ function VideoPlayer({ singleVideo, setModalOpen }) {
   } = singleVideo;
   const {
     addToLikedlist,
-    state: { addedVideosId }
+    state: { addedVideosId, likedLoader }
   } = useLikedCtx();
   const {
     state: { addedWatchLaterId },
@@ -52,7 +52,9 @@ function VideoPlayer({ singleVideo, setModalOpen }) {
   }, [_id, addedWatchLaterId]);
 
   const handleAddToLike = () => {
-    addToLikedlist({ ...singleVideo });
+    if (!likedLoader) {
+      addToLikedlist({ ...singleVideo });
+    }
   };
 
   const handleAddToWatchLater = () => {

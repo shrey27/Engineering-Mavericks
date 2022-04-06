@@ -54,12 +54,12 @@ export const addVideoToWatchLaterHandler = function (schema, request) {
       );
     }
     const { video } = JSON.parse(request.requestBody);
-    if (user.watchlater.some((item) => item.id === video.id)) {
+    if (user.watchlater.some((item) => item._id === video._id)) {
       return new Response(
         409,
         {},
         {
-          errors: ['The video is already in your history']
+          errors: ['The video is already in your watch list']
         }
       );
     }

@@ -15,7 +15,7 @@ export const navlinks = [
   },
   {
     id: 'N3',
-    name: 'Recently Watched',
+    name: 'Watched Videos',
     path: '/history',
     class: 'fa-solid fa-clock-rotate-left'
   },

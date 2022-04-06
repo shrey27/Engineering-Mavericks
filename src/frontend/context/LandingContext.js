@@ -73,14 +73,15 @@ function LandingProvider({ children }) {
       });
     }
     const videoObject = {
-      _id: `v${videoList.length + 1}`,
+      _id: uuid(),
       video: getId(url),
       creator,
       title,
       category,
       description,
       videoDate: new Date(),
-      viewCount: 0
+      viewCount: 0,
+      comments: []
     };
     dispatch({ type: 'GET_VIDEOS', payload: videoList.concat(videoObject) });
     if (!more) {

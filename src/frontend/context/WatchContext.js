@@ -28,6 +28,7 @@ const WatchProvider = ({ children }) => {
     const idArray = watchlater.map((elem) => elem._id);
     dispatch({ type: 'UPDATE_WL_ID', payload: [...idArray] });
     ToastMessage('Watch list has been cleared', 'info');
+    dispatch({ type: 'WATCH_CLOSE_LOADER' });
   };
 
   const deleteFromWatchLaterList = async (id) => {
@@ -38,12 +39,14 @@ const WatchProvider = ({ children }) => {
     const idArray = watchlater.map((elem) => elem._id);
     dispatch({ type: 'UPDATE_WL_ID', payload: [...idArray] });
     ToastMessage('Video was deleted', 'error');
+    dispatch({ type: 'WATCH_CLOSE_LOADER' });
   };
 
   const addToWatchlist = async (video) => {
     dispatch({ type: 'WATCH_API_REQUEST' });
     const { addedWatchLaterId } = state;
 
+    console.log('video to add to watchlist', video);
     if (!addedWatchLaterId.includes(video._id)) {
       const watchlater = await addToWatchLater(video, token);
 
@@ -54,8 +57,9 @@ const WatchProvider = ({ children }) => {
       dispatch({ type: 'UPDATE_WL_ID', payload: [...idArray] });
       ToastMessage('Video saved for later', 'success');
     } else {
-      dispatch({ type: 'WATCH_CLOSE_LOADER' });
+      ToastMessage('Video is present in your watchlist', 'info');
     }
+    dispatch({ type: 'WATCH_CLOSE_LOADER' });
   };
 
   useEffect(() => {
@@ -68,6 +72,8 @@ const WatchProvider = ({ children }) => {
       const datatoUpdate = JSON.parse(localStorage.getItem('userData'));
       datatoUpdate.history = [...history];
       localStorage.setItem('userData', JSON.stringify(datatoUpdate));
+
+      dispatch({ type: 'WATCH_CLOSE_LOADER' });
     };
     if (token) getHistoryList();
   }, [token]);
