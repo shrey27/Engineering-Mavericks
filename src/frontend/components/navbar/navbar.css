@@ -97,4 +97,7 @@
   .header__nav__auth {
     display: block;
   }
+  .menu {
+    padding: 5% 0;
+  }
 }

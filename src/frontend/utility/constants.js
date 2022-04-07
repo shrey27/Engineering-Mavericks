@@ -1,15 +1,4 @@
 export const videoList = Array(24).fill('back.jpg');
-export const categoryList = [
-  'All',
-  'Electrical',
-  'Automobiles',
-  'Space',
-  'Stuff',
-  'Science',
-  'Physics',
-  'Communication',
-  'Scientists'
-];
 
 export const navlinks = [
   {
@@ -26,7 +15,7 @@ export const navlinks = [
   },
   {
     id: 'N3',
-    name: 'Recently Watched',
+    name: 'Watched Videos',
     path: '/history',
     class: 'fa-solid fa-clock-rotate-left'
   },

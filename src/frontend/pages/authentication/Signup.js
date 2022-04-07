@@ -19,7 +19,6 @@ export default function Signup() {
     userNameError,
     cnfPassword,
     cnfpasswordError,
-    rememberMe,
     signupError,
     handleSignUp,
     dispatch
@@ -150,19 +149,6 @@ export default function Signup() {
               ></i>
             </div>
             <h1 className='input__error'>{cnfpasswordError}</h1>
-          </div>
-          <div className='flex-ct-st signin__remember'>
-            <input
-              className='sm-s'
-              type='checkbox'
-              name='remember__signup'
-              id='remember__signup'
-              checked={rememberMe}
-              onChange={(e) => dispatch({ type: 'REMEMBER-ME' })}
-            />
-            <label htmlFor='remember__signup' className='label'>
-              Remember me
-            </label>
           </div>
           <button
             type='submit'

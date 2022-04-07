@@ -1,5 +1,4 @@
 import './singlevideo.css';
-import Iframe from 'react-iframe-click';
 import { useState, useEffect } from 'react';
 import { useSingleVideo } from '../../helpers';
 import { Footer, Navbar, Loader, PlaylistModal } from '../../components';
@@ -11,21 +10,23 @@ import {
   usePlaylistCtx
 } from '../../context';
 import Suggestions from './Suggestions';
+import Comments from './Comments';
+import ReactPlayer from 'react-player/youtube';
 
-function VideoPlayer({
-  source,
-  title,
-  creator,
-  description,
-  singleVideo,
-  setModalOpen
-}) {
+function VideoPlayer({ singleVideo, setModalOpen }) {
   const [liked, setLiked] = useState(false);
   const [watchlater, setWatchLater] = useState(false);
-  const { _id } = singleVideo;
+  const {
+    _id,
+    video: source,
+    title,
+    creator,
+    description,
+    viewCount
+  } = singleVideo;
   const {
     addToLikedlist,
-    state: { addedVideosId }
+    state: { addedVideosId, likedLoader }
   } = useLikedCtx();
   const {
     state: { addedWatchLaterId },
@@ -51,7 +52,9 @@ function VideoPlayer({
   }, [_id, addedWatchLaterId]);
 
   const handleAddToLike = () => {
-    addToLikedlist({ ...singleVideo });
+    if (!likedLoader) {
+      addToLikedlist({ ...singleVideo });
+    }
   };
 
   const handleAddToWatchLater = () => {
@@ -70,17 +73,19 @@ function VideoPlayer({
   return (
     <div className='video__container'>
       <div className='video__iframe'>
-        <Iframe
-          src={`https://www.youtube.com/embed/${source}`}
-          onInferredClick={handleAddToHistory}
-          frameBorder='0'
-          allowFullScreen
-        ></Iframe>
+        <ReactPlayer
+          url={`https://www.youtube.com/embed/${source}`}
+          controls
+          width='100%'
+          height='100%'
+          onStart={handleAddToHistory}
+        />
       </div>
       <div className='video__control'>
         <h1 className='video__title'>{title}</h1>
         <h1 className='video__creator'>{creator}</h1>
         <p className='video__description'>{description}</p>
+
         <div className='video__buttons'>
           <button
             className={`video__button ${liked && 'liked'}`}
@@ -100,6 +105,8 @@ function VideoPlayer({
             <i className='fa-solid fa-list'></i>Save to Playlist
           </button>
         </div>
+        {/* <h1 className='video__title__tag'>{viewCount} Views </h1> */}
+        <Comments videoId={_id} viewCount={viewCount} />
         <Suggestions />
       </div>
     </div>
@@ -116,17 +123,12 @@ export default function SingleVideo() {
       <Navbar />
       {modalOpen && <PlaylistModal setModalOpen={setModalOpen} />}
       <div className=''>
-        {/* <Sidebar videos={true} /> */}
         <div className='main'>
           {!singleVideo ? (
             <Loader />
           ) : (
             <VideoPlayer
-              source={singleVideo?.video}
-              title={singleVideo?.title}
-              creator={singleVideo?.creator}
               singleVideo={singleVideo}
-              description={singleVideo?.description}
               setModalOpen={setModalOpen}
             />
           )}

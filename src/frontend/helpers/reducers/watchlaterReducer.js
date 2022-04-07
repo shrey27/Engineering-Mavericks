@@ -13,8 +13,7 @@ export const watchReducerFunction = (state, action) => {
     case 'WATCH_API_RESPONSE':
       return {
         ...state,
-        watchedLaterVideos: [...action.payload],
-        watchloader: false
+        watchedLaterVideos: [...action.payload]
       };
     case 'WATCH_CLOSE_LOADER':
       return {

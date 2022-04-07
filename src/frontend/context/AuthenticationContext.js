@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { LANDING } from '../routes/routes';
 import { signUpApi, signInApi } from '../service';
 import {
-  useLocalStorage,
   defaultState,
   authReducerFunc,
   validationForSignIn,
@@ -15,46 +14,25 @@ const AuthenticationContext = createContext();
 
 const AuthenticationProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducerFunc, defaultState);
-  const { email, password, rememberMe, signinRememberMe, username } = state;
+  const { email, password, username } = state;
   const navigate = useNavigate();
-  const storedData = useLocalStorage();
-
+  
   const handleSignIn = async (navigateTo) => {
     if (validationForSignIn(state, dispatch)) {
-      if (!rememberMe) {
-        const response = await signInApi(email, password);
-        if (response.data) {
-          const { foundUser, encodedToken } = response.data;
-          localStorage.setItem('token', encodedToken);
-          localStorage.setItem('userData', JSON.stringify(foundUser));
-          dispatch({ type: 'TOKEN-SAVED', payload: encodedToken });
-          ToastMessage('Sign In completed', 'success');
-          navigate(navigateTo ?? LANDING, { replace: true });
-        } else {
-          dispatch({
-            type: 'SIGNIN-ERROR',
-            payload: response.error
-          });
-          ToastMessage('Sign In failed', 'error');
-        }
+      const response = await signInApi(email, password);
+      if (response.data) {
+        const { foundUser, encodedToken } = response.data;
+        localStorage.setItem('token', encodedToken);
+        localStorage.setItem('userData', JSON.stringify(foundUser));
+        dispatch({ type: 'TOKEN-SAVED', payload: encodedToken });
+        ToastMessage('Sign In completed', 'success');
+        navigate(navigateTo ?? LANDING, { replace: true });
       } else {
-        const { storedEmail, storedPassword, storedToken } = storedData;
-        if (
-          !storedData ||
-          (storedEmail === email && storedPassword === password)
-        ) {
-          dispatch({ type: 'TOKEN-SAVED', payload: storedToken });
-          dispatch({ type: 'SET-DEFAULT' });
-          ToastMessage('Sign In completed', 'success');
-          navigate(navigateTo ?? LANDING, { replace: true });
-        } else {
-          dispatch({
-            type: 'SIGNIN-ERROR',
-            payload: 'User Not Found. Either Sign-up or try again later'
-          });
-          dispatch({ type: 'SET-DEFAULT' });
-          ToastMessage('Sign In failed', 'error');
-        }
+        dispatch({
+          type: 'SIGNIN-ERROR',
+          payload: response.error
+        });
+        ToastMessage('Sign In failed', 'error');
       }
     }
   };
@@ -79,10 +57,8 @@ const AuthenticationProvider = ({ children }) => {
 
   const handleSignOut = () => {
     dispatch({ type: 'TOKEN-REMOVED' });
-    if (!rememberMe && !signinRememberMe) {
-      dispatch({ type: 'CLEAR-FIELDS' });
-      localStorage.clear();
-    }
+    dispatch({ type: 'CLEAR-FIELDS' });
+    localStorage.clear();
     navigate(LANDING);
   };
 

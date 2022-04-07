@@ -29,6 +29,7 @@ const LikedProvider = ({ children }) => {
       payload: addedVideosId.filter((e) => e !== id)
     });
     ToastMessage('You have disliked this Video', 'error');
+    dispatch({ type: 'STOP_LIKE_LOADER' });
   };
 
   const addToLikedlist = async (video) => {
@@ -38,14 +39,19 @@ const LikedProvider = ({ children }) => {
       deleteLikedFromList(video._id);
     } else {
       const likes = await addLikedVideo(video, token);
-      dispatch({
-        type: 'LIKE_API_RESPONSE',
-        payload: likes
-      });
-      updateLocalStorage('likes', likes);
-      const idArray = likes.map((elem) => elem._id);
-      dispatch({ type: 'UPDATE_ID', payload: [...idArray] });
-      ToastMessage('You have liked this Video', 'success');
+      if (likes.length) {
+        dispatch({
+          type: 'LIKE_API_RESPONSE',
+          payload: likes
+        });
+        updateLocalStorage('likes', likes);
+        const idArray = likes.map((elem) => elem._id);
+        dispatch({ type: 'UPDATE_ID', payload: [...idArray] });
+        ToastMessage('You have liked this Video', 'success');
+      } else {
+        ToastMessage('Request Failed', 'error');
+      }
+      dispatch({ type: 'STOP_LIKE_LOADER' });
     }
   };
 
@@ -62,6 +68,8 @@ const LikedProvider = ({ children }) => {
       const datatoUpdate = JSON.parse(localStorage.getItem('userData'));
       datatoUpdate.likes = [...likes];
       localStorage.setItem('userData', JSON.stringify(datatoUpdate));
+
+      dispatch({ type: 'STOP_LIKE_LOADER' });
     };
     if (token) getLikedList();
   }, [token]);
