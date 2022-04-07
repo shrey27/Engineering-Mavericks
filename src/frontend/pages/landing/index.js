@@ -1,10 +1,11 @@
+import { lazy, Suspense } from 'react';
 import './landing.css';
-import Header from './Header';
-import Category from './Category';
-import { Footer } from '../../components';
+import { Loader, Footer } from '../../components';
 import { useLandingCtx } from '../../context';
 import { useEffect } from 'react';
 
+const Header = lazy(() => import('./Header.js'));
+const Category = lazy(() => import('./Category.js'));
 
 export default function Landing() {
   const { dispatch } = useLandingCtx();
@@ -14,10 +15,12 @@ export default function Landing() {
   }, [dispatch]);
 
   return (
-    <div>
-      <Header />
-      <Category />
-      <Footer />
-    </div>
+    <Suspense fallback={<Loader />}>
+      <div>
+        <Header />
+        <Category />
+        <Footer />
+      </div>
+    </Suspense>
   );
 }

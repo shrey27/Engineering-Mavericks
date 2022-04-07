@@ -18,7 +18,7 @@ export default function Header() {
             Explore the world of engineering, in an interactive and creative
             manner
           </h1>
-          <Link to={VIDEOS} className='header__cta btn--auth--solid sb'>
+          <Link to={VIDEOS} className='header__cta sb'>
             Start Learning
           </Link>
         </div>
