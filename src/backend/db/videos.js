@@ -10,7 +10,7 @@ export const videos = [
     comments: [
       {
         _id: uuid(),
-        comment: 'Video is loaded with concepts and highly intutive'
+        comment: 'Video is knowledge intensive and highly intuitive'
       },
       { _id: uuid(), comment: 'Animation is great and content is awesome.' }
     ],
