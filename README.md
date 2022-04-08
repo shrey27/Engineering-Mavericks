@@ -51,6 +51,7 @@ categories are
 - Add, edit or delete comments on Single video Page
 - Upload a video of pre-exisiting category or new category with updated filters
 - Toast messages on every screen to acknowledge user actions
+- Lazy loading on images and landing, video listing pages
 
 ## Tech stack used
 
