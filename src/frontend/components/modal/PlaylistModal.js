@@ -10,7 +10,7 @@ export function PlaylistModal({ setModalOpen, onPlaylists }) {
     addPlaylistFunction,
     addVideoToPlaylistsFunction,
     deleteVideoFromPlaylistsFunction,
-    state: { playlists, playlistId },
+    state: { playlists, videoId },
     dispatch
   } = usePlaylistCtx();
 
@@ -56,13 +56,13 @@ export function PlaylistModal({ setModalOpen, onPlaylists }) {
         <h1 className='md sb mg-half'>Save To</h1>
         <hr />
         {playlists?.map((elem) => {
-          const { _id, playlistName } = elem;
+          const { _id, playlistName, videos } = elem;
           return (
             <label className='playlist__option' key={_id}>
               <input
                 type='checkbox'
                 className='playlist__option__input'
-                checked={playlistId?.includes(_id)}
+                checked={videos?.some((video) => video._id === videoId)}
                 onChange={(e) => handleVideoInPlaylist(e, _id)}
               />
               &nbsp;&nbsp; {playlistName}
