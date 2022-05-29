@@ -3,7 +3,7 @@ import './navbar.css';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLandingCtx, useAuthCtx } from '../../context';
-import { SIGNIN, LANDING } from '../../routes/routes';
+import { SIGNIN, LANDING, VIDEOS } from '../../routes/routes';
 import pic from '../../assets/logo.webp';
 import { SignoutModal } from '../modal/SignoutModal';
 
@@ -70,6 +70,9 @@ export function Navbar({ hideSearchBar }) {
         <section className='end'>
           {token ? (
             <div className='menu'>
+              <Link to={VIDEOS} className='menu__icon'>
+                <i className='fa-solid fa-house'></i>
+              </Link>
               <i className='far fa-user-circle menu__icon'></i>
               <div className='submenu'>
                 <h1 className='md sb cen'>Hey {username.split(' ')[0]}</h1>

@@ -14,6 +14,18 @@ export function UploadModal({ setuploadModal }) {
   const [error, setError] = useState(false);
   const { addNewVideo } = useLandingCtx();
 
+  const handleDummy = () => {
+    setNewVideo({
+      url: 'https://www.youtube.com/watch?v=VN4_asSBEKY&t=10s',
+      category: 'Automobiles',
+      title:
+        'Differential explained - How differential works open, limited slip',
+      creator: 'The Tech Guy',
+      description:
+        'Learn how a differential gear works, open differential, limited slip differential, locked differential'
+    });
+  };
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const { url, category, creator, title, description } = newVideo;
@@ -132,6 +144,9 @@ export function UploadModal({ setuploadModal }) {
               onFocus={() => setError(false)}
             ></textarea>
           </div>
+          <button type='button' className='btn btn--auth' onClick={handleDummy}>
+            Demo Data
+          </button>
           <button type='submit' className='btn btn--auth--solid'>
             Upload
           </button>

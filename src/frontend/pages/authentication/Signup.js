@@ -8,8 +8,7 @@ import { testCredentials } from '../../utility/constants';
 
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
-  const [showCnfPassword, setShowCnfPassword] = useState(false);
-
+  
   const {
     signupEmail,
     signupEmailError,
@@ -87,7 +86,7 @@ export default function Signup() {
               aria-autocomplete='none'
               value={signupEmail}
               onChange={(e) =>
-                dispatch({ type: 'SIGNIN-EMAIL', payload: e.target.value })
+                dispatch({ type: 'SIGNUP-EMAIL', payload: e.target.value })
               }
               onFocus={() => dispatch({ type: 'CLEAR-ALL-ERRORS' })}
               required
@@ -108,7 +107,7 @@ export default function Signup() {
                 placeholder='Enter Password'
                 value={signupPassword}
                 onChange={(e) =>
-                  dispatch({ type: 'SIGNIN-PASSWORD', payload: e.target.value })
+                  dispatch({ type: 'SIGNUP-PASSWORD', payload: e.target.value })
                 }
                 onFocus={() => dispatch({ type: 'CLEAR-ALL-ERRORS' })}
                 required
@@ -128,7 +127,7 @@ export default function Signup() {
             <div className='input__container'>
               <input
                 className='input input__password sm-s'
-                type={showCnfPassword ? 'text' : 'password'}
+                type='password'
                 name='cnf__password__signup'
                 id='cnf__password__signup'
                 autoComplete='off'
@@ -143,10 +142,6 @@ export default function Signup() {
                 onFocus={() => dispatch({ type: 'CLEAR-ALL-ERRORS' })}
                 required
               />
-              <i
-                className='fa-solid fa-eye input__eye'
-                onClick={() => setShowCnfPassword((e) => !e)}
-              ></i>
             </div>
             <h1 className='input__error'>{cnfpasswordError}</h1>
           </div>

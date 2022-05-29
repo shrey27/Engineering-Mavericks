@@ -15,6 +15,7 @@ export const defaultLandingState = {
     'Scientists'
   ],
   videoList: [],
+  newVideo: null,
   more: true,
   data: [],
   after: 4
@@ -35,6 +36,11 @@ export const landingReducer = (state, action) => {
       return {
         ...state,
         videoList: action.payload
+      };
+    case 'NEW_VIDEO':
+      return {
+        ...state,
+        newVideo: action.payload
       };
     case 'SET_SEARCH':
       return {

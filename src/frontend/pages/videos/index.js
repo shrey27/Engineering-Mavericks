@@ -15,7 +15,7 @@ import { SIGNIN } from '../../routes/routes';
 
 export default function VideoListing() {
   const {
-    state: { loading, more, data, filter },
+    state: { loading, more, data, filter, newVideo },
     dispatch,
     load,
     filterList
@@ -86,7 +86,7 @@ export default function VideoListing() {
       tempList = tempList.sort((a, b) => b.videoDate - a.videoDate);
     }
     setAlteredList([...tempList]);
-  }, [search, data, sort, filter, filterList]);
+  }, [search, data, sort, filter, filterList, newVideo]);
 
   const handleModal = () => {
     if (token) {

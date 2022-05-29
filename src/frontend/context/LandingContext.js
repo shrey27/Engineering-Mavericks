@@ -83,11 +83,12 @@ function LandingProvider({ children }) {
       viewCount: 0,
       comments: []
     };
-    dispatch({ type: 'GET_VIDEOS', payload: videoList.concat(videoObject) });
+    dispatch({ type: 'GET_VIDEOS', payload: [...videoList, videoObject] });
+
     if (!more) {
       dispatch({ type: 'SET_DATA', payload: [videoObject] });
     }
-    ToastMessage('Video uploaded successfully', 'success');
+    ToastMessage('Video added to the end of the list', 'success');
   };
 
   const updateCommentsOnVideo = (videoId, commentId, newComment, toEdit) => {
